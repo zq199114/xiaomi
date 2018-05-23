@@ -2,7 +2,7 @@
 <template>
 <div class="scroll">
   <ul class="scroll-bar">
-    <li class="scroll-item" v-for="item in barItem">{{item}}</li>
+    <li class="scroll-item" v-for="item in barItem" :key="item.index">{{item}}</li>
   </ul>
 </div>
 </template>
@@ -24,12 +24,12 @@ export default {
 .scroll
   width: 100%
   height: .68rem
-  overflow: hidden
   background: $bgColor
+  overflow: hidden
   .scroll-bar
-    height: 100%
+    width: 200%
     .scroll-item
-      height: 100%
       float: left
       padding: 0 .25rem
+      line-height: .68rem
 </style>
