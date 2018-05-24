@@ -4,11 +4,13 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store/index' // 引入vuex文件
+import VueAwesomeSwiper from 'vue-awesome-swiper'
 // import './config/rem'
 import FastClick from 'fastclick'
 import 'babel-polyfill'
 import 'styles/reset.css'
 import 'styles/iconfont.css'
+import 'swiper/dist/css/swiper.css'
 
 // 绑定fastClick插件
 if ('addEventListener' in document) {
@@ -19,6 +21,7 @@ if ('addEventListener' in document) {
 
 // 使用router插件
 Vue.use(router)
+Vue.use(VueAwesomeSwiper)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

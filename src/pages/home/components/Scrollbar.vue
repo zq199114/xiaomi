@@ -1,20 +1,53 @@
 <!-- 展示模板 -->
 <template>
-<div class="scroll">
-  <ul class="scroll-bar">
-    <li class="scroll-item" v-for="item in barItem" :key="item.index">{{item}}</li>
-  </ul>
+<div>
+  <div class="scroll" ref="scroll">
+    <ul class="scroll-bar" ref="bar">
+    <!--用下标也要在括号里写出来不能点出来-->
+      <li class="scroll-item"
+      ref="item" v-for="(item, key) in barItem"
+      :key="key" @click="change(key)"
+      :class="{'active':key==isActive}">
+      {{item}}
+      </li>
+    </ul>
+  </div>
+  <home-recommend></home-recommend>
 </div>
 </template>
 
 <script>
-// import BScroll from 'better-scroll'
+import BScroll from 'better-scroll'
+import HomeRecommend from './page/Recommend'
 export default {
   name: 'HomeScrollbar',
+  components: {
+    HomeRecommend
+  },
   data () {
     return {
-      barItem: ['推荐', '手机', '智能', '电视', '电脑', '双摄', '全面屏', '生活周边', '盒子']
+      barItem: ['推荐', '手机', '智能', '电视', '电脑', '双摄', '全面屏', '生活周边', '盒子'],
+      isActive: 0
     }
+  },
+  methods: {
+    change (num) {
+      console.log(num)
+      this.isActive = num
+    }
+  },
+  mounted () {
+    let item = this.$refs.bar
+    let width = 0
+    for (let i = 0; i < item.children.length; i++) {
+      width += item.children[i].offsetWidth
+    }
+    item.style.width = width + 'px'
+    this.scroll = new BScroll(this.$refs.scroll, {
+      scrollX: true,
+      click: true,
+      bounce: false
+    })
   }
 }
 </script>
@@ -26,10 +59,21 @@ export default {
   height: .68rem
   background: $bgColor
   overflow: hidden
+  box-sizing: content-box
+  box-shadow: 0 2px 4px -1px rgba(0,0,0,.2)
   .scroll-bar
-    width: 200%
+    height: 100%
     .scroll-item
+      z-index: 99
+      color: rgb(116, 116, 116)
+      font-size: .26rem
       float: left
       padding: 0 .25rem
-      line-height: .68rem
+      line-height: .62rem
+      &.active
+        padding-bottom: .02rem
+        box-sizing: border-box
+        color: rgb(237, 91, 0)
+        border-color: rgb(237, 91, 0)
+        border-bottom: .04rem solid
 </style>
