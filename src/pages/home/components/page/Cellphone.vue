@@ -1,15 +1,14 @@
-<!-- 展示模板 -->
 <template>
-  <div class="recommend">
-    comd
-  </div>
+<div class="cellphone">phone</div>
 </template>
 
 <script>
 export default {
-  name: 'HomeRecommend'
+  name: 'HomeCellphone'
 }
 </script>
-<!-- 样式代码 -->
+
 <style lang="stylus" scoped type="text/stylus">
+.cellphone
+  width: 100%
 </style>

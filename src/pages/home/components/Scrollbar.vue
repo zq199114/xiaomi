@@ -12,28 +12,53 @@
       </li>
     </ul>
   </div>
-  <home-recommend></home-recommend>
+  <swiper :options="swiperOption" ref="mySwiper">
+    <!-- slides -->
+    <swiper-slide><home-recommend></home-recommend></swiper-slide>
+    <swiper-slide>  <home-cellphone></home-cellphone></swiper-slide>
+  </swiper>
 </div>
 </template>
 
 <script>
 import BScroll from 'better-scroll'
 import HomeRecommend from './page/Recommend'
+import HomeCellphone from './page/Cellphone'
+
 export default {
   name: 'HomeScrollbar',
   components: {
-    HomeRecommend
+    HomeRecommend,
+    HomeCellphone
   },
   data () {
     return {
       barItem: ['推荐', '手机', '智能', '电视', '电脑', '双摄', '全面屏', '生活周边', '盒子'],
-      isActive: 0
+      isActive: 0,
+      swiperOption: {
+        autoHeight: true, // 高度随内容变化
+        runCallbacksOnInit: false, // 初始化时不触发slideChange
+        on: {
+          // slideChangeTransitionStart () {
+          // alert(this.activeIndex)
+          // }
+        }
+      }
+    }
+  },
+  computed: {
+    swiper () {
+      return this.$refs.mySwiper.swiper
     }
   },
   methods: {
+    test () {
+      console.log('wo')
+    },
     change (num) {
       console.log(num)
       this.isActive = num
+      this.swiper.slideTo(num)
     }
   },
   mounted () {
@@ -48,6 +73,10 @@ export default {
       click: true,
       bounce: false
     })
+    // current swiper instance
+    // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了
+    // console.log('this is current swiper instance object', this.swiper)
+    this.swiper.on('slideChangeTransitionStart', () => this.change(this.swiper.activeIndex))
   }
 }
 </script>
