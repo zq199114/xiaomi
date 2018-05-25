@@ -37,24 +37,21 @@ export default {
       isActive: 0,
       swiperOption: {
         autoHeight: true, // 高度随内容变化
-        runCallbacksOnInit: false, // 初始化时不触发slideChange
-        on: {
-          // slideChangeTransitionStart () {
-          // alert(this.activeIndex)
-          // }
-        }
+        runCallbacksOnInit: false // 初始化时不触发slideChange
+        // on: { // 由于这里嵌套在内存所以不能用this, 监听事件只能用在外层
+        // slideChangeTransitionStart () {
+        // alert(this.activeIndex)
+        // }
+        // }
       }
     }
   },
   computed: {
-    swiper () {
+    swiper () { // 通过他能调用swiper插件的方法
       return this.$refs.mySwiper.swiper
     }
   },
   methods: {
-    test () {
-      console.log('wo')
-    },
     change (num) {
       console.log(num)
       this.isActive = num
