@@ -65,6 +65,7 @@ export default {
 @import "~styles/variable.styl"
 @import "~styles/mixins.styl"
 .best
+  background: #fff
   margin-top: $topMargin
   .bestPro
     img

@@ -12,7 +12,7 @@
       </li>
     </ul>
   </div>
-  <swiper :options="swiperOption" ref="mySwiper">
+  <swiper :options="swiperOptionb" ref="mySwiper">
     <!-- slides -->
     <swiper-slide><home-recommend></home-recommend></swiper-slide>
     <swiper-slide>  <home-cellphone></home-cellphone></swiper-slide>
@@ -35,7 +35,7 @@ export default {
     return {
       barItem: ['推荐', '手机', '智能', '电视', '电脑', '双摄', '全面屏', '生活周边', '盒子'],
       isActive: 0,
-      swiperOption: {
+      swiperOptionb: {
         autoHeight: true, // 高度随内容变化
         runCallbacksOnInit: false // 初始化时不触发slideChange
         // on: { // 由于这里嵌套在内存所以不能用this, 监听事件只能用在外层

@@ -1,7 +1,7 @@
 <!-- 展示模板 -->
 <template>
 <div class="banner">
-  <swiper :options="swiperOption" ref="mySwiper">
+  <swiper :options="swiperOptiona" ref="mySwiper">
     <swiper-slide v-for="item in swiperImg" :key="item.id">
       <img class="swiper_img" :src="item.imgUrl">
     </swiper-slide>
@@ -29,7 +29,7 @@ export default {
           id: '004',
           imgUrl: 'https://cdn.cnbj0.fds.api.mi-img.com/b2c-mimall-media/2320573b3be643e29f5270a97e1a9c1d.jpg?thumb=1&w=720&h=360'
         }],
-      swiperOption: {
+      swiperOptiona: {
         on: {
           lazyImageLoad (slide, image) {
             alert('延迟加载图片')

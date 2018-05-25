@@ -31,7 +31,9 @@ export default {
       tab: true,
       click: true
     })
-    console.log(this.scroll)
+    console.log(screen.availHeight)
+    console.log(document.body.scrollHeight)
+    this.$refs.wraper.style.height = (window.screen.availHeight / 50 - 1.68) + 'rem'
   }
 }
 </script>
