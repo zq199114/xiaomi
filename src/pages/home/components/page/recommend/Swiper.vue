@@ -3,7 +3,7 @@
 <div class="banner">
   <swiper :options="swiperOptiona" ref="mySwiper">
     <swiper-slide v-for="item in swiperImg" :key="item.id">
-      <img class="swiper_img" :src="item.imgUrl">
+      <router-link tag="img" to="/Detail" class="swiper_img" :src="item.imgUrl"></router-link>
     </swiper-slide>
     <div class="swiper-pagination"  slot="pagination"></div>
   </swiper>

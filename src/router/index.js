@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import {routerMode} from '../config/env'
 import Home from '@/pages/home/home'
+import Detail from '@/pages/detail/Detail'
 
 Vue.use(Router)
 
@@ -24,6 +25,10 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home
+    }, {
+      path: '/Detail',
+      name: 'Detail',
+      component: Detail
     }
   ]
 })

@@ -15,6 +15,7 @@ export default {
 
 <style lang="stylus" scoped type="text/stylus">
 .bar
+  background: #fff
   position: fixed
   bottom: 0
   left: 0
