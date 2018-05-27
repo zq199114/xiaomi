@@ -3,17 +3,20 @@
   <div>
     <home-header></home-header>
     <home-scrollbar></home-scrollbar>
+    <home-bottombar></home-bottombar>
   </div>
 </template>
 
 <script>
 import HomeHeader from './components/Header'
 import HomeScrollbar from './components/Scrollbar'
+import HomeBottombar from './components/Bottombar'
 export default {
   name: 'Home',
   components: {
     HomeHeader,
-    HomeScrollbar
+    HomeScrollbar,
+    HomeBottombar
   }
 }
 </script>

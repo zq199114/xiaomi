@@ -21,6 +21,7 @@ if ('addEventListener' in document) {
 
 // 使用router插件
 Vue.use(router)
+
 Vue.use(VueAwesomeSwiper)
 Vue.config.productionTip = false
 
