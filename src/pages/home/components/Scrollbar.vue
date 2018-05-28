@@ -37,6 +37,7 @@ export default {
       isActive: 0,
       swiperOptionb: {
         autoHeight: true, // 高度随内容变化
+        touchRatio: 0.3, // 触摸变慢
         runCallbacksOnInit: false // 初始化时不触发slideChange
         // on: { // 由于这里嵌套在内存所以不能用this, 监听事件只能用在外层
         // slideChangeTransitionStart () {

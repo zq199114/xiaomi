@@ -29,6 +29,7 @@ export default new Router({
       path: '/Detail',
       name: 'Detail',
       component: Detail
+      // meta: { keepAlive: true }
     }
   ]
 })

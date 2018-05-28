@@ -39,7 +39,8 @@ export default {
         },
         pagination: {
           el: '.swiper-pagination'
-        }
+        },
+        touchRatio: 1 // 触摸变慢
       }
     }
   }

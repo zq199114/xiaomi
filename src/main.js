@@ -10,6 +10,7 @@ import FastClick from 'fastclick'
 import 'babel-polyfill'
 import 'styles/reset.css'
 import 'styles/iconfont.css'
+import 'styles/border.css'
 import 'swiper/dist/css/swiper.css'
 
 // 绑定fastClick插件
