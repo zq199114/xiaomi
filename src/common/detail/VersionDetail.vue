@@ -74,18 +74,23 @@ export default {
     }
   },
   methods: {
-    changeItem (item) {
+    changeItem (item = this.init.ver) {
       this.version_price = item.price
       this.varsion_title = item.name
       this.varsion_id = item.id
     },
-    changeColor (item) {
+    changeColor (item = this.init.col) {
       this.varsion_color = item.name
       this.color_id = item.id
     },
     backDetail () {
-      console.log('olk')
       this.$emit('backDet')
+    }
+  },
+  watch: { // 用watch见识一个props传来的值的时候可以不用加this
+    init () {
+      this.changeItem()
+      this.changeColor()
     }
   }
 }

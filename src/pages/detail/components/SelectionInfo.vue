@@ -79,7 +79,6 @@ export default {
   },
   methods: {
     showVersion () {
-      console.log('weishenm')
       this.showclick = !this.showclick
     }
   },
@@ -88,6 +87,10 @@ export default {
     this.current_price = this.version.version_item[0].price
     this.$emit('transmitPrice', this.current_price)
     this.current_color = this.version.color[0].name
+    this.initData = {
+      ver: this.version.version_item[0],
+      col: this.version.color[0]
+    }
   }
 }
 </script>
