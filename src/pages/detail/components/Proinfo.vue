@@ -4,7 +4,7 @@
   <div class="infoDetail">
     <div class="title">红米Note5 AI双摄</div>
     <div class="title_info">骁龙636 八核处理器 / 1.4μm大像素 AI 双摄 / 1300万柔光自拍 / 最高可选6GB大内存 / 4000mAh 大电量 / 5.99" 18:9 全面屏 / 人脸解锁</div>
-    <div class="title_price"><i>￥</i>1399</div>
+    <div class="title_price"><i>￥</i>{{this.current_price}}</div>
   </div>
   <div class="promotion border-top" ref="promotion" @click='showDetail'>
     <i>促销</i>
@@ -24,6 +24,9 @@
 import ProDetail from 'common/detail/promotionDetail'
 export default {
   name: 'DetailProinfo',
+  props: {
+    current_price: String
+  },
   data () {
     return {
       gift: [{

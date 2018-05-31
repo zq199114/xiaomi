@@ -1,8 +1,8 @@
 <template>
 <div class="detail">
   <detail-swiper></detail-swiper>
-  <detail-proinfo></detail-proinfo>
-  <detail-selection-info></detail-selection-info>
+  <detail-proinfo :current_price="price"></detail-proinfo>
+  <detail-selection-info @transmitPrice="getPrice"></detail-selection-info>
   <detail-evaluate></detail-evaluate>
   <detail-overview></detail-overview>
   <detail-bottombar></detail-bottombar>
@@ -26,6 +26,16 @@ export default {
     DetailEvaluate,
     DetailOverview,
     DetailBottombar
+  },
+  data () {
+    return {
+      price: '0'
+    }
+  },
+  methods: {
+    getPrice (num) {
+      this.price = num
+    }
   }
 }
 </script>
