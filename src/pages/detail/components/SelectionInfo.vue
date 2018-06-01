@@ -9,7 +9,7 @@
     放在外面就没事-->
   </div>
   <version-detail
-    v-show="showclick"
+    v-if="showclick"
     :version="version"
     :init="initData"
     @backDet="showVersion">
@@ -30,6 +30,7 @@
 
 <script>
 import VersionDetail from 'common/detail/VersionDetail'
+
 export default {
   name: 'DetailSelectionInfo',
   components: {
@@ -78,15 +79,25 @@ export default {
     }
   },
   methods: {
-    showVersion () {
+    showVersion (item) {
+      if (typeof (item) === 'object') {
+        this.current_ver = item.name
+        this.current_color = item.color
+        this.current_num = item.num
+        this.emitTar(item.price)
+      }
       this.showclick = !this.showclick
+      this.stopBodyScroll(this.showclick)
+    },
+    emitTar (item) {
+      this.$emit('transmitPrice', item)
     }
   },
   mounted () {
     this.current_ver = this.version.version_item[0].name
     this.current_price = this.version.version_item[0].price
-    this.$emit('transmitPrice', this.current_price)
     this.current_color = this.version.color[0].name
+    this.emitTar(this.current_price)
     this.initData = {
       ver: this.version.version_item[0],
       col: this.version.color[0]

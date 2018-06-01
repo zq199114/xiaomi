@@ -12,7 +12,9 @@ import 'styles/reset.css'
 import 'styles/iconfont.css'
 import 'styles/border.css'
 import 'swiper/dist/css/swiper.css'
+import scrollFn from 'common/commonjs/scrollFn' // 自定义的以全局方法,页面有蒙层时静止底部滚动
 
+Vue.use(scrollFn) // 使用自定义的全局方法
 // 绑定fastClick插件
 if ('addEventListener' in document) {
   document.addEventListener('DOMContentLoaded', function () {
