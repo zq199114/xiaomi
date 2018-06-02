@@ -12,8 +12,12 @@
     v-if="showclick"
     :version="version"
     :init="initData"
-    @backDet="showVersion">
+    @backDet="showVersion"
+    @addsucceed="addsucceed">
   </version-detail>
+  <fade>
+    <succeed v-if="succeed"></succeed>
+  </fade>
   <div class="send_to border-bottom">
     <i>送至</i>
     <div class="ctiy">北京市 东城区</div>
@@ -30,11 +34,15 @@
 
 <script>
 import VersionDetail from 'common/detail/VersionDetail'
+import Succeed from 'common/popup/Succeed'
+import Fade from 'common/animation/Fade'
 
 export default {
   name: 'DetailSelectionInfo',
   components: {
-    VersionDetail
+    VersionDetail,
+    Succeed,
+    Fade
   },
   data () {
     return {
@@ -75,10 +83,17 @@ export default {
       current_price: null,
       current_num: '1',
       showclick: false,
+      succeed: false,
       initData: {}
     }
   },
   methods: {
+    addsucceed () {
+      this.succeed = true
+      setTimeout(() => {
+        this.succeed = false
+      }, 500)
+    },
     showVersion (item) {
       if (typeof (item) === 'object') {
         this.current_ver = item.name

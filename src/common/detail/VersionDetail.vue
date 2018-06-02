@@ -50,10 +50,10 @@
         <div class="service">
           <div class="service_title">保障服务<span class="iconfont">&#xe7ba;</span></div>
           <div class="service_item">
-            <div class="service_list">意外保障服务 69元</div>
+            <div class="service_list" :class="{'ser_active': service}" @click="addService">意外保障服务 69元</div>
             <div class="service_select">
-              <span class="sel"></span>
-              <span class="service_item">我已阅读 <i>服务条款 | 常见问题</i>
+              <span class="sel" :class="{'sel_active': service}" @click="addService">✔</span>
+              <span class="service_tips">我已阅读 <i>服务条款 | 常见问题</i>
               </span>
             </div>
           </div>
@@ -61,7 +61,7 @@
       </div>
     </div>
   </div>
-  <div class="add_cart">加入购物车</div>
+  <div class="add_cart" @click="addCart">加入购物车</div>
 </div>
 </template>
 
@@ -85,6 +85,13 @@ export default {
     }
   },
   methods: {
+    addCart () {
+      this.$emit('addsucceed')
+      this.backDetail()
+    },
+    addService () {
+      this.service = !this.service
+    },
     reduce () {
       if (this.num === 1) {
         this.num = 1
@@ -278,16 +285,46 @@ export default {
             line-height: .72rem
             padding: 0 .2rem
             border: .01rem solid rgba(0,0,0,.15)
+          .ser_active
+            border-color: #ff6700
+            color: #ff6700
           .service_select
+            line-height: .5rem
+            margin-top: .2rem
+            box-sizing: content-box
             .sel
               display: inline-block
               height: .4rem
               width: .4rem
+              line-height: .4rem
+              text-align: center
               border-radius: .2rem
               border: .01rem solid rgba(0,0,0,.15)
-              margin-top: .2rem
-            .service_item
-              line-height: .72rem
+              font-size: .2rem
+              font-weight: 500
+              vertical-align: top
+              background: #fff
+              color: #fff
+            .sel_active
+              border: .01rem solid #FF6700
+              background: #FF7600
+              color: #fff
+            .service_tips
+              vertical-align: top
+              display: inline-block
+              line-height: .4rem
               i
+                line-height: .4rem
                 color: #ff6700
+  .add_cart
+    position: fixed
+    bottom: 0
+    left: 0
+    right: 0
+    height: 1rem
+    background: #ff6700
+    color: #fff
+    line-height: 1rem
+    text-align: center
+    font-size: .28rem
 </style>
