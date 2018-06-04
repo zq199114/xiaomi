@@ -16,11 +16,14 @@
       <div class="iconfont arrow">&#xe62d;</div>
     </div>
   </div>
+  <updown>
   <pro-detail v-show="showDet" :zenpin="gift"  @close="showDetail"></pro-detail>
+  </updown>
 </div>
 </template>
 
 <script>
+import Updown from 'common/animation/Updown'
 import ProDetail from 'common/detail/promotionDetail'
 export default {
   name: 'DetailProinfo',
@@ -43,7 +46,8 @@ export default {
     }
   },
   components: {
-    ProDetail
+    ProDetail,
+    Updown
   },
   methods: {
     showDetail () {

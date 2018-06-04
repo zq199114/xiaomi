@@ -2,10 +2,10 @@
 <div class="detail">
   <detail-swiper></detail-swiper>
   <detail-proinfo :current_price="price"></detail-proinfo>
-  <detail-selection-info @transmitPrice="getPrice"></detail-selection-info>
+  <detail-selection-info @transmitPrice="getPrice" :showSel="showSel" @changSel="showSelect"></detail-selection-info>
   <detail-evaluate></detail-evaluate>
   <detail-overview></detail-overview>
-  <detail-bottombar></detail-bottombar>
+  <detail-bottombar @showSelect="showSelect"></detail-bottombar>
 </div>
 </template>
 
@@ -29,12 +29,16 @@ export default {
   },
   data () {
     return {
-      price: '0'
+      price: '0',
+      showSel: false
     }
   },
   methods: {
     getPrice (num) {
       this.price = num
+    },
+    showSelect () {
+      this.showSel = !this.showSel
     }
   }
 }

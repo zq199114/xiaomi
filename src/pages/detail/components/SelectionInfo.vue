@@ -13,7 +13,9 @@
     :version="version"
     :init="initData"
     @backDet="showVersion"
-    @addsucceed="addsucceed">
+    @addsucceed="addsucceed"
+    @transmit="transmit"
+  >
   </version-detail>
   <fade>
     <succeed v-if="succeed"></succeed>
@@ -39,6 +41,9 @@ import Fade from 'common/animation/Fade'
 
 export default {
   name: 'DetailSelectionInfo',
+  props: {
+    showSel: Boolean
+  },
   components: {
     VersionDetail,
     Succeed,
@@ -88,24 +93,36 @@ export default {
     }
   },
   methods: {
-    addsucceed () {
-      this.succeed = true
-      setTimeout(() => {
-        this.succeed = false
-      }, 500)
-    },
-    showVersion (item) {
+    transmit (item) {
       if (typeof (item) === 'object') {
         this.current_ver = item.name
         this.current_color = item.color
         this.current_num = item.num
         this.emitTar(item.price)
       }
+    },
+    addsucceed () {
+      this.succeed = true
+      setTimeout(() => {
+        this.succeed = false
+      }, 500)
+    },
+    showVersion () {
+      if (this.showSel) {
+        this.$emit('changSel')
+      }
       this.showclick = !this.showclick
       this.stopBodyScroll(this.showclick)
     },
     emitTar (item) {
       this.$emit('transmitPrice', item)
+    }
+  },
+  watch: {
+    showSel () {
+      if (this.showSel) {
+        this.showVersion()
+      }
     }
   },
   mounted () {

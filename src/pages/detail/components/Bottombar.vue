@@ -3,13 +3,18 @@
 <div class="bottombar">
   <div class="home"><span class="iconfont home_icon">&#xe655;</span><p>首页</p></div>
   <div class="cart"><span class="iconfont cart_icon">&#xe600;</span><p>购物车</p></div>
-  <div class="addcart">加入购物车</div>
+  <div class="addcart" @click="showSelect">加入购物车</div>
 </div>
 </template>
 
 <script>
 export default {
-  name: 'DetailBottombar'
+  name: 'DetailBottombar',
+  methods: {
+    showSelect () {
+      this.$emit('showSelect')
+    }
+  }
 }
 </script>
 <!-- 样式代码 -->
