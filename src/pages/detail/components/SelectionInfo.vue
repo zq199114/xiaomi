@@ -71,16 +71,20 @@ export default {
         }],
         color: [{
           id: 'c001',
-          name: '金色'
+          name: '金色',
+          imgUrl: 'https://i8.mifile.cn/a1/pms_1521165504.49423605!720x7200.jpg'
         }, {
           id: 'c002',
-          name: '黑色'
+          name: '黑色',
+          imgUrl: 'https://i8.mifile.cn/a1/pms_1521165496.26763454!720x7200.jpg'
         }, {
           id: 'c003',
-          name: '玫瑰金'
+          name: '玫瑰金',
+          imgUrl: 'https://i8.mifile.cn/a1/pms_1521165501.80114213!720x7200.jpg'
         }, {
           id: 'c004',
-          name: '魔力蓝'
+          name: '魔力蓝',
+          imgUrl: 'https://i8.mifile.cn/a1/pms_1521165508.28626332!720x7200.jpg'
         }]
       },
       current_ver: null,

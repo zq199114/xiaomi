@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import {routerMode} from '../config/env'
 import Home from '@/pages/home/home'
 import Detail from '@/pages/detail/Detail'
+import Cart from '@/pages/cart/Cart'
 
 Vue.use(Router)
 
@@ -30,6 +31,10 @@ export default new Router({
       name: 'Detail',
       component: Detail
       // meta: { keepAlive: true }
+    }, {
+      path: '/Cart',
+      name: 'Cart',
+      component: Cart // 这里写错不会报错
     }
   ]
 })

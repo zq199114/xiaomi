@@ -6,7 +6,7 @@
   <div class="version_content">
     <div class="close" @click="backDetail">X</div>
     <div class="title">
-      <img class="title_img" src="https://i8.mifile.cn/a1/pms_1521165496.26763454!720x7200.jpg" alt="">
+      <img class="title_img" :src="version_img" alt="">
       <div class="title_list">
         <div class="price">{{version_price}}</div>
         <div class="name">{{version_title}} {{version_color}}</div>
@@ -87,6 +87,7 @@ export default {
       version_price: '0',
       version_title: '',
       version_color: '',
+      version_img: null,
       version_id: '',
       color_id: '',
       service: false,
@@ -125,6 +126,7 @@ export default {
     changeColor (item = this.init.col) {
       this.version_color = item.name
       this.color_id = item.id
+      this.version_img = item.imgUrl
       this.transmit()
     },
     backDetail () {

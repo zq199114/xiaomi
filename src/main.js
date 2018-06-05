@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import store from './store/index' // 引入vuex文件
+import store from './store' // 引入vuex文件
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 // import './config/rem'
 import FastClick from 'fastclick'
