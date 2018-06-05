@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import mutations from './mutations'
 
 Vue.use(Vuex)
 
@@ -13,7 +14,8 @@ const state = {
   phone_num: null // 商品的数量
 }
 export default new Vuex.Store({
-  state
+  state,
+  mutations
   // state: {
   // todos: [
   // { id: 1, text: '我的done是true', done: true },
