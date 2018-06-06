@@ -28,9 +28,11 @@ export default {
   .icon
     padding: .2rem 0
     text-align: center
-    display: inline-block
-    width: 24.3%
+    // display: inline-block
+    width: 25%
     height: 100%
+    margin: 0
+    float: left
     .iconfont
       font-size: .4rem
     i

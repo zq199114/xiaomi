@@ -1,7 +1,7 @@
 import {
-  ADD_CART,
-  REDUCE_CART,
-  CLEAR_CART
+  ADD_CART
+  // REDUCE_CART,
+  // CLEAR_CART
 } from './mutation-types'
 
 export default {

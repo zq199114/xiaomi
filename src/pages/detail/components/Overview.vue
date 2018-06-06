@@ -97,10 +97,11 @@ export default {
     border-bottom: .01rem solid #ddd
     .view,.parameters
       display: inline-block
-      width: 49.4%
+      width: 50%
       text-align: center
       line-height: .88rem
       font-size: .26rem
+      float: left
     .parameters:before
       content: ''
       height: .3rem

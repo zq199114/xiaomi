@@ -1,16 +1,21 @@
 <!-- 展示模板 -->
 <template>
 <div class="cart">
-  {{cartList}}
+  <cart-header></cart-header>
 </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+//import { mapState } from 'vuex'
+import CartHeader from './components/Header'
+
 export default {
   name: 'Cart',
+  components: {
+    CartHeader
+  },
   computed: {
-    ...mapState(['cartList'])
+    // ...mapState(['cartList'])
   }
 }
 </script>
