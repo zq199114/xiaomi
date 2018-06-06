@@ -2,7 +2,7 @@
 <template>
 <div class="proinfo">
   <div class="infoDetail">
-    <div class="title">红米Note5 AI双摄</div>
+    <div class="title">{{phone_name}} AI双摄</div>
     <div class="title_info">骁龙636 八核处理器 / 1.4μm大像素 AI 双摄 / 1300万柔光自拍 / 最高可选6GB大内存 / 4000mAh 大电量 / 5.99" 18:9 全面屏 / 人脸解锁</div>
     <div class="title_price"><i>￥</i>{{this.current_price}}</div>
   </div>
@@ -32,6 +32,7 @@ export default {
   },
   data () {
     return {
+      phone_name: '红米Note5',
       gift: [{
         id: '001',
         name: '赠米粉卡'
@@ -55,6 +56,7 @@ export default {
     }
   },
   mounted () {
+    this.$emit('transimitName', this.phone_name)
     this.$refs.promotion.style.height = (this.$refs.lists.offsetHeight / 50) + 'rem'
     console.log(this.$refs.lists.offsetHeight)
     console.log(this.$refs.promotion.offsetHeight)

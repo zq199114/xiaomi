@@ -3,7 +3,7 @@
 <div class="selection_info">
   <div class="selected border-bottom" @click.stop="showVersion">
     <i>已选</i>
-    <div class="item">红米Note 5 {{current_ver}} {{current_color}} x{{current_num}}</div>
+    <div class="item">{{this.tranName}} {{current_ver}} {{current_color}} x{{current_num}}</div>
     <span class="iconfont arrow">&#xe62d;</span>
     <!--在这里不能把click事件放到父元素div里,因为下面的组件也在父组件里面所以点击下面的组件也会触发父组件里的click事件
     放在外面就没事-->
@@ -12,6 +12,7 @@
     v-if="showclick"
     :version="version"
     :init="initData"
+    :tranName="tranName"
     @backDet="showVersion"
     @addsucceed="addsucceed"
     @transmit="transmit"
@@ -42,7 +43,8 @@ import Fade from 'common/animation/Fade'
 export default {
   name: 'DetailSelectionInfo',
   props: {
-    showSel: Boolean
+    showSel: Boolean,
+    tranName: String
   },
   components: {
     VersionDetail,
@@ -91,9 +93,11 @@ export default {
       current_color: null,
       current_price: null,
       current_num: '1',
+      current_name: null,
       showclick: false,
       succeed: false,
-      initData: {}
+      initData: {},
+      current_nam: null
     }
   },
   methods: {
@@ -117,6 +121,8 @@ export default {
       }
       this.showclick = !this.showclick
       this.stopBodyScroll(this.showclick)
+      console.log(this.tranName)
+      console.log(this.current_name)
     },
     emitTar (item) {
       this.$emit('transmitPrice', item)
@@ -127,6 +133,9 @@ export default {
       if (this.showSel) {
         this.showVersion()
       }
+    },
+    tranName () {
+      this.current_name = this.tranName
     }
   },
   mounted () {
@@ -135,6 +144,7 @@ export default {
     this.current_color = this.version.color[0].name
     this.emitTar(this.current_price)
     this.initData = {
+      nam: this.current_name,
       ver: this.version.version_item[0],
       col: this.version.color[0]
     }

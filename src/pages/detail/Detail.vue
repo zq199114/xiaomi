@@ -1,8 +1,8 @@
 <template>
 <div class="detail">
   <detail-swiper></detail-swiper>
-  <detail-proinfo :current_price="price"></detail-proinfo>
-  <detail-selection-info @transmitPrice="getPrice" :showSel="showSel" @changSel="showSelect"></detail-selection-info>
+  <detail-proinfo :current_price="price" @transimitName="transimitName"></detail-proinfo>
+  <detail-selection-info @transmitPrice="getPrice" :showSel="showSel" :tranName="tranName" @changSel="showSelect"></detail-selection-info>
   <detail-evaluate></detail-evaluate>
   <detail-overview></detail-overview>
   <detail-bottombar @showSelect="showSelect"></detail-bottombar>
@@ -30,7 +30,8 @@ export default {
   data () {
     return {
       price: '0',
-      showSel: false
+      showSel: false,
+      tranName: null
     }
   },
   methods: {
@@ -39,6 +40,10 @@ export default {
     },
     showSelect () {
       this.showSel = !this.showSel
+    },
+    transimitName (name) {
+      this.tranName = name
+      // console.log(name) // ok
     }
   }
 }

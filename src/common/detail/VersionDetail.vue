@@ -72,6 +72,7 @@
 <script>
 import BScroll from 'better-scroll'
 import Updown from 'common/animation/Updown'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'VersionDetail',
@@ -80,7 +81,8 @@ export default {
   },
   props: {
     version: Object,
-    init: Object
+    init: Object,
+    tranName: String // 这里传过来的值,是第二次传递的,直接拿来用就可以了
   },
   data () {
     return {
@@ -96,13 +98,14 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['ADD_CART']),
     addCart () {
       this.$emit('addsucceed')
       this.showSel = false
       this.backDetail()
+      this.ADD_CART({phoneName: this.tranName, phoneModel: this.version_title, phonePrice: this.version_price, phoneColor: this.version_color, phoneNum: this.num})
     },
     addService () {
-      console.log('ser' + this.service)
       this.service = !this.service
     },
     reduce () {
@@ -118,6 +121,7 @@ export default {
       this.transmit()
     },
     changeItem (item = this.init.ver) {
+      console.log(this.tranName)
       this.version_price = item.price
       this.version_title = item.name
       this.version_id = item.id
@@ -136,7 +140,6 @@ export default {
     },
     transmit () {
       if (this.showSel) {
-        console.log(this.showSel)
         let transmit = {
           price: this.version_price,
           name: this.version_title,
@@ -145,6 +148,11 @@ export default {
         }
         this.$emit('transmit', transmit)
       }
+    }
+  },
+  computed: {
+    trName () {
+      return this.init.nam
     }
   },
   watch: { // 用watch见识一个props传来的值的时候可以不用加this
