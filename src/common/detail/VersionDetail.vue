@@ -103,7 +103,7 @@ export default {
       this.$emit('addsucceed')
       this.showSel = false
       this.backDetail()
-      this.ADD_CART({phoneName: this.tranName, phoneModel: this.version_title, phonePrice: this.version_price, phoneColor: this.version_color, phoneNum: this.num})
+      this.ADD_CART({phoneName: this.tranName, phoneModel: this.version_title, phonePrice: this.version_price, phoneColor: this.version_color, phoneImg: this.version_img, phoneNum: this.num})
     },
     addService () {
       this.service = !this.service
@@ -121,7 +121,6 @@ export default {
       this.transmit()
     },
     changeItem (item = this.init.ver) {
-      console.log(this.tranName)
       this.version_price = item.price
       this.version_title = item.name
       this.version_id = item.id

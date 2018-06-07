@@ -121,8 +121,6 @@ export default {
       }
       this.showclick = !this.showclick
       this.stopBodyScroll(this.showclick)
-      console.log(this.tranName)
-      console.log(this.current_name)
     },
     emitTar (item) {
       this.$emit('transmitPrice', item)

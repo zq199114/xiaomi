@@ -1,6 +1,6 @@
 <template>
 <div class="cartTopbar">
-  <div class="back"><div class="iconfont ico">&#xe624;</div></div>
+  <router-link tag="div" to="/detail" class="back"><div class="iconfont ico">&#xe624;</div></router-link>
   <div class="title">购物车</div>
   <div class="search"><div class="iconfont ico">&#xe603;</div></div>
 </div>

@@ -58,8 +58,6 @@ export default {
   mounted () {
     this.$emit('transimitName', this.phone_name)
     this.$refs.promotion.style.height = (this.$refs.lists.offsetHeight / 50) + 'rem'
-    console.log(this.$refs.lists.offsetHeight)
-    console.log(this.$refs.promotion.offsetHeight)
   }
 }
 </script>
