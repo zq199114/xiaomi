@@ -1,7 +1,7 @@
 <template>
 <div class="list">
   <ul>
-    <li class="list_item" v-for="(item, index) in cartList" :key="index">
+    <li class="list_item border-bottom" v-for="item in cartList" :key="item.id">
       <div class="nod" @click="select">
         <check :service="checked"></check>
       </div>
@@ -11,9 +11,9 @@
         <div class="price">售价: {{item.phone_price}}元</div>
         <div class="num">
           <div class="counta">
-            <count :num="item.phone_num"></count>
+            <count :num="item.phone_num" @stateItem="stateItem(item)" @numState="numState"></count>
           </div>
-          <div class="iconfont trash">&#xe61e;</div>
+          <div @clic="remove(item.id)" class="iconfont trash">&#xe61e;</div>
         </div>
       </div>
     </li>
@@ -31,7 +31,7 @@
 <script>
 import Check from 'common/commonComponents/Check'
 import Count from 'common/commonComponents/Count'
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'CartList',
@@ -41,13 +41,27 @@ export default {
   },
   data () {
     return {
-      checked: false // 是否选中要购买的商品
+      checked: false, // 是否选中要购买的商品
+      countNum: 0
     }
   },
   methods: {
+    remove (id) {
+      this.REDUCE_CART(id)
+    },
     select () {
       this.checked = !this.checked
       console.log(this.check)
+    },
+    ...mapMutations(['ITEM_NUM'], ['REDUCE_CART']),
+    // 获取传来的数量
+    numState (num) {
+      this.countNum = num
+    },
+    // 获取当前item
+    stateItem (item) {
+      // item.phone_num = this.countNum // 这样直接修改state不会引发视图更新
+      this.ITEM_NUM({id: item.id, num: this.countNum})
     }
   },
   computed: {

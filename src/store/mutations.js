@@ -1,9 +1,11 @@
 import {
-  ADD_CART
-  // REDUCE_CART,
+  ADD_CART,
+  REDUCE_CART,
   // CLEAR_CART
+  ITEM_NUM, // 加减商品数量
+  ITEM_LOCA // 存储条目
 } from './mutation-types'
-
+import { setStore, removeStroe } from '../config/mUtils.js'
 export default {
   // 加入购物车
   [ADD_CART] (state, {
@@ -15,7 +17,6 @@ export default {
     phoneNum
   }) {
     let isTrue = null
-    let id = 1
     let cartItem = {
       'phone_name': phoneName,
       'phone_model': phoneModel,
@@ -25,18 +26,17 @@ export default {
       'phone_num': phoneNum
     }
     if (!state.cartList.length) { // 判断是否有内容
-      cartItem['id'] = id // 没有就初始化一下, 把即将要传进来的额对象加上一个id
+      cartItem['id'] = state.itemId // 没有就初始化一下, 把即将要传进来的额对象加上一个id
       state.cartList.push(cartItem) // 然后塞到state.cartList离去
     } else { // 否则
       for (let item of state.cartList) { // 遍历循环出每个对象用 of
         for (let i in item) { // 通过循环出来的对象 (用in) 来循环出键名
-          if (item['phone_name'] === cartItem['phone_name']) {
+          if (item['phone_name'] !== cartItem['phone_name']) {
             console.log('one')
-            isTrue = true
+            isTrue = false
             break // 如果产品名字不一样就退出2级循环,从一级循环开始下一个对比
           }
-          console.log('这里进来了吗')
-          if (i === 'phone_num') {
+          if ((i === 'phone_num') || (i === 'id')) {
             console.log('two')
             continue // 如果村换到 产品数量 就无视下面的语句,开始新一轮的循环
           }
@@ -44,23 +44,41 @@ export default {
             console.log('three')
             isTrue = true // 如果是一样的就标记一下true
           } else { // 否则
-            console.log('four')
-            isTrue = false // 否则就标记为false
+            console.log('four ' + i)
+            isTrue = false // 否则就标记为false 并且推出此次循环
+            break
           }
         }
         if (isTrue) { // 如果始终为true,说明这个商品项已经有,就改一下数量就可以 ,然后跳出循环
           console.log('five')
-          console.log(item['phone_num'] + ' ' + cartItem['phone_num'])
           item['phone_num'] += cartItem['phone_num']
           break
         }
       }
-      console.log('six')
       if (!isTrue) {
-        console.log('seven')
-        cartItem['id'] = ++id
+        state.itemId++
+        console.log('six ', state.itemId)
+        cartItem['id'] = state.itemId
         state.cartList.push(cartItem)
       }
     }
+    // try {
+    // localStorage.cartList = state.cartList
+    // // 实现类似cookie的功能做到本地存储
+    // } catch (e) {}
+    setStore('cartList', state.cartList)
+    // this.[ITEM_LOCA]('cartList')
+  },
+  // 加减商品数量
+  [REDUCE_CART] (state, id) {
+    state.cartList.filter(item => item.id === id).indexOf()
+    state.cartList = removeStroe('cartList')
+  },
+  // 获取需要增加数量的条目
+  [ITEM_NUM] (state, {
+    id,
+    num
+  }) {
+    state.cartList.filter(item => item.id === id)[0].phone_num = num
   }
 }

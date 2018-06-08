@@ -27,9 +27,13 @@ export default {
         return
       }
       this.numA--
+      this.$emit('numState', this.numA)
+      this.$emit('stateItem')
     },
     add () {
       this.numA++
+      this.$emit('numState', this.numA)
+      this.$emit('stateItem')
     }
   }
 }
