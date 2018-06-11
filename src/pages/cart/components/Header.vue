@@ -15,6 +15,11 @@ export default {
 <style lang="stylus" scoped type="text/stylus">
 @import  '~styles/variable.styl'
 .cartTopbar
+  position: fixed
+  z-index: 99
+  top: 0
+  right: 0
+  left: 0
   height: $headerHeight
   background: $bgColor
   display: flex

@@ -1,15 +1,22 @@
 <!-- 展示模板 -->
 <template>
 <div class="check">
-  <span class="sel" :class="{'sel_active': service}">✔</span>
+  <span class="sel" :class="{'sel_active': service}" @click="check">✔</span>
 </div>
 </template>
 
 <script>
 export default {
   name: 'check',
-  props: {
-    service: Boolean
+  data () {
+    return {service: false}
+  },
+  methods: {
+    check () {
+      this.service = !this.service
+      this.$emit('select', this.service)
+      this.$emit('getItem')
+    }
   }
 }
 </script>

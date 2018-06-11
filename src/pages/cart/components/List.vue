@@ -2,8 +2,8 @@
 <div class="list">
   <ul>
     <li class="list_item border-bottom" v-for="item in cartList" :key="item.id">
-      <div class="nod" @click="select">
-        <check :service="checked"></check>
+      <div class="nod">
+        <check @select="select" @getItem="getItem(item)"></check>
       </div>
       <img class="pic" :src="item.phone_img" alt="">
       <div class="info">
@@ -13,18 +13,18 @@
           <div class="counta">
             <count :num="item.phone_num" @stateItem="stateItem(item)" @numState="numState"></count>
           </div>
-          <div @clic="remove(item.id)" class="iconfont trash">&#xe61e;</div>
+          <div @click="stateRemove(item.id)" class="iconfont trash">&#xe61e;</div>
         </div>
       </div>
     </li>
-    <li class="empty" v-show="false">
+    <li class="empty" v-show="!cartList.length">
       <div class="reminders">
         <div class="content"><i class="iconfont cart_n">&#xe6fe;</i>购物车还是空的</div>
         <router-link tag="div" to="/" class="stroll">去逛逛</router-link>
       </div>
     </li>
   </ul>
-  {{cartList}}
+  <!--{{cartList}}-->
 </div>
 </template>
 
@@ -46,26 +46,38 @@ export default {
     }
   },
   methods: {
-    remove (id) {
+    // 原本是这样写的['ITEM_NUM'], ['REDUCE_CART']下面的才是正确的
+    ...mapMutations(['ITEM_NUM', 'REDUCE_CART']),
+    stateRemove (id) {
+      console.log(id)
       this.REDUCE_CART(id)
-    },
-    select () {
-      this.checked = !this.checked
-      console.log(this.check)
-    },
-    ...mapMutations(['ITEM_NUM'], ['REDUCE_CART']),
-    // 获取传来的数量
-    numState (num) {
-      this.countNum = num
     },
     // 获取当前item
     stateItem (item) {
       // item.phone_num = this.countNum // 这样直接修改state不会引发视图更新
       this.ITEM_NUM({id: item.id, num: this.countNum})
+    },
+    getItem (item) {
+      item.selectitem = this.checked
+    },
+    select (istrue) {
+      this.checked = istrue
+    },
+    // 获取传来的数量
+    numState (num) {
+      this.countNum = num
     }
   },
   computed: {
     ...mapState(['cartList'])
+  },
+  mounted () {
+    this.cartList.map(item => {
+      this.$set(item, 'selectitem', false)
+      // 要像上面这样写双向绑定才能起效，下面的写法是有问题的，双向绑定不起效的！
+      // this.productList.map(function (item) {item.select=true})
+    })
+    // console.log(this.cartList)
   }
 }
 </script>
@@ -73,7 +85,9 @@ export default {
 <style lang="stylus" scoped type="text/stylus">
 @import "~styles/variable.styl"
 .list
-  .list_item
+  margin-top: $headerHeight
+  margin-bottom: $headerHeight
+.list_item
     padding: .24rem .1rem
     /*height: 1.8rem*/
     display: flex // flex布局

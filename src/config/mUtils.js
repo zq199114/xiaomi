@@ -7,7 +7,6 @@ export const setStore = (name, content) => {
     content = JSON.stringify(content)
   }
   localStorage.setItem(name, content)
-  console.log(localStorage[name])
 }
 /*
 * 获取localStorage

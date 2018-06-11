@@ -2,10 +2,10 @@ import {
   ADD_CART,
   REDUCE_CART,
   // CLEAR_CART
-  ITEM_NUM, // 加减商品数量
-  ITEM_LOCA // 存储条目
+  ITEM_NUM // 加减商品数量
+  // ITEM_LOCA // 存储条目
 } from './mutation-types'
-import { setStore, removeStroe } from '../config/mUtils.js'
+import { setStore } from '../config/mUtils.js'
 export default {
   // 加入购物车
   [ADD_CART] (state, {
@@ -71,8 +71,13 @@ export default {
   },
   // 加减商品数量
   [REDUCE_CART] (state, id) {
-    state.cartList.filter(item => item.id === id).indexOf()
-    state.cartList = removeStroe('cartList')
+    // 找到数组中与元素内容相匹配的index值
+    let delIndex = state.cartList.findIndex((item) => {
+      return item.id === id
+    })
+    state.cartList.splice(delIndex, 1)
+    setStore('cartList', state.cartList)
+    // state.cartList = removeStroe('cartList')
   },
   // 获取需要增加数量的条目
   [ITEM_NUM] (state, {
@@ -80,5 +85,6 @@ export default {
     num
   }) {
     state.cartList.filter(item => item.id === id)[0].phone_num = num
+    setStore('cartList', state.cartList)
   }
 }

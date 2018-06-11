@@ -16,9 +16,9 @@ const state = {
   phone_num: null // 商品的数量
 }
 
-if (getStore('cartList')) {
-// console.log(typeof localStorage.cartList)
-// console.log(state.cartList)
+if (getStore('cartList').length) {
+  // console.log(getStore('cartList'))
+  // console.log(state.cartList)
   var lie = getStore('cartList')
   state.itemId = lie[lie.length - 1].id // 给id做个记录
   state.cartList = lie
