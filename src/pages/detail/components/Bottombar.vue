@@ -1,7 +1,7 @@
 <!-- 展示模板 -->
 <template>
 <div class="bottombar">
-  <div class="home"><span class="iconfont home_icon">&#xe655;</span><p>首页</p></div>
+  <router-link tag="div" to="/" class="home"><span class="iconfont home_icon">&#xe655;</span><p>首页</p></router-link>
   <router-link tag="div" to="/Cart" class="cart"><span class="iconfont cart_icon">&#xe600;</span><p>购物车</p></router-link>
   <div class="addcart" @click="showSelect">加入购物车</div>
 </div>

@@ -10,7 +10,7 @@
 <script>
 import HomeHeader from './components/Header'
 import HomeScrollbar from './components/Scrollbar'
-import HomeBottombar from './components/Bottombar'
+import HomeBottombar from 'common/commonComponents/HomeBottombar'
 export default {
   name: 'Home',
   components: {

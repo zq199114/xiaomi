@@ -1,6 +1,7 @@
 <template>
 <div class="list">
   <ul>
+    <router-link tag="li" to="/login" class="login border-bottom">登陆后享受更多优惠 <span>去登陆 <span class="iconfont">&#xe62d;</span></span></router-link>
     <li class="list_item border-bottom" v-for="item in cartList" :key="item.id">
       <div class="nod">
         <check @select="select" @getItem="getItem(item)"></check>
@@ -87,50 +88,60 @@ export default {
 .list
   margin-top: $headerHeight
   margin-bottom: $headerHeight
-.list_item
-    padding: .24rem .1rem
-    /*height: 1.8rem*/
-    display: flex // flex布局
-    // line-height: 1.8rem
-    .nod
-      display: inline-block
-      margin: auto .1rem auto 0
-      // vertical-align: middle //用了flex后失效
+  .login
+    color: rgba(0,0,0,.87)
+    height: $headerHeight
+    padding: 0 .3rem
+    font-size: .32rem
+    line-height: $headerHeight
+    span
+      font-size: .24rem
+      color: rgba(0,0,0,.54)
+      float: right
+  .list_item
+      padding: .24rem .1rem
+      /*height: 1.8rem*/
+      display: flex // flex布局
       // line-height: 1.8rem
-    .pic
-      width: 1.8rem
-      height: 1.8rem
-      border: .02rem solid #eeeeee
-      box-sizing: border-box
-      display: inline-block
-      // vertical-align: middle
-      // margin: auto 0
-    .info
-      display: inline-block
-      flex: auto // 给不需要宽度的子元素设置 flexauto
-      margin-left: .2rem
-      .desc
+      .nod
         display: inline-block
-        font-size: .28rem;
-        line-height: .32rem;
-        color: #666;
-        padding-right: .4rem
-        // width 用了flex布局后子元素的长度也随父元素变动,不用设置宽度自动换行
-      .price
-        margin: .155rem 0 .155rem // 用了flex后他的margin就不会影响到父级的整个块元素
-        font-size: .24rem
-        color: #999
-      .num
+        margin: auto .1rem auto 0
+        // vertical-align: middle //用了flex后失效
+        // line-height: 1.8rem
+      .pic
+        width: 1.8rem
+        height: 1.8rem
+        border: .02rem solid #eeeeee
+        box-sizing: border-box
         display: inline-block
-        text-align: left
-        width: 100%
-        .counta
+        // vertical-align: middle
+        // margin: auto 0
+      .info
+        display: inline-block
+        flex: auto // 给不需要宽度的子元素设置 flexauto
+        margin-left: .2rem
+        .desc
           display: inline-block
-        .trash
+          font-size: .28rem;
+          line-height: .32rem;
+          color: #666;
+          padding-right: .4rem
+          // width 用了flex布局后子元素的长度也随父元素变动,不用设置宽度自动换行
+        .price
+          margin: .155rem 0 .155rem // 用了flex后他的margin就不会影响到父级的整个块元素
+          font-size: .24rem
+          color: #999
+        .num
           display: inline-block
-          font-size: .6rem
-          vertical-align: bottom
-          color: #a3a3a3
+          text-align: left
+          width: 100%
+          .counta
+            display: inline-block
+          .trash
+            display: inline-block
+            font-size: .6rem
+            vertical-align: bottom
+            color: #a3a3a3
           float: right
   .empty
     background: #ebebeb

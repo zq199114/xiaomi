@@ -2,16 +2,18 @@
 <template>
 <div class="cart">
   <cart-header></cart-header>
-  <cart-list @totalItem="totalItem"></cart-list>
-  <cart-bottom-bar :total="total"></cart-bottom-bar>
+  <cart-list></cart-list>
+  <cart-bottom-bar v-if="this.cartList.length"></cart-bottom-bar>
+  <home-cartbar v-if="!this.cartList.length"></home-cartbar>
 </div>
 </template>
 
 <script>
-// import { mapState } from 'vuex'
+import { mapState } from 'vuex'
 import CartHeader from './components/Header'
 import CartList from './components/List'
 import CartBottomBar from './components/BottemBar'
+import HomeCartbar from 'common/commonComponents/HomeBottombar'
 
 export default {
   name: 'Cart',
@@ -23,10 +25,11 @@ export default {
   components: {
     CartHeader,
     CartList,
-    CartBottomBar
+    CartBottomBar,
+    HomeCartbar
   },
   computed: {
-    // ...mapState(['cartList'])
+    ...mapState(['cartList'])
   },
   methods: {
     totalItem (item) {

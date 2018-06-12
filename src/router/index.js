@@ -4,6 +4,7 @@ import {routerMode} from '../config/env'
 import Home from '@/pages/home/home'
 import Detail from '@/pages/detail/Detail'
 import Cart from '@/pages/cart/Cart'
+import Login from '@/pages/login/Login' // 注意@后面要加上斜杠
 
 Vue.use(Router)
 
@@ -35,6 +36,11 @@ export default new Router({
       path: '/Cart',
       name: 'Cart',
       component: Cart // 这里写错不会报错
+    }, {
+      path: '/Login',
+      name: 'Login',
+      component: Login, // 这里写错不会报错
+      meta: { keepAlive: true }
     }
   ]
 })
