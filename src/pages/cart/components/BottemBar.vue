@@ -5,7 +5,7 @@
         <span class="price"><i>{{totalNum.price}}</i>元</span>
       </div>
       <div class="continue" @click="test">继续购物</div>
-      <div class="payment">去结算</div>
+      <div class="payment" @click="Settlement">去结算</div>
     </div>
 </template>
 
@@ -16,6 +16,9 @@ export default {
   methods: {
     test () {
       console.log(this.totalNum)
+    },
+    Settlement () {
+      this.$router.push('/Order')
     }
   },
   computed: {

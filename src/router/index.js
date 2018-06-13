@@ -5,6 +5,7 @@ import Home from '@/pages/home/home'
 import Detail from '@/pages/detail/Detail'
 import Cart from '@/pages/cart/Cart'
 import Login from '@/pages/login/Login' // 注意@后面要加上斜杠
+import Order from '@/pages/order/Order'
 
 Vue.use(Router)
 
@@ -41,6 +42,13 @@ export default new Router({
       name: 'Login',
       component: Login, // 这里写错不会报错
       meta: { keepAlive: true }
+    }, {
+      path: '/Order',
+      name: 'Order',
+      meta: {
+        requireAuth: true // 配置此项说明要登陆才能进入此页
+      },
+      component: Order
     }
   ]
 })

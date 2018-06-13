@@ -142,7 +142,7 @@ export default {
             font-size: .6rem
             vertical-align: bottom
             color: #a3a3a3
-          float: right
+            float: right
   .empty
     background: #ebebeb
     line-height: $headerHeight

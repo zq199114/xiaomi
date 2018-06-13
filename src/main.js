@@ -22,6 +22,22 @@ if ('addEventListener' in document) {
   }, false)
 }
 
+// 全局的路由首位
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(r => r.meta.requireAuth)) {
+    if (store.state.token) {
+      next()
+    } else {
+      next({
+        path: '/login',
+        query: {redirect: to.fullPath}
+      })
+    }
+  } else {
+    next()
+  }
+})
+
 // 使用router插件
 Vue.use(router)
 
