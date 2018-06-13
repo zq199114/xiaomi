@@ -78,7 +78,7 @@ export default {
       // 要像上面这样写双向绑定才能起效，下面的写法是有问题的，双向绑定不起效的！
       // this.productList.map(function (item) {item.select=true})
     })
-    // console.log(this.cartList)
+    console.log(this.cartList)
   }
 }
 </script>

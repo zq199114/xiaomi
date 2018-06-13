@@ -5,7 +5,7 @@ import {
   ITEM_NUM // 加减商品数量
   // ITEM_LOCA // 存储条目
 } from './mutation-types'
-import { setStore } from '../config/mUtils.js'
+import { setStore, removeStroe } from '../config/mUtils.js'
 export default {
   // 加入购物车
   [ADD_CART] (state, {
@@ -77,6 +77,10 @@ export default {
     })
     state.cartList.splice(delIndex, 1)
     setStore('cartList', state.cartList)
+    // 如果长度等于0就清除localhost
+    if (!state.cartList.length) {
+      removeStroe('cartList')
+    }
     // state.cartList = removeStroe('cartList')
   },
   // 获取需要增加数量的条目

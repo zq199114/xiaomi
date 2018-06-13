@@ -24,10 +24,10 @@ export default {
   computed: {
     ...mapState(['cartList']),
     totalNum () {
+      console.log(this.cartList)
       let num = 0
       let price = 0
       let filterItem = this.cartList.filter(item => item.selectitem)
-      console.log(filterItem)
       filterItem.forEach(item => {
         num += item.phone_num
         price += item.phone_price * item.phone_num
