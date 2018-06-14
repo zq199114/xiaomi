@@ -18,12 +18,13 @@
       </div>
     </form>
     <span class="tips" v-show="this.show_tips">{{this.tipsContent}}</span>
-    <div class="register">{{this.register}}</div>
+    <div class="register" @click="loginReg">{{this.register}}</div>
     <div class="user_login" @click="loginMode">{{this.user_login}}</div>
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
   name: 'LoginTop',
   data () {
@@ -42,6 +43,7 @@ export default {
   },
   methods: {
     loginMode () {
+      localStorage.removeItem('token')
       this.model = !this.model
       let istrue = this.model
       this.user_login = istrue ? '用户名密码登陆' : '手机短信登陆/注册'
@@ -60,6 +62,20 @@ export default {
       if (this.userContent === '') {
         this.show_tips = true
         this.tipsContent = '请输入手机号码'
+      }
+    },
+    ...mapMutations(['KEEP_STATE']),
+    loginReg () {
+      this.$axios.get('/api/test.json').then(this.checkUser)
+    },
+    checkUser (res) {
+      let data = res.data[0]
+      console.log(data)
+      if (data.name === this.userContent && data.password === this.passContent) {
+        this.KEEP_STATE({username: this.userContent, password: this.userContent})
+      } else {
+        this.show_tips = true
+        this.tipsContent = '用户名或密码不正确'
       }
     }
   },

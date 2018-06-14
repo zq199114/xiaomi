@@ -2,8 +2,10 @@ import {
   ADD_CART,
   REDUCE_CART,
   // CLEAR_CART
-  ITEM_NUM // 加减商品数量
+  ITEM_NUM, // 加减商品数量
   // ITEM_LOCA // 存储条目
+  KEEP_STATE, // 保持登陆状态
+  LOGIN_OUT
 } from './mutation-types'
 import { setStore, removeStroe } from '../config/mUtils.js'
 export default {
@@ -90,5 +92,15 @@ export default {
   }) {
     state.cartList.filter(item => item.id === id)[0].phone_num = num
     setStore('cartList', state.cartList)
+  },
+  // 保持登陆状态
+  [KEEP_STATE] (state, token) {
+    state.token = token
+    setStore('token', token)
+  },
+  // 登出
+  [LOGIN_OUT] (state, token) {
+    state.token = null
+    removeStroe(token)
   }
 }

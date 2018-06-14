@@ -1,7 +1,7 @@
 <template>
 <div class="list">
   <ul>
-    <router-link tag="li" to="/login" class="login border-bottom">登陆后享受更多优惠 <span>去登陆 <span class="iconfont">&#xe62d;</span></span></router-link>
+    <router-link v-if="isLogin" tag="li" to="/login" class="login border-bottom">登陆后享受更多优惠 <span>去登陆 <span class="iconfont">&#xe62d;</span></span></router-link>
     <li class="list_item border-bottom" v-for="item in cartList" :key="item.id">
       <div class="nod">
         <check @select="select" @getItem="getItem(item)"></check>
@@ -70,7 +70,10 @@ export default {
     }
   },
   computed: {
-    ...mapState(['cartList'])
+    ...mapState(['cartList', 'token']),
+    isLogin () {
+      return (this.token === null) // null不能以字符串的形式进行判断
+    }
   },
   mounted () {
     this.cartList.map(item => {
@@ -78,7 +81,6 @@ export default {
       // 要像上面这样写双向绑定才能起效，下面的写法是有问题的，双向绑定不起效的！
       // this.productList.map(function (item) {item.select=true})
     })
-    console.log(this.cartList)
   }
 }
 </script>

@@ -9,15 +9,11 @@ const state = {
   cartList: [], // 加入购物车的商品列表
   cartListItem: {}, // 加入购物车的列表条目
   itemId: 1, // 加购物车id
-  phone_name: null, // 商品名称
-  phone_model: null, // 商品的制式
-  phone_price: null, // 商品价格
-  phone_color: null, // 商品的颜色
-  phone_num: null // 商品的数量
+  token: null
 }
 
 // localStorage.removeItem('cartList') // 由于一开始只是清空了cartList中的内容，所以并不是真正的清除嗲localStorage，所以第一次打卡项目的时候不能识别下面的length
-console.log(getStore('cartList')) // 在最开始getStore只是一个无效的对象，所以这个时候取getStore('cartList')就是null，如果在加上。length就会报错
+// console.log(getStore('cartList')) // 在最开始getStore只是一个无效的对象，所以这个时候取getStore('cartList')就是null，如果在加上。length就会报错
 if (getStore('cartList') !== null) {
   if (getStore('cartList').length) {
     // console.log(getStore('cartList'))

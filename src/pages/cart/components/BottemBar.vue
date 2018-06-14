@@ -24,7 +24,7 @@ export default {
   computed: {
     ...mapState(['cartList']),
     totalNum () {
-      console.log(this.cartList)
+      // console.log(this.cartList)
       let num = 0
       let price = 0
       let filterItem = this.cartList.filter(item => item.selectitem)
