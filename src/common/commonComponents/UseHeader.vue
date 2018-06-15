@@ -1,14 +1,18 @@
 <template>
 <div class="cartTopbar">
   <router-link tag="div" to="/detail" class="back"><div class="iconfont ico">&#xe624;</div></router-link>
-  <div class="title">购物车</div>
-  <div class="search"><div class="iconfont ico">&#xe603;</div></div>
+  <div class="title">{{this.title}}</div>
+  <div class="search"><div v-if="isShow" class="iconfont ico">&#xe603;</div></div>
 </div>
 </template>
 
 <script>
 export default {
-  name: 'CartHeader'
+  name: 'CartHeader',
+  props: {
+    isShow: Boolean, // 想要显示就传值进来
+    title: String
+  }
 }
 </script>
 

@@ -18,8 +18,8 @@ import axios from 'axios'
 // import { mapMutations } from 'vuex'
 
 // 使用router插件
-Vue.prototype.$axios = axios
 Vue.use(router)
+Vue.prototype.$axios = axios
 
 Vue.use(VueAwesomeSwiper)
 Vue.config.productionTip = false

@@ -73,6 +73,11 @@ export default {
       console.log(data)
       if (data.name === this.userContent && data.password === this.passContent) {
         this.KEEP_STATE({username: this.userContent, password: this.userContent})
+        // 如果传过来有地址参数 登陆后就进到地址阐述里面
+        let redirect = decodeURIComponent(this.$route.query.redirect || '/') // decodeURIComponent() 方法用于解码由 encodeURIComponent 方法或者其它类似方法编码
+        this.$router.push({
+          path: redirect
+        })
       } else {
         this.show_tips = true
         this.tipsContent = '用户名或密码不正确'

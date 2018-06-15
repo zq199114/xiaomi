@@ -16,6 +16,13 @@ export default {
       this.service = !this.service
       this.$emit('select', this.service)
       this.$emit('getItem')
+    },
+    // 下面两个方法是给父组件使用的
+    isSel () {
+      this.service = false
+    },
+    isSeld () {
+      this.service = true
     }
   }
 }
