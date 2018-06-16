@@ -1,4 +1,5 @@
 <template>
+<div class="inst">
   <div class="installment">
     <div class="title">请选择分期</div>
     <div class="installment_item">
@@ -10,7 +11,26 @@
         <span>免息，无手续费</span>
       </div>
     </div>
+    <div class="installment_item">
+      <div class="checked">
+        <checked></checked>
+      </div>
+      <div class="desc">
+        <div>100元 x 3期</div>
+        <span>免息，无手续费</span>
+      </div>
+    </div>
+    <div class="installment_item">
+      <div class="checked">
+        <checked></checked>
+      </div>
+      <div class="desc">
+        <div>100元 x 3期</div>
+        <span>免息，无手续费</span>
+      </div>
+    </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -25,14 +45,22 @@ export default {
 
 <style type="text/stylus" lang="stylus" scoped>
 @import '~styles/variable.styl'
+.inst
+  position: fixed
+  top: 0
+  bottom: 0
+  left: 0
+  right: 0
+  background: rgba(0, 0, 0, .5)
 .installment
+  background: #fff
   position: fixed
   bottom: 0
   left: 0
   right: 0
   padding: .3rem
   .title
-    font-size: .24rem
+    font-size: .26rem
     color: #999
     text-align: center
     height: .896rem
@@ -53,4 +81,6 @@ export default {
       margin: auto 0 auto .3rem
       span
         color: $mainColor
+    &:last-child
+      border-bottom: .02rem solid #fff
 </style>
