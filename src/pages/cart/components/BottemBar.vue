@@ -18,7 +18,13 @@ export default {
       console.log(this.totalNum)
     },
     Settlement () {
-      this.$router.push('/Order')
+      this.$router.push({
+        name: 'Order',
+        params: {
+          tota: this.totalNum
+        }
+      })
+      // this.totalNum
     }
   },
   computed: {
@@ -32,7 +38,8 @@ export default {
         num += item.phone_num
         price += item.phone_price * item.phone_num
       })
-      return {num: num, price: price}
+      // console.log(filterItem)
+      return {num: num, price: price, item: filterItem}
     }
   }
 }

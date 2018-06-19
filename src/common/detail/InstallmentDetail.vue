@@ -1,35 +1,18 @@
 <template>
-<div class="inst">
+<div class="inst" v-if="showDet">
   <div class="installment">
     <div class="title">请选择分期</div>
-    <div class="installment_item">
+    <div class="installment_item" v-for="item in 3" :key="item">
       <div class="checked">
-        <checked></checked>
+        <checked @getItem="getItem(item)"></checked>
       </div>
       <div class="desc">
-        <div>100元 x 3期</div>
-        <span>免息，无手续费</span>
-      </div>
-    </div>
-    <div class="installment_item">
-      <div class="checked">
-        <checked></checked>
-      </div>
-      <div class="desc">
-        <div>100元 x 3期</div>
-        <span>免息，无手续费</span>
-      </div>
-    </div>
-    <div class="installment_item">
-      <div class="checked">
-        <checked></checked>
-      </div>
-      <div class="desc">
-        <div>100元 x 3期</div>
+        <div>{{(price/(item*3)).toFixed(2)}}元 x {{item*3}}期</div>
         <span>免息，无手续费</span>
       </div>
     </div>
   </div>
+  {{price}}
 </div>
 </template>
 
@@ -37,8 +20,36 @@
 import checked from 'common/commonComponents/Check'
 export default {
   name: 'InstallmentDetail',
+  data () {
+    return {
+      level: 3, // 分期档次
+      month: 12, // 分期几个月
+      showDet: false
+    }
+  },
+  props: {
+    showDetail: {
+      type: Boolean,
+      default: false
+    },
+    price: Number
+  },
+  methods: {
+    getItem (qishu) {
+      console.log(qishu)
+      // 把期数传递出去
+      this.$emit('showInsta', qishu)
+      this.$emit('change')
+    }
+  },
   components: {
     checked
+  },
+  watch: {
+    showDetail (newq, oldq) {
+      console.log(newq + ' ' + oldq)
+      this.showDet = newq
+    }
   }
 }
 </script>

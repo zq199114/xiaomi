@@ -2,7 +2,7 @@
   <div class="order">
     <use-header :title="title"></use-header>
     <add-address></add-address>
-    <order-pay :mode_data="paymentMode"></order-pay>
+    <order-pay :mode_data="paymentMode" :cartListItem="cartListItem"></order-pay>
   </div>
 </template>
 
@@ -16,7 +16,8 @@ export default {
   data () {
     return {
       title: '用户结算',
-      paymentMode: []
+      paymentMode: [],
+      cartListItem: {}
     }
   },
   components: {
@@ -32,6 +33,8 @@ export default {
   },
   mounted () {
     this.$axios.get('/api/payment.json').then(this.getPaymentMode)
+    // console.log(this.$route.params) // 这里是路由穿过来的参数
+    this.cartListItem = this.$route.params
   }
 }
 </script>
