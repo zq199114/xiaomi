@@ -11,6 +11,7 @@
 
 <script>
 import { mapState } from 'vuex'
+// import { setStore } from '@/config//mUtils.js'
 export default {
   name: 'BottemBar',
   methods: {

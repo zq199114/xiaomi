@@ -25,6 +25,8 @@
 <script>
 import checked from 'common/commonComponents/Check'
 import InstallmentDetail from 'common/detail/InstallmentDetail'
+import { setStore, getStore } from '@/config/mUtils.js'
+
 export default {
   name: 'OrderPay',
   props: {
@@ -37,7 +39,7 @@ export default {
       isSelect: null, // 用来判断是否显示分期详情页
       inprice: 0,
       qishu: 3,
-      inFunNum: 1,
+      // inFunNum: 1,
       newData: {},
       checkFun: {}
     }
@@ -56,17 +58,17 @@ export default {
     getId (id) { // 此处bug多多日后在搞
       // console.log(this.$refs)
       let inid = parseInt(id)
-      console.log(this.id + '  ' + inid)
       if (this.id === inid) {
         // 这里不能调用这个函数，因为在installmentDetail页面点击chack后会同时触发getItem也会激活getId方法让this.id === inid马上判断此时，isSelect永远是true
         // this.installmentChange(inid)
-        console.log('看看看看')
-        if (this.inFnNum < 3) {
-          // this.installmentChange(inid)
-          this.inFnNum = 1
+        // if (this.inFnNum < 3) {
+        // this.installmentChange(inid)
+        // this.inFnNum = 1
+        // }
+        // 下面的判断是避免在付款方式列表没有可以选中的选项时选中报错的选项
+        if (!(this.id > 3 && this.newData.length === 3)) {
+          this.$refs.check[this.id - 1].isSeld()
         }
-        console.log(this.$refs)
-        this.$refs.check[this.id - 1].isSeld()
         return
       }
       this.installmentChange(inid)
@@ -77,10 +79,8 @@ export default {
     },
     installmentChange (inid) {
       if (inid === 6 || inid === 7) {
-        console.log(inid === 6)
-        console.log(inid === 7)
         this.isSelect = true
-        this.inFnNum++
+        // this.inFnNum++
       }
     },
     // 以下为一个标记，用来进行判断是否要遍历触发chenk逐渐的方法
@@ -102,24 +102,32 @@ export default {
       this.qishu = qishu
     }
   },
-  updated () {
-    this.$nextTick(this.getId(this.id)) // 只有在页面更新后ref才能被 使用
+  updated () { // 这个updated可以在折叠打开，付款方式选项时重新选中刚才选中的那个目标
+    this.getId(this.id) // 只有在页面更新后ref才能被 使用
   },
   watch: {
     mode_data (newData) {
-      this.inprice = this.cartListItem.tota.price
-      this.newData = newData.slice(0, 3)
+      setStore('newDataMode', newData)
+      this.newData = getStore('newDataMode').slice(0, 3)
       // this.$nextTick(this.getId(this.id))
       // this.getId(this.id)
     },
     cartListItem (newData) {
-      // console.log(newData)
+      // 刷新后没newData里面是空的就返回
+      if (!newData.tota) { return }
+      setStore('inprice', newData.tota.price)
+      this.inprice = getStore('inprice')
     }
+  },
+  mounted () { // 这里是用来刷新之后重新取值用的
+    this.inprice = getStore('inprice')
+    this.newData = getStore('newData').slice(0, 3)
   }
 }
 </script>
 
 <style lang="stylus" type="text/stylus" scoped>
+@import '~styles/variable.styl'
 .pay
   margin-top: .2rem
   background: #fff
@@ -132,8 +140,8 @@ export default {
     flex-wrap: wrap
     .pay_ico
       width: 90% // 设置这个百分百宽度是为了自适应
-      height: .896rem
-      line-height: .896rem
+      height: $orderLineHeight
+      line-height: $orderLineHeight
       .ico
         width: .5rem
         height: .5rem
@@ -151,12 +159,12 @@ export default {
       display: inline-block
       // vertical-align: middle // 用了flex布局后vertical-align失效
       margin: auto 0 // // 父元素不能有行高，否则margin top和bottom失效
-      width: 10%
+      // width: 10%
     .detail
       width: 100%
       .install_desc
-        line-height: .896rem
-        height: .896rem
+        line-height: $orderLineHeight
+        height: $orderLineHeight
         display: flex
         justify-content: space-between
         margin: 0 .4rem 0 .65rem

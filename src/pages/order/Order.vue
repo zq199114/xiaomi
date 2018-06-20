@@ -3,6 +3,7 @@
     <use-header :title="title"></use-header>
     <add-address></add-address>
     <order-pay :mode_data="paymentMode" :cartListItem="cartListItem"></order-pay>
+    <order-detail></order-detail>
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 import UseHeader from 'common/commonComponents/UseHeader'
 import AddAddress from './components/OrderAddress'
 import OrderPay from './components/OrderPay'
+import OrderDetail from './components/OrderDetail'
 
 export default {
   name: 'Order',
@@ -23,7 +25,8 @@ export default {
   components: {
     UseHeader,
     AddAddress,
-    OrderPay
+    OrderPay,
+    OrderDetail
   },
   methods: {
     getPaymentMode (res) {
