@@ -115,14 +115,14 @@ export default {
     cartListItem (newData) {
       // 刷新后没newData里面是空的就返回
       if (!newData.tota) { return }
-      // setStore('newDataCartList', newData)
+      console.log(newData.tota.price)
       setStore('inprice', newData.tota.price)
       this.inprice = getStore('inprice')
     }
   },
   mounted () { // 这里是用来刷新之后重新取值用的
     this.inprice = getStore('inprice')
-    this.newData = getStore('newData').slice(0, 3)
+    this.newData = this.newData
   }
 }
 </script>

@@ -69,6 +69,7 @@ export default {
       this.$axios.get('/api/test.json').then(this.checkUser)
     },
     checkUser (res) {
+      console.log(this.$route.params)
       let data = res.data[0]
       console.log(data)
       if (data.name === this.userContent && data.password === this.passContent) {

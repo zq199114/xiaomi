@@ -40,7 +40,7 @@ export default {
   },
   mounted () {
     this.$axios.get('/api/payment.json').then(this.getPaymentMode)
-    // console.log(this.$route.params) // 这里是路由穿过来的参数
+    console.log(this.$route.params) // 这里是路由穿过来的参数
     this.cartListItem = this.$route.params
   }
 }

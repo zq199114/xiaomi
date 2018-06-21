@@ -19,6 +19,7 @@ export default {
       console.log(this.totalNum)
     },
     Settlement () {
+      console.log(this.totalNum)
       this.$router.push({
         name: 'Order',
         params: {
