@@ -115,6 +115,7 @@ export default {
     cartListItem (newData) {
       // 刷新后没newData里面是空的就返回
       if (!newData.tota) { return }
+      // setStore('newDataCartList', newData)
       setStore('inprice', newData.tota.price)
       this.inprice = getStore('inprice')
     }
@@ -132,7 +133,7 @@ export default {
   margin-top: .2rem
   background: #fff
   padding: 0 .3rem
-  border: .01rem solid #e0e0e0
+  big_border()
   .mode_payment
     display: flex
     border-bottom: .02rem solid #eee

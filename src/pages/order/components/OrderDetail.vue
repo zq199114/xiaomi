@@ -36,8 +36,14 @@
       <p>查看更多发票常见问题&gt;&gt;</p>
     </div>
   </div>
-  <div class="discount_coupon">
+  <div class="discount_coupon" @click="showCouponDetail">
     <div class="discount">优惠券</div><div class="dis_price">以优惠 <i>0元</i><span class="iconfont down">&#xe6ce;</span></div>
+  </div>
+  <div class="discount_coupon_detail" v-show="showCoupon">
+    <div class="use">使用优惠券码</div>
+    <div class="coupon">
+      <input class="use_coupon" type="text" placeholder="请输入优惠券码"><a class="confirm" href="#">确定</a>
+    </div>
   </div>
 </div>
 </template>
@@ -48,7 +54,8 @@ export default {
   data () {
     return {
       showExpress: false,
-      showInvoice: false
+      showInvoice: false,
+      showCoupon: false
     }
   },
   methods: {
@@ -57,6 +64,9 @@ export default {
     },
     showInvoiceDetail () {
       this.showInvoice = !this.showInvoice
+    },
+    showCouponDetail () {
+      this.showCoupon = !this.showCoupon
     }
   }
 }
@@ -67,6 +77,7 @@ export default {
 .detail
   background: #fff
   margin-top: .2rem
+  big_border()
   .express, .electronic_invoice, .discount_coupon
     padding: 0 .3rem
     height: $orderLineHeight
@@ -88,10 +99,10 @@ export default {
         color: $mainColor
         margin-left: .1rem
         font-style: italic
-  .express_detail, .invoice_detail
+  .express_detail, .invoice_detail, .discount_coupon_detail
     padding: 0 .3rem .3rem
     background: #f4f4f4
-    .express_detal_title, .express_detal_time, .fn, .invoice_type, .invoice_select, .re_phone, .re_mail
+    .express_detal_title, .express_detal_time, .fn, .invoice_type, .invoice_select, .re_phone, .re_mail, .use
       height: $orderLineHeight
       line-height: $orderLineHeight
       font-size: .24rem
@@ -106,7 +117,7 @@ export default {
         button_common()
       .active
         border-color: $mainColor
-    .invoice_type_one, .person, .unit
+    .invoice_type_one, .person, .unit, .confirm
       button_common()
       font-size: .24rem
     .active_invoice
@@ -126,18 +137,31 @@ export default {
     .inpt_one, .inpt_two
       borderBottom(.02rem)
       padding-bottom: .2rem
-      .phone, .mail
+    .inpt_one, .inpt_two, .coupon
+      .phone, .mail, .use_coupon
         width: 100%
         height: .6rem
         border: .02rem solid #e0e0e0
         font-size: .24rem
         padding-left: .3rem
         box-sizing: border-box
-      .phone::placeholder, .mail::placeholder
+      .phone::placeholder, .mail::placeholder, .use_coupon::placeholder
         font-family: Arial, "Microsoft Yahei", "Helvetica Neue", Helvetica, sans-serif;
         color: #6a6a6a
   .notice
     font-size: .2rem
     color: #bdbdbd
     line-height: .3rem
+  .discount_coupon_detail
+    border-bottom: .02rem solid #e3e3e3
+    .coupon
+      display: flex
+      .use_coupon
+      .confirm
+        margin: 0 0 0 .1rem
+        height: .6rem
+        line-height: .6rem
+        color: #3c3c3c
+        font-size: .24rem
+        box-sizing: border-box
 </style>

@@ -4,6 +4,7 @@
     <add-address></add-address>
     <order-pay :mode_data="paymentMode" :cartListItem="cartListItem"></order-pay>
     <order-detail></order-detail>
+    <order-cart-list :cartListItem="cartListItem"></order-cart-list>
   </div>
 </template>
 
@@ -12,6 +13,7 @@ import UseHeader from 'common/commonComponents/UseHeader'
 import AddAddress from './components/OrderAddress'
 import OrderPay from './components/OrderPay'
 import OrderDetail from './components/OrderDetail'
+import OrderCartList from './components/OrderCartList'
 
 export default {
   name: 'Order',
@@ -26,13 +28,15 @@ export default {
     UseHeader,
     AddAddress,
     OrderPay,
-    OrderDetail
+    OrderDetail,
+    OrderCartList
   },
   methods: {
     getPaymentMode (res) {
       // console.log(res.data)
       this.paymentMode = res.data
     }
+    // getSt(res)
   },
   mounted () {
     this.$axios.get('/api/payment.json').then(this.getPaymentMode)
