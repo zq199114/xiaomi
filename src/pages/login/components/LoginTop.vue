@@ -69,15 +69,18 @@ export default {
       this.$axios.get('/api/test.json').then(this.checkUser)
     },
     checkUser (res) {
-      console.log(this.$route.params)
       let data = res.data[0]
       console.log(data)
       if (data.name === this.userContent && data.password === this.passContent) {
         this.KEEP_STATE({username: this.userContent, password: this.userContent})
         // 如果传过来有地址参数 登陆后就进到地址阐述里面
+        console.log(this.$route)
         let redirect = decodeURIComponent(this.$route.query.redirect || '/') // decodeURIComponent() 方法用于解码由 encodeURIComponent 方法或者其它类似方法编码
+        let tota = this.$route.query.tota
+        if (redirect === '/') { tota = '' }
         this.$router.push({
-          path: redirect
+          name: redirect,
+          params: tota
         })
       } else {
         this.show_tips = true

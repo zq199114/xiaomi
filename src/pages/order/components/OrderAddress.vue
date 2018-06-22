@@ -1,6 +1,6 @@
 <template>
   <div class="address">
-    <div class="addAddress border-bottom"><span class="add">添加收获地址</span><span class="iconfont arrow">&#xe62d;</span></div>
+    <router-link tag="div" to="/Address" class="addAddress border-bottom"><span class="add">添加收获地址</span><span class="iconfont arrow">&#xe62d;</span></router-link>
   </div>
 </template>
 

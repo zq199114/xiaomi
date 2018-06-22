@@ -43,10 +43,13 @@ router.beforeEach((to, from, next) => {
     if (store.state.token) { // 不存在就把要去的页面加入到，路由参数中
       next()
     } else {
-      // console.log(to.fullPath)
+      // console.log(to) // 在这个里面能看到parames的值
       next({
         path: '/login',
-        query: {redirect: to.fullPath} // 这里的to.fullPath就是order页面
+        query: {
+          redirect: to.name,
+          tota: to.params
+        } // {redirect: to.fullPath}不知道不用fullPath会有什么隐患先这样写,这里设置了name地址栏就不会加密显示了, // 这里的to.fullPath就是order页面
       })
     }
   } else {

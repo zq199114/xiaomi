@@ -115,7 +115,7 @@ export default {
     cartListItem (newData) {
       // 刷新后没newData里面是空的就返回
       if (!newData.tota) { return }
-      console.log(newData.tota.price)
+      // console.log(newData.tota.price)
       setStore('inprice', newData.tota.price)
       this.inprice = getStore('inprice')
     }

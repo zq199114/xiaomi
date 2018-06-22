@@ -1,7 +1,7 @@
 <template>
   <div>
   <div class="order_cart_list">
-    <div class="list_item" v-for="item in cartList.item" :key="item.id">
+    <div class="list_item" v-for="item in cartList" :key="item.id">
       <img class="pic" :src="item.phone_img" alt="">
       <div class="desc_item">
         <div class="desc">{{item.phone_name}}{{item.phone_model}}{{item.phone_color}}</div>
@@ -58,12 +58,13 @@ export default {
     }
   },
   watch: {
-    cartListItem (newData) {
+    cartListItem (newData, oldData) {
       console.log(newData)
-      if (!newData.tota) { return }
-      // if (!newData.price) { return }
+      console.log(oldData)
+      // if (!newData.tota) { return }
+      if (!newData.tota) { return } // 这里加判断因为刷新后,newData,里的值就是null如果这时候给cartList获取到页面就没有内容显示了
       this.totalPrice = newData.tota.price
-      this.cartList = newData.tota
+      this.cartList = newData.tota.item
       this.totalNum = newData.tota.num
       setStore('newDataTotalPrice', this.totalPrice)
       setStore('newDataCartList', this.cartList)

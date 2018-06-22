@@ -57,6 +57,7 @@ export default {
 <style type="text/stylus" lang="stylus" scoped>
 @import '~styles/variable.styl'
 .inst
+  z-index: 100
   position: fixed
   top: 0
   bottom: 0
