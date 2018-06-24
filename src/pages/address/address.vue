@@ -1,4 +1,5 @@
 <template>
+  <div>
   <div class="add_address">
     <use-header :title="this.title"></use-header>
     <div class="add border-bottom consignee">收货人: <input type="text" placeholder="真实姓名"></div>
@@ -7,6 +8,8 @@
     <div class="add border-bottom deta_address">详细地址: <input type="text"  placeholder="详细地址"></div>
     <div class="add border-bottom default_address">设置为默认地址: <input type="checkbox"></div>
     <div class="save_address">保存地址</div>
+  </div>
+  <router-view></router-view>
   </div>
 </template>
 
@@ -25,7 +28,7 @@ export default {
   methods: {
     gotoSele () {
       console.log('woc')
-      this.$router.push({path: 'Address/addressSelect'})
+      this.$router.push({path: 'address/addressSelect'})
     }
   }
 }
