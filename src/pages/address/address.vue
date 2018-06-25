@@ -27,8 +27,7 @@ export default {
   },
   methods: {
     gotoSele () {
-      console.log('woc')
-      this.$router.push({path: 'address/addressSelect'})
+      this.$router.push({path: '/Address/addressSelect'})
     }
   }
 }

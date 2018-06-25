@@ -2,26 +2,54 @@
   <div class="address_select">
     <use-header :title="title"></use-header>
     <div class="inpt_address">
-      <div class="inpt_selec">北京<span class="iconfont arrow">&#xe6ce;</span></div>
+      <div @click="goTo" class="inpt_selec">北京<span class="iconfont arrow">&#xe6ce;</span></div>
       <span class="iconfont search">&#xe603;</span><input placeholder="请输入您的收货地址" type="text" class="inpt_new"/>
     </div>
     <ul class="address_select_list">
-      <li class="address_select_item">手动选择地址</li>
+      <li class="address_select_item" @click="close">手动选择地址</li>
     </ul>
+    <address-lv @close="close" v-show="showAddressLv"></address-lv>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 import UseHeader from 'common/commonComponents/UseHeader'
+import addressLv from './components/address_lv'
+
 export default {
   name: 'addressSelect',
   data () {
     return {
-      title: '选择收货地址'
+      title: '选择收货地址',
+      showAddressLv: false,
+      hotCity: [],
+      city: {}
     }
   },
   components: {
-    UseHeader
+    UseHeader,
+    addressLv
+  },
+  methods: {
+    close () {
+      this.showAddressLv = !this.showAddressLv
+    },
+    goTo () {
+      this.$router.push({path: '/Address/addressSelectCity', query: {city: this.city, hotCity: this.hotCity}})
+    },
+    getCityList (res) {
+      if (res.data.ret) {
+        let data = res.data.data
+        this.hotCity = data.hotCities
+        this.city = data.cities
+        // console.log(this.)
+      }
+    }
+  },
+  mounted () {
+    this.$axios.get('/api/city.json').then(this.getCityList)
+    console.log('mounted')
   }
 }
 </script>

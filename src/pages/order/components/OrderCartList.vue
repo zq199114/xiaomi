@@ -59,8 +59,6 @@ export default {
   },
   watch: {
     cartListItem (newData, oldData) {
-      console.log(newData)
-      console.log(oldData)
       // if (!newData.tota) { return }
       if (!newData.tota) { return } // 这里加判断因为刷新后,newData,里的值就是null如果这时候给cartList获取到页面就没有内容显示了
       this.totalPrice = newData.tota.price
@@ -72,7 +70,6 @@ export default {
     }
   },
   mounted () {
-    console.log(getStore('newDataCartList'))
     // console.log(getStore('newDataCartList'))
     this.totalPrice = getStore('newDataTotalPrice')
     this.cartList = getStore('newDataCartList')

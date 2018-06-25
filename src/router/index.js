@@ -8,6 +8,7 @@ import Login from '@/pages/login/Login' // 注意@后面要加上斜杠
 import Order from '@/pages/order/Order'
 import address from '@/pages/address/address'
 import addressSelect from '@/pages/address/children/addressSelect'
+import addressSelectCity from '@/pages/address/children/addressSelectCity'
 
 Vue.use(Router)
 
@@ -62,6 +63,10 @@ export default new Router({
         path: 'addressSelect',
         name: 'addressSelect',
         component: addressSelect
+      }, {
+        path: 'addressSelectCity',
+        name: 'addressSelectCity',
+        component: addressSelectCity
       }]
     }
   ]
