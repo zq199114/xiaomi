@@ -32,8 +32,8 @@ export default {
   },
   mounted () {
     let data = this.$route.query
-    this.city = data.city
-    this.hotCity = data.hotCity
+    this.city = JSON.parse(data.city)
+    this.hotCity = JSON.parse(data.hotCity)
     console.log(this.$route)
     console.log(this.city)
     console.log(typeof (this.hotCity))

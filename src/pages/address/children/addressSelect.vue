@@ -41,8 +41,8 @@ export default {
     getCityList (res) {
       if (res.data.ret) {
         let data = res.data.data
-        this.hotCity = data.hotCities
-        this.city = data.cities
+        this.hotCity = JSON.stringify(data.hotCities)
+        this.city = JSON.stringify(data.cities)
         // console.log(this.)
       }
     }
