@@ -1,6 +1,6 @@
 <template>
   <div class="order">
-    <use-header :title="title"></use-header>
+    <use-header :title="title" :back="cart"></use-header>
     <add-address></add-address>
     <order-pay :mode_data="paymentMode" :cartListItem="cartListItem"></order-pay>
     <order-detail></order-detail>
@@ -21,7 +21,8 @@ export default {
     return {
       title: '用户结算',
       paymentMode: [],
-      cartListItem: {}
+      cartListItem: {},
+      cart: '/Cart'
     }
   },
   components: {

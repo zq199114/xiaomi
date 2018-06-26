@@ -1,7 +1,7 @@
 <!-- 展示模板 -->
 <template>
 <div class="cart">
-  <cart-header :isShow="isShow" :title="title"></cart-header>
+  <cart-header :isShow="isShow" :title="title" :back="detail"></cart-header>
   <cart-list></cart-list>
   <cart-bottom-bar v-if="this.cartList.length"></cart-bottom-bar>
   <home-cartbar v-if="!this.cartList.length"></home-cartbar>
@@ -21,7 +21,8 @@ export default {
     return {
       total: {},
       isShow: true,
-      title: '购物车'
+      title: '购物车',
+      detail: '/Detail'
     }
   },
   components: {

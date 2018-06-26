@@ -1,14 +1,14 @@
 <template>
   <div class="address_select">
-    <use-header :title="title"></use-header>
+    <use-header :title="title" :back="Address"></use-header>
     <div class="inpt_address">
-      <div @click="goTo" class="inpt_selec">北京<span class="iconfont arrow">&#xe6ce;</span></div>
+      <div @click="goTo" class="inpt_selec"><i>{{currentCity}}</i><span class="iconfont arrow">&#xe6ce;</span></div>
       <span class="iconfont search">&#xe603;</span><input placeholder="请输入您的收货地址" type="text" class="inpt_new"/>
     </div>
     <ul class="address_select_list">
       <li class="address_select_item" @click="close">手动选择地址</li>
     </ul>
-    <address-lv @close="close" v-show="showAddressLv"></address-lv>
+    <address-lv @close="close" v-if="showAddressLv" :optionly="optionly"></address-lv>
     <router-view></router-view>
   </div>
 </template>
@@ -24,7 +24,10 @@ export default {
       title: '选择收货地址',
       showAddressLv: false,
       hotCity: [],
-      city: {}
+      city: {},
+      optionly: [],
+      currentCity: '北京',
+      Address: '/Address' // 要返回的页面
     }
   },
   components: {
@@ -45,11 +48,17 @@ export default {
         this.city = JSON.stringify(data.cities)
         // console.log(this.)
       }
+    },
+    getCityItem (res) {
+      this.optionly = res.data
+      // if (item.label.indexOf(this.currentCity) >= 0) {
+      // } 判断两个字符串是否有相同的字符串
     }
   },
   mounted () {
     this.$axios.get('/api/city.json').then(this.getCityList)
-    console.log('mounted')
+    this.$axios.get('/api/vue-city-lv4.json').then(this.getCityItem)
+    this.currentCity = this.$route.query.city
   }
 }
 </script>
@@ -76,11 +85,16 @@ export default {
       width: 1.8rem
       margin-right: .03rem
       box-sizing: border-box
-      padding: 0 .35rem 0 .6rem
+      text-align: center
+      i
+        display: inline-block
+        max-width: 1rem
+        ellipsis()
       .arrow
+        vertical-align: top
         font-size: .2rem
         display: inline-block
-        padding-left: .15rem
+        padding-left: .1rem
     .search
       padding: 0 .15rem
       background: #fff

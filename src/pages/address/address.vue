@@ -1,10 +1,10 @@
 <template>
   <div>
   <div class="add_address">
-    <use-header :title="this.title"></use-header>
+    <use-header :title="this.title" :back="order"></use-header>
     <div class="add border-bottom consignee">收货人: <input type="text" placeholder="真实姓名"></div>
     <div class="add border-bottom phonenum">手机号码: <input type="text" placeholder="手机号"></div>
-    <div class="add border-bottom area">所在地区: <input @click="gotoSele" type="text" readonly="readonly" placeholder="省 市 区 街道信息"></div>
+    <div class="add border-bottom area">所在地区: <input @click="gotoSele" type="text" readonly="readonly" :placeholder="placeholder"></div>
     <div class="add border-bottom deta_address">详细地址: <input type="text"  placeholder="详细地址"></div>
     <div class="add border-bottom default_address">设置为默认地址: <input type="checkbox"></div>
     <div class="save_address">保存地址</div>
@@ -22,13 +22,25 @@ export default {
   },
   data () {
     return {
-      title: '新增地址'
+      title: '新增地址',
+      order: '/Order',
+      placeholder: '省 市 区 街道信息'
     }
   },
   methods: {
     gotoSele () {
       this.$router.push({path: '/Address/addressSelect'})
     }
+  },
+  watch: {
+    $route () {
+      if (this.$route.query.area) {
+        this.$route.query.area.pop()
+        this.placeholder = this.$route.query.area.join(' ')
+      }
+    }
+  },
+  mounted () {
   }
 }
 </script>
@@ -41,7 +53,8 @@ export default {
   font-size: .28rem
   display: flex
   align-items: center
-input
+  input
+    flex: 1
     padding: 0 .45rem
   ::placeholder
     font-family: Arial, "Microsoft Yahei", "Helvetica Neue", Helvetica, sans-serif
@@ -49,6 +62,8 @@ input
   margin-top: 1rem
 .default_address
   justify-content space-between
+  input
+    flex: none
 .save_address
   height: 1rem
   line-height: 1rem

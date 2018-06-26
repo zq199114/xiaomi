@@ -11,12 +11,23 @@ export default {
   name: 'CartHeader',
   props: {
     isShow: Boolean, // 想要显示就传值进来
-    title: String
+    title: String,
+    back: {
+      type: String,
+      default: null
+    }
+  },
+  data () {
+    return {
+      changeAddress: null
+    }
   },
   methods: {
     rollback () {
-      this.$router.go(-1)
+      this.back ? this.$router.push(this.back) : this.$router.go(-1)
     }
+  },
+  mounted () {
   }
 }
 </script>
