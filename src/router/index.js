@@ -9,6 +9,7 @@ import Order from '@/pages/order/Order'
 import address from '@/pages/address/address'
 import addressSelect from '@/pages/address/children/addressSelect'
 import addressSelectCity from '@/pages/address/children/addressSelectCity'
+import list from '@/pages/address/children/list'
 
 Vue.use(Router)
 
@@ -67,6 +68,10 @@ export default new Router({
         path: 'addressSelectCity',
         name: 'addressSelectCity',
         component: addressSelectCity
+      }, {
+        path: 'list',
+        name: 'list',
+        component: list
       }]
     }
   ]

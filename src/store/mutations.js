@@ -5,7 +5,9 @@ import {
   ITEM_NUM, // 加减商品数量
   // ITEM_LOCA // 存储条目
   KEEP_STATE, // 保持登陆状态
-  LOGIN_OUT
+  LOGIN_OUT,
+  ADD_ADDRESS, // 添加地址
+  DEFAULT_ADDRESS
 } from './mutation-types'
 import { setStore, removeStroe } from '../config/mUtils.js'
 export default {
@@ -102,5 +104,15 @@ export default {
   [LOGIN_OUT] (state, token) {
     state.token = null
     removeStroe(token)
+  },
+  // 添加地址
+  [ADD_ADDRESS] (state, object) {
+    state.addressList = object.pick ? [object, ...state.addressList] : [...state.addressList, object]
+    setStore('addressList', state.addressList)
+  },
+  // 默认地址
+  [DEFAULT_ADDRESS] (state, index = 0) {
+    state.defaultAddress = state.addressList[index]
+    setStore('defaultAddress', state.addressList[index])
   }
 }

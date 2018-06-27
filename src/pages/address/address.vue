@@ -2,12 +2,12 @@
   <div>
   <div class="add_address">
     <use-header :title="this.title" :back="order"></use-header>
-    <div class="add border-bottom consignee">收货人: <input type="text" placeholder="真实姓名"></div>
-    <div class="add border-bottom phonenum">手机号码: <input type="text" placeholder="手机号"></div>
-    <div class="add border-bottom area">所在地区: <input @click="gotoSele" type="text" readonly="readonly" :placeholder="placeholder"></div>
-    <div class="add border-bottom deta_address">详细地址: <input type="text"  placeholder="详细地址"></div>
-    <div class="add border-bottom default_address">设置为默认地址: <input type="checkbox"></div>
-    <div class="save_address">保存地址</div>
+    <div class="add border-bottom consignee">收货人: <input type="text" placeholder="真实姓名" v-model="name"></div>
+    <div class="add border-bottom phonenum">手机号码: <input type="text" placeholder="手机号" v-model="phone"></div>
+    <div class="add border-bottom area">所在地区: <input @click="gotoSele" type="text" v-model="address" readonly="readonly" placeholder="省 市 区 街道信息"></div>
+    <div class="add border-bottom deta_address">详细地址: <input type="text" v-model="det_address"  placeholder="详细地址"></div>
+    <div class="add border-bottom default_address">设置为默认地址: <input type="checkbox" v-model="pick"></div>
+    <div class="save_address" @click="saveAddress">保存地址</div>
   </div>
   <router-view></router-view>
   </div>
@@ -15,6 +15,7 @@
 
 <script>
 import UseHeader from 'common/commonComponents/UseHeader'
+import { mapMutations } from 'vuex'
 export default {
   name: 'add_address',
   components: {
@@ -24,19 +25,28 @@ export default {
     return {
       title: '新增地址',
       order: '/Order',
-      placeholder: '省 市 区 街道信息'
+      name: '',
+      phone: '',
+      address: '',
+      det_address: '',
+      pick: false
     }
   },
   methods: {
+    ...mapMutations(['ADD_ADDRESS']),
     gotoSele () {
       this.$router.push({path: '/Address/addressSelect'})
+    },
+    saveAddress () {
+      this.ADD_ADDRESS({name: this.name, phone: this.phone, detAddress: this.det_address, address: this.address, pick: this.pick})
+      this.$router.push({path: '/Order'})
     }
   },
   watch: {
     $route () {
       if (this.$route.query.area) {
         this.$route.query.area.pop()
-        this.placeholder = this.$route.query.area.join(' ')
+        this.address = this.$route.query.area.join(' ') // 把数组抓换成字符串并用括号里的字符串隔开他
       }
     }
   },
@@ -56,8 +66,9 @@ export default {
   input
     flex: 1
     padding: 0 .45rem
+    font-family: $bodyFamily
   ::placeholder
-    font-family: Arial, "Microsoft Yahei", "Helvetica Neue", Helvetica, sans-serif
+    font-family: $bodyFamily
 .consignee
   margin-top: 1rem
 .default_address

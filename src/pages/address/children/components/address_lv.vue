@@ -3,7 +3,7 @@
     <div class="city_select">
       <div class="title">选择地址<div @click="back" class="close">X</div>
       </div>
-      <div class="select_lv_item"><div ref="title" class="select_lv" v-for="(item, index) in itemTitle" :key="index">{{item}}</div></div>
+      <div class="select_lv_item"><div ref="title" class="select_lv" @click="changeTitle(index)" v-for="(item, index) in itemTitle" :key="index">{{item}}</div></div>
       <div ref="wraper" class="wraper">
       <ul class="city border-top">
         <li class="city_list" v-for="item in itemSelect" @click="selectcity(item)" :key="item.value">{{item.label}}</li>
@@ -24,19 +24,37 @@ export default {
     return {
       city: '请选择',
       itemSelect: [],
-      itemTitle: []
+      itemTitle: [],
+      itemSave: []
     }
   },
   methods: {
+    changeTitle (index) {
+      if (index === 0) {
+        this.titleChange()
+        if (this.itemTitle.length === 3) {
+          this.itemTitle.splice(index, 3, '请选择')
+        } else {
+          this.itemTitle.splice(index, 2, '请选择')
+        }
+        console.log(this.itemTitle.length)
+        console.log(this.itemTitle)
+        return
+      }
+      // console.log(index, this.itemSave[index - 1], this.itemTitle)
+      this.itemTitle.splice(index, this.itemTitle.length - index)
+      this.selectcity(this.itemSave[index - 1])
+    },
     back () {
       this.$emit('close')
     },
-    selectcity (item) {
-      this.city = item.label
-      this.itemSelect = item.children
-      this.itemTitle.pop()
-      this.itemTitle.push(this.city)
-      this.itemTitle.push('请选择')
+    selectcity (item) { // 循环的列表点击功能
+      this.itemSave.push(item)
+      this.city = item.label // 点击到的值赋给city作为选择导航的值
+      this.itemSelect = item.children // 作为下一个要循环的列表，重新赋值itemSelect
+      this.itemTitle.pop() // 去掉导航选择的最后一项 "选择"两个字
+      this.itemTitle.push(this.city) // 把心的值塞进去
+      this.itemTitle.push('请选择') // 最后再加上一个请选择
       if (!this.itemSelect) { // 点到最后item为空就会执行下面的路由回到选择页面
         this.$router.push({path: '/Address', query: {area: this.itemTitle}})
       }
@@ -51,8 +69,8 @@ export default {
       }
     },
     titleChange () {
-      this.itemSelect = this.optionly
-      if (!this.itemTitle.length) {
+      this.itemSelect = this.optionly // 传递过来的城市数据 赋值给该组件，初始化
+      if (!this.itemTitle.length) { // 选择导航条 初始化
         this.itemTitle.push('请选择')
       }
     }
@@ -67,7 +85,7 @@ export default {
     this.getRef()
   },
   mounted () {
-    this.titleChange()
+    this.titleChange() // 执行一下初始化
     this.scroll = new BScroll(this.$refs.wraper, {
       tab: true,
       click: true,
