@@ -1,25 +1,40 @@
 <template>
+    <div>
     <div class="bar">
       <div class="total">
         <span class="num">共{{totalNum.num}}件 金额:</span><br>
         <span class="price"><i>{{totalNum.price}}</i>元</span>
       </div>
-      <div class="continue" @click="test">继续购物</div>
+      <div class="continue">继续购物</div>
       <div class="payment" @click="Settlement">去结算</div>
+    </div>
+    <incomplete v-if="tips" @back="know"></incomplete>
     </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-// import { setStore } from '@/config//mUtils.js'
+import incomplete from 'common/popup/incomplete'
 export default {
   name: 'BottemBar',
+  components: {
+    incomplete
+  },
+  data () {
+    return {
+      tips: false
+    }
+  },
   methods: {
-    test () {
-      console.log(this.totalNum)
+    know () {
+      this.tips = false
     },
     Settlement () {
       console.log(this.totalNum)
+      if (!this.totalNum.num) {
+        this.tips = true
+        return
+      }
       this.$router.push({
         name: 'Order',
         params: {

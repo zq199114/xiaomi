@@ -5,6 +5,7 @@
       <div class="title border-bottom">
         <span class="name">{{item.name}}</span>
         <span class="phone">{{item.phone}} <i v-if="index===0">[默认]</i></span>
+        <span class="delect" @click.stop="deleteItem(index)" v-if="showDel">删除</span>
       </div>
       <div class="address">
         <div>
@@ -14,6 +15,7 @@
         <div class="arrow iconfont">&#xe62d;</div>
       </div>
     </div>
+    <router-link to="/Address" class="bottom">新建地址</router-link>
   </div>
 </template>
 
@@ -24,17 +26,34 @@ export default {
   name: 'list',
   data () {
     return {
-      title: '收货地址'
+      title: '收货地址',
+      showDel: false
     }
   },
   computed: {
     ...mapState(['addressList'])
   },
   methods: {
-    ...mapMutations(['DEFAULT_ADDRESS']),
+    ...mapMutations(['DEFAULT_ADDRESS', 'DELETE_ADDRESS']),
     changeAddress (index) {
       this.DEFAULT_ADDRESS(index)
       this.$router.push('/Order')
+    },
+    deleteItem (index) {
+      this.DELETE_ADDRESS(index)
+    }
+  },
+  beforeRouteEnter (to, from, next) {
+    console.log(to)
+    console.log(from)
+    if (from.name === 'set') {
+      next(vm => {
+        vm.showDel = true
+      })
+    } else {
+      next(vm => {
+        vm.showDel = false
+      })
     }
   },
   components: {
@@ -60,7 +79,7 @@ export default {
     .title, .address
       padding: .25rem 0 .25rem .35rem
       .name
-        font-size: .3rem
+        font-size: .28rem
         color: $mainColor
         margin-right: .5rem
       .phone
@@ -69,6 +88,10 @@ export default {
         i
           color: $mainColor
           font-size: .2rem
+      .delect
+        font-size: .3rem
+        color: #999
+        float: right
     .address
       display: flex
       justify-content: space-between
@@ -80,4 +103,15 @@ export default {
         align-self: center
         font-size: .23rem
         color: #999
+  .bottom
+    position: fixed
+    bottom: 0
+    left: 0
+    right: 0
+    height: 1rem
+    color: #fff
+    background: $mainColor
+    text-align: center
+    font-size: .28rem
+    line-height: 1rem
 </style>

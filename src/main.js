@@ -13,7 +13,6 @@ import 'styles/iconfont.css'
 import 'styles/border.css'
 import 'swiper/dist/css/swiper.css'
 import scrollFn from 'common/commonjs/scrollFn' // 自定义的以全局方法,页面有蒙层时静止底部滚动
-import {getStore} from './config/mUtils'
 import axios from 'axios'
 // import { mapMutations } from 'vuex'
 
@@ -34,10 +33,10 @@ if ('addEventListener' in document) {
 
 // 页面刷新时，重新赋值token
 // console.log(getStore('token'))
-if (getStore('token')) {
-  store.commit('KEEP_STATE', getStore('token'))
-}
-// 全局的路由首位
+// if (getStore('token')) {
+// store.commit('KEEP_STATE', getStore('token'))
+// }
+// // 全局的路由首位
 router.beforeEach((to, from, next) => {
   if (to.matched.some(r => r.meta.requireAuth)) {
     if (store.state.token) { // 不存在就把要去的页面加入到，路由参数中

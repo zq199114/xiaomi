@@ -10,6 +10,8 @@ import address from '@/pages/address/address'
 import addressSelect from '@/pages/address/children/addressSelect'
 import addressSelectCity from '@/pages/address/children/addressSelectCity'
 import list from '@/pages/address/children/list'
+import User from '@/pages/user/User'
+import set from '@/pages/user/children/set'
 
 Vue.use(Router)
 
@@ -41,6 +43,15 @@ export default new Router({
       path: '/Cart',
       name: 'Cart',
       component: Cart // 这里写错不会报错
+    }, {
+      path: '/User',
+      name: 'User',
+      component: User, // 这里写错不会报错
+      children: [{
+        path: 'set',
+        name: 'set',
+        component: set
+      }]
     }, {
       path: '/Login',
       name: 'Login',

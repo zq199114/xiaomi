@@ -30,19 +30,18 @@ export default {
   },
   methods: {
     changeTitle (index) {
+      let title = this.itemTitle
       if (index === 0) {
         this.titleChange()
-        if (this.itemTitle.length === 3) {
-          this.itemTitle.splice(index, 3, '请选择')
+        if (title.length > 1) { // 如果点击第0个导航条选择时后面还有选项就进下面这个里面
+          title.splice(index, title.length, '请选择')
         } else {
-          this.itemTitle.splice(index, 2, '请选择')
+          title.splice(index, 2, '请选择')
         }
-        console.log(this.itemTitle.length)
-        console.log(this.itemTitle)
         return
       }
       // console.log(index, this.itemSave[index - 1], this.itemTitle)
-      this.itemTitle.splice(index, this.itemTitle.length - index)
+      this.itemTitle.splice(index, title.length - index)
       this.selectcity(this.itemSave[index - 1])
     },
     back () {

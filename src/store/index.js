@@ -42,6 +42,13 @@ if (getStore('defaultAddress') !== null) {
   }
 }
 
+if (getStore('token') !== null) {
+  if (getStore('token')) {
+    let add = getStore('token')
+    state.token = add
+  }
+}
+
 export default new Vuex.Store({
   state,
   mutations

@@ -7,7 +7,8 @@ import {
   KEEP_STATE, // 保持登陆状态
   LOGIN_OUT,
   ADD_ADDRESS, // 添加地址
-  DEFAULT_ADDRESS
+  DEFAULT_ADDRESS, // 默认地址
+  DELETE_ADDRESS // 删除地址
 } from './mutation-types'
 import { setStore, removeStroe } from '../config/mUtils.js'
 export default {
@@ -114,5 +115,13 @@ export default {
   [DEFAULT_ADDRESS] (state, index = 0) {
     state.defaultAddress = state.addressList[index]
     setStore('defaultAddress', state.addressList[index])
+  },
+  // 删除地址
+  [DELETE_ADDRESS] (state, index) {
+    state.addressList.splice(index, 1)
+    setStore('addressList', state.addressList)
+    if (!state.addressList.length) {
+      removeStroe('addressList')
+    }
   }
 }
