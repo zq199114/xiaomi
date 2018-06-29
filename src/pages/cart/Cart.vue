@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import CartHeader from '../../common/commonComponents/UseHeader'
 import CartList from './components/List'
 import CartBottomBar from './components/BottemBar'
@@ -38,7 +38,14 @@ export default {
     totalItem (item) {
       console.log(item)
       this.total = item
+    },
+    ...mapMutations(['DEFAULT_ADDRESS'])
+  },
+  beforeRouteLeave (to, from, next) {
+    if (to.name === 'Order') {
+      this.DEFAULT_ADDRESS()
     }
+    next()
   }
 }
 </script>

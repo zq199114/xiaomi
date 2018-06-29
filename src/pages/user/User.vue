@@ -65,10 +65,12 @@ export default {
   computed: {
     ...mapState(['token']),
     isExcest () {
-      if (this.token.username) {
-        return true
-      } else {
-        return false
+      if (this.token !== null) {
+        if (this.token.username) {
+          return true
+        } else {
+          return false
+        }
       }
     }
   }

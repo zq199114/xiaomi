@@ -31,15 +31,18 @@ export default {
       tab: true,
       click: true
     })
-    console.log(screen.availHeight)
-    console.log(document.body.scrollHeight)
-    this.$refs.wraper.style.height = (window.screen.availHeight / 50 - 1.68 - 1.04) + 'rem'
+    // this.$refs.wraper.style.height = (window.screen.availHeight / 50 - 1.68 - 1.04) + 'rem'
   }
 }
 </script>
 <!-- 样式代码 -->
 <style lang="stylus" scoped type="text/stylus">
 .recommend
+  position: fixed
+  top: 1.68rem
+  left: 0
+  right: 0
+  bottom: 1.04rem
   overflow: hidden
-  background: rgb(245, 245, 245)
+  // background: rgb(245, 245, 245)
 </style>

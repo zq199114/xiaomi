@@ -30,7 +30,6 @@ export default {
       this.tips = false
     },
     Settlement () {
-      console.log(this.totalNum)
       if (!this.totalNum.num) {
         this.tips = true
         return

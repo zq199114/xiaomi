@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import {routerMode} from '../config/env'
+import App from '../App'
 import Home from '@/pages/home/home'
+import recommend from '@/pages/home/components/page/Recommend'
+import cellphone from '@/pages/home/components/page/Cellphone'
 import Detail from '@/pages/detail/Detail'
 import Cart from '@/pages/cart/Cart'
 import Login from '@/pages/login/Login' // 注意@后面要加上斜杠
@@ -32,8 +35,26 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
-      component: Home
+      component: App,
+      children: [{
+        path: '',
+        redirect: '/Home'
+      }, {
+        path: '/Home',
+        component: Home,
+        children: [{
+          path: '',
+          redirect: 'recommend'
+        }, {
+          path: 'recommend',
+          name: 'recommend',
+          component: recommend
+        }, {
+          path: 'cellphone',
+          name: 'cellphone',
+          component: cellphone
+        }]
+      }]
     }, {
       path: '/Detail',
       name: 'Detail',
@@ -50,7 +71,10 @@ export default new Router({
       children: [{
         path: 'set',
         name: 'set',
-        component: set
+        component: set,
+        meta: {
+          requireAuth: true // 配置此项说明要登陆才能进入此页
+        }
       }]
     }, {
       path: '/Login',

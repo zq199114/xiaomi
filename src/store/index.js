@@ -11,9 +11,10 @@ const state = {
   itemId: 1, // 加购物车id
   token: null, // 登陆的状态
   addressList: [], // 存储地址列表
-  defaultAddress: []
+  defaultAddress: undefined
 }
 
+console.log(state.token)
 /*
 * 下面这样写太繁琐了，后期把他优化掉
 */
@@ -34,6 +35,7 @@ if (getStore('addressList') !== null) {
     state.addressList = add
   }
 }
+// console.log(getStore('defaultAddress'))
 
 if (getStore('defaultAddress') !== null) {
   if (getStore('defaultAddress')) {

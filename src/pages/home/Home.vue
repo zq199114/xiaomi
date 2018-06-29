@@ -3,6 +3,7 @@
   <div>
     <home-header></home-header>
     <home-scrollbar></home-scrollbar>
+    <router-view></router-view>
     <home-bottombar></home-bottombar>
   </div>
 </template>

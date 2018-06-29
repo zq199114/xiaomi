@@ -1,10 +1,21 @@
 <template>
-<div class="cellphone">phone</div>
+<div class="cellphone" @click="test">
+  哈哈{{token}}
+</div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
-  name: 'HomeCellphone'
+  name: 'HomeCellphone',
+  methods: {
+    test () {
+      console.log(this.token)
+    }
+  },
+  computed: {
+    ...mapState(['token'])
+  }
 }
 </script>
 

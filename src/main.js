@@ -32,7 +32,7 @@ if ('addEventListener' in document) {
 }
 
 // 页面刷新时，重新赋值token
-// console.log(getStore('token'))
+console.log(store.state.token)
 // if (getStore('token')) {
 // store.commit('KEEP_STATE', getStore('token'))
 // }

@@ -14,7 +14,7 @@ import AddAddress from './components/OrderAddress'
 import OrderPay from './components/OrderPay'
 import OrderDetail from './components/OrderDetail'
 import OrderCartList from './components/OrderCartList'
-import { mapMutations } from 'vuex'
+// import { mapMutations } from 'vuex'
 
 export default {
   name: 'Order',
@@ -34,18 +34,12 @@ export default {
     OrderCartList
   },
   methods: {
-    ...mapMutations(['DEFAULT_ADDRESS']),
+    // ...mapMutations(['DEFAULT_ADDRESS']),
     getPaymentMode (res) {
       // console.log(res.data)
       this.paymentMode = res.data
     }
     // getSt(res)
-  },
-  beforeRouteLeave (to, from, next) {
-    if (to.name === 'Cart') {
-      this.DEFAULT_ADDRESS()
-    }
-    next()
   },
   mounted () {
     this.$axios.get('/api/payment.json').then(this.getPaymentMode)
