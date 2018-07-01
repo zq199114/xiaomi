@@ -3,10 +3,20 @@
     <use-header :title="title" :back="Address"></use-header>
     <div class="inpt_address">
       <div @click="goTo" class="inpt_selec"><i>{{currentCity}}</i><span class="iconfont arrow">&#xe6ce;</span></div>
-      <span class="iconfont search">&#xe603;</span><input placeholder="请输入您的收货地址" type="text" class="inpt_new"/>
+      <span class="iconfont search">&#xe603;</span>
+      <input placeholder="请输入您的收货地址" type="text" class="inpt_new"/>
+      <!--default-all 默认是true如果是true当输入框没有任何内容时所有内容都会现显示在列表里-->
+      <vue-fuse placeholder="请输入您的收货地址"
+                :keys="keys"
+                :list="optionly"
+                event-name="cityChange"
+                inputChangeEventName="nameinp"
+                :default-all="togo"
+      ></vue-fuse>
     </div>
     <ul class="address_select_list">
       <li class="address_select_item" @click="close">手动选择地址</li>
+      <li v-for="(item, index) in searchRes" class="address_select_item" :key="index">{{item.label}}</li>
     </ul>
     <address-lv @close="close" v-if="showAddressLv" :optionly="optionly"></address-lv>
     <router-view></router-view>
@@ -16,6 +26,7 @@
 <script>
 import UseHeader from 'common/commonComponents/UseHeader'
 import addressLv from './components/address_lv'
+import BScroll from 'better-scroll'
 
 export default {
   name: 'addressSelect',
@@ -27,7 +38,10 @@ export default {
       city: {},
       optionly: [],
       currentCity: '北京',
-      Address: '/Address' // 要返回的页面
+      Address: '/Address', // 要返回的页面
+      searchRes: [], // 要显示的搜索结果列表
+      keys: ['children.children.label'],
+      togo: false
     }
   },
   components: {
@@ -59,6 +73,14 @@ export default {
     this.$axios.get('/api/city.json').then(this.getCityList)
     this.$axios.get('/api/vue-city-lv4.json').then(this.getCityItem)
     this.currentCity = this.$route.query.city
+  },
+  created () {
+    this.$on('cityChange', res => {
+      this.searchRes = res
+    })
+    this.$on('nameinp', () => {
+      console.log('什么鬼')
+    })
   }
 }
 </script>

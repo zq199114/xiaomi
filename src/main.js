@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import store from './store' // 引入vuex文件
 import VueAwesomeSwiper from 'vue-awesome-swiper'
+import VueFuse from 'vue-fuse'
 // import './config/rem'
 import FastClick from 'fastclick'
 import 'babel-polyfill'
@@ -20,6 +21,7 @@ import axios from 'axios'
 Vue.use(router)
 Vue.prototype.$axios = axios
 
+Vue.use(VueFuse)
 Vue.use(VueAwesomeSwiper)
 Vue.config.productionTip = false
 

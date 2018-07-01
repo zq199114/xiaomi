@@ -1,6 +1,6 @@
 <template>
   <div class="set">
-    <use-header :title="title"></use-header>
+    <use-header :title="title" :back="back"></use-header>
     <router-link  tag="div" to="/Address/list" class="address_manage border-bottom">地址管理<i>></i></router-link>
     <div class="login_out" @click="loginOut">退出账号</div>
   </div>
@@ -13,7 +13,8 @@ export default {
   name: 'set',
   data () {
     return {
-      title: '个人中心'
+      title: '个人中心',
+      back: '/User'
     }
   },
   components: {
