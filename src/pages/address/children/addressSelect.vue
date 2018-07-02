@@ -44,7 +44,7 @@ export default {
       currentCity: '北京',
       Address: '/Address', // 要返回的页面
       searchRes: [], // 要显示的搜索结果列表
-      keys: ['children.children.children.label'],
+      keys: ['label'],
       togo: false,
       searcontent: ''
     }
