@@ -75,7 +75,7 @@ export default {
         }
         key.num = 50
         console.log(key)
-        //console.log(io)
+        // console.log(io)
         console.log(this.catlist)
       }
     }

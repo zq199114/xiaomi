@@ -18,6 +18,11 @@ export default {
     HomeHeader,
     HomeScrollbar,
     HomeBottombar
+  },
+  mounted () {
+    this.$axios.post('/news/index').then(res => {
+      console.log(res)
+    })
   }
 }
 </script>

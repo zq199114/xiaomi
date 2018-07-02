@@ -1,0 +1,34 @@
+[{
+	"id": "001",
+	"imgUrl": "//s1.mi.com/m/images/m/pay_wx.png",
+	"title": "微信支付"
+},{
+	"id": "002",
+	"imgUrl": "https://s1.mi.com/m/images/m/pay_zfb2.png",
+	"title": "支付宝",
+	"desc": "支付订单，赢1999元红包"
+},{
+	"id": "003",
+	"imgUrl": "https://s1.mi.com/m/images/m/micash_wap.png",
+	"title": "小米钱包",
+	"desc": "绑定新卡支付，享最高立减99元”"
+},{
+	"id": "004",
+	"imgUrl": "https://s1.mi.com/m/images/m/pay_yl1.png",
+	"title": "银联在线支付"
+},{
+	"id": "005",
+	"imgUrl": "https://s1.mi.com/m/images/m/pay_yzf.png",
+	"title": "翼支付"
+},{
+	"id": "006",
+	"imgUrl": "https://s1.mi.com/m/images/m/pay_mifinanceinstal.png",
+	"title": "小米分期",
+	"installment": true,
+	"desc": "全场6期免息，新用户12期免息"
+},{
+	"id": "007",
+	"imgUrl": "https://s1.mi.com/m/images/m/pay_antinstalment.png",
+	"installment": true,
+	"title": "花呗分期"
+}]

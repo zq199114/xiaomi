@@ -15,6 +15,7 @@ import 'styles/border.css'
 import 'swiper/dist/css/swiper.css'
 import scrollFn from 'common/commonjs/scrollFn' // 自定义的以全局方法,页面有蒙层时静止底部滚动
 import axios from 'axios'
+import './mock/index.js'
 // import { mapMutations } from 'vuex'
 
 // 使用router插件
