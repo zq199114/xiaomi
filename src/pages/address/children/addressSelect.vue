@@ -4,7 +4,7 @@
     <div class="inpt_address">
       <div @click="goTo" class="inpt_selec"><i>{{currentCity}}</i><span class="iconfont arrow">&#xe6ce;</span></div>
       <span class="iconfont search">&#xe603;</span>
-      <input placeholder="请输入您的收货地址" type="text" class="inpt_new"/>
+      <!--<input placeholder="请输入您的收货地址" type="text" class="inpt_new" v-model="searcontent"/>-->
       <!--default-all 默认是true如果是true当输入框没有任何内容时所有内容都会现显示在列表里-->
       <vue-fuse placeholder="请输入您的收货地址"
                 :keys="keys"
@@ -12,12 +12,16 @@
                 event-name="cityChange"
                 inputChangeEventName="nameinp"
                 :default-all="togo"
+                :search="searcontent"
+                class="inpt_new"
       ></vue-fuse>
     </div>
+    <div ref="wraper" class="wraper">
     <ul class="address_select_list">
-      <li class="address_select_item" @click="close">手动选择地址</li>
+      <li class="address_select_item" @click="close" v-if="!searchRes.length">手动选择地址</li>
       <li v-for="(item, index) in searchRes" class="address_select_item" :key="index">{{item.label}}</li>
     </ul>
+    </div>
     <address-lv @close="close" v-if="showAddressLv" :optionly="optionly"></address-lv>
     <router-view></router-view>
   </div>
@@ -40,8 +44,9 @@ export default {
       currentCity: '北京',
       Address: '/Address', // 要返回的页面
       searchRes: [], // 要显示的搜索结果列表
-      keys: ['children.children.label'],
-      togo: false
+      keys: ['children.children.children.label'],
+      togo: false,
+      searcontent: ''
     }
   },
   components: {
@@ -72,15 +77,22 @@ export default {
   mounted () {
     this.$axios.get('/api/city.json').then(this.getCityList)
     this.$axios.get('/api/vue-city-lv4.json').then(this.getCityItem)
-    this.currentCity = this.$route.query.city
+    if (this.$route.query.city) {
+      this.currentCity = this.$route.query.city
+    }
+    this.bscroll = new BScroll(this.$refs.wraper, {
+      tab: true,
+      click: true,
+      scrollY: true
+    })
   },
   created () {
     this.$on('cityChange', res => {
       this.searchRes = res
     })
-    this.$on('nameinp', () => {
-      console.log('什么鬼')
-    })
+    // this.$on('nameinp', () => {
+    //   console.log('什么鬼')
+    // })
   }
 }
 </script>
@@ -105,7 +117,7 @@ export default {
     .inpt_selec
       background: #fff
       width: 1.8rem
-      margin-right: .03rem
+      // margin-right: .03rem
       box-sizing: border-box
       text-align: center
       i
@@ -128,12 +140,19 @@ export default {
       &::placeholder
         font-family: $bodyFamily
         font-size: .24rem
-  .address_select_list
-    margin-top: .3rem
-    font-size: .24rem
-    text-align: center
-    .address_select_item
-      height: 1rem
-      line-height: 1rem
-      background: #fff
+  .wraper
+    position: fixed
+    right: 0
+    left: 0
+    bottom: 0
+    top: $headerHeight + .8rem + .3rem
+    overflow: hidden
+    .address_select_list
+      margin-top: .3rem
+      font-size: .24rem
+      text-align: center
+      .address_select_item
+        height: 1rem
+        line-height: 1rem
+        background: #fff
 </style>
