@@ -15,7 +15,7 @@ module.exports = {
         // target: 'http://localhost:80' // 服务器数据
         target: 'http://localhost:8080', // 本地数据
         pathRewrite: {
-          '^/api': '/static/moc'
+          '^/api': '/static/mock'
         }
       }
     },

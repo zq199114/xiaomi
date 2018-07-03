@@ -6,6 +6,7 @@ import Home from '@/pages/home/home'
 import recommend from '@/pages/home/components/page/Recommend'
 import cellphone from '@/pages/home/components/page/Cellphone'
 import Detail from '@/pages/detail/Detail'
+import testDetail from '@/pages/detailTest/Detail'
 import Cart from '@/pages/cart/Cart'
 import Login from '@/pages/login/Login' // 注意@后面要加上斜杠
 import Order from '@/pages/order/Order'
@@ -15,6 +16,7 @@ import addressSelectCity from '@/pages/address/children/addressSelectCity'
 import list from '@/pages/address/children/list'
 import User from '@/pages/user/User'
 import set from '@/pages/user/children/set'
+import Category from '@/pages/category/Category'
 
 Vue.use(Router)
 
@@ -60,6 +62,10 @@ export default new Router({
       name: 'Detail',
       component: Detail
       // meta: { keepAlive: true }
+    }, {
+      path: '/testDetail/:userId',
+      name: 'testDetail',
+      component: testDetail
     }, {
       path: '/Cart',
       name: 'Cart',
@@ -108,6 +114,10 @@ export default new Router({
         name: 'list',
         component: list
       }]
+    }, {
+      path: '/Category',
+      name: 'Category',
+      component: Category
     }
   ]
 })

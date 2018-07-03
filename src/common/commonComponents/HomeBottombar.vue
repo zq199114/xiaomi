@@ -1,7 +1,7 @@
 <template>
 <div class="bar">
     <router-link class="home icon" active-class="active" tag="div" to="/Home"><span class="iconfont">&#xe655;</span><i>首页</i></router-link>
-    <div  class="catalogue icon"><span class="iconfont">&#xe682;</span><i>分类</i></div>
+    <router-link class="catalogue icon" active-class="active" tag="div" to="/Category"><span class="iconfont">&#xe682;</span><i>分类</i></router-link>
     <router-link class="cart icon" active-class="active" tag="div" to="/Cart"><span class="iconfont">&#xe600;</span><i>购物车</i></router-link>
     <router-link class="mine icon" active-class="active" to="/User" tag="div"><span class="iconfont">&#xe67b;</span><i>我的</i></router-link>
 </div>

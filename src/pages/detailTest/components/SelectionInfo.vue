@@ -42,10 +42,11 @@ import Succeed from 'common/popup/Succeed'
 import Fade from 'common/animation/Fade'
 
 export default {
-  name: 'DetailSelectionInfo',
+  name: 'testDetailSelectionInfo',
   props: {
     showSel: Boolean,
-    tranName: String
+    tranName: String,
+    version: Object
   },
   components: {
     VersionDetail,
@@ -54,42 +55,42 @@ export default {
   },
   data () {
     return {
-      version: {
-        version_item: [{
-          id: 'v001',
-          name: '3GB+32GB 全网通',
-          price: '1099'
-        }, {
-          id: 'v002',
-          name: '4GB+64GB 全网通',
-          price: '1099'
-        }, {
-          id: 'v003',
-          name: '6GB+64GB 全网通',
-          price: '1699'
-        }, {
-          id: 'v004',
-          name: '4GB+64GB 移动4G+',
-          price: '1399'
-        }],
-        color: [{
-          id: 'c001',
-          name: '金色',
-          imgUrl: 'https://i8.mifile.cn/a1/pms_1521165504.49423605!720x7200.jpg'
-        }, {
-          id: 'c002',
-          name: '黑色',
-          imgUrl: 'https://i8.mifile.cn/a1/pms_1521165496.26763454!720x7200.jpg'
-        }, {
-          id: 'c003',
-          name: '玫瑰金',
-          imgUrl: 'https://i8.mifile.cn/a1/pms_1521165501.80114213!720x7200.jpg'
-        }, {
-          id: 'c004',
-          name: '魔力蓝',
-          imgUrl: 'https://i8.mifile.cn/a1/pms_1521165508.28626332!720x7200.jpg'
-        }]
-      },
+      // version: {
+      //   version_item: [{
+      //     id: 'v001',
+      //     name: '3GB+32GB 全网通',
+      //     price: '1099'
+      //   }, {
+      //     id: 'v002',
+      //     name: '4GB+64GB 全网通',
+      //     price: '1099'
+      //   }, {
+      //     id: 'v003',
+      //     name: '6GB+64GB 全网通',
+      //     price: '1699'
+      //   }, {
+      //     id: 'v004',
+      //     name: '4GB+64GB 移动4G+',
+      //     price: '1399'
+      //   }],
+      //   color: [{
+      //     id: 'c001',
+      //     name: '金色',
+      //     imgUrl: 'https://i8.mifile.cn/a1/pms_1521165504.49423605!720x7200.jpg'
+      //   }, {
+      //     id: 'c002',
+      //     name: '黑色',
+      //     imgUrl: 'https://i8.mifile.cn/a1/pms_1521165496.26763454!720x7200.jpg'
+      //   }, {
+      //     id: 'c003',
+      //     name: '玫瑰金',
+      //     imgUrl: 'https://i8.mifile.cn/a1/pms_1521165501.80114213!720x7200.jpg'
+      //   }, {
+      //     id: 'c004',
+      //     name: '魔力蓝',
+      //     imgUrl: 'https://i8.mifile.cn/a1/pms_1521165508.28626332!720x7200.jpg'
+      //   }]
+      // },
       current_ver: null,
       current_color: null,
       current_price: null,
@@ -121,10 +122,21 @@ export default {
         this.$emit('changSel')
       }
       this.showclick = !this.showclick
-      // this.stopBodyScroll(this.showclick)
+      this.stopBodyScroll(this.showclick)
     },
     emitTar (item) {
       this.$emit('transmitPrice', item)
+    },
+    initFn () {
+      this.current_ver = this.version.version_item[0].name
+      this.current_price = this.version.version_item[0].price
+      this.current_color = this.version.color[0].name
+      this.emitTar(this.current_price)
+      this.initData = {
+        nam: this.current_name,
+        ver: this.version.version_item[0],
+        col: this.version.color[0]
+      }
     }
   },
   watch: {
@@ -135,19 +147,16 @@ export default {
     },
     tranName () {
       this.current_name = this.tranName
+    },
+    version () {
+      this.initFn()
     }
   },
-  mounted () {
-    this.current_ver = this.version.version_item[0].name
-    this.current_price = this.version.version_item[0].price
-    this.current_color = this.version.color[0].name
-    this.emitTar(this.current_price)
-    this.initData = {
-      nam: this.current_name,
-      ver: this.version.version_item[0],
-      col: this.version.color[0]
-    }
+  created () {
   }
+  // mounted () {
+  //   this.initFn()
+  // }
 }
 </script>
 <!-- 样式代码 -->

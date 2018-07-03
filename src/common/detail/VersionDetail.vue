@@ -1,6 +1,6 @@
 <!-- 展示模板 -->
 <template>
-<div class="version" ref="bgchange">
+<div class="version" ref="bgchange" @touchstart.prevent="">
 <updown>
   <div class="updowm" v-show="showSel">
   <div class="version_content">
