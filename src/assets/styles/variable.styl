@@ -5,6 +5,8 @@ $topMargin = .16rem // 模块间的间隔
 $mainColor = #fd6701
 $orderLineHeight = .896rem
 $bodyFamily = "Microsoft Yahei", "Helvetica Neue", Helvetica, sans-serif
+$homeTop = 1.68rem // 首页上距离
+$homeBottom = 1.04rem // 首页下距离
 borderBottom(cu)
   border-bottom: cu solid #eee
 button_common()
@@ -26,4 +28,54 @@ ellipsis()
   overflow: hidden
   white-space: nowrap
   text-overflow: ellipsis
+homeItemList()
+  .title
+    img
+      width: 100%
+  .title-list
+    overflow: hidden
+    background: #fdfdfd
+    display: flex
+    justify-content: space-between
+    flex-wrap: wrap
+    .product_item
+      width: 49.5%
+      img
+        width: 100%
+      .contain
+        padding: .15rem .2rem .2rem
+        text-align: left
+        .item_title
+          font-size: .33rem
+        .item_desc
+          font-size: .25rem
+          color: rgba(0,0,0,.54)
+          line-height: .5rem
+        .item_price
+          font-size: .33rem
+          color: $mainColor
+          i
+            font-size: .23rem
+          .pre
+            color: rgba(0,0,0,.54)
+            text-decoration: line-through
+            margin-left: .05rem
+    :nth-child(-n+2)
+      width: 100% // padding被挤出去了
+      box-sizing: border-box // 用box-sizing顶回去
+      .contain
+        position: relative
+        .item_title, .item_desc
+          // display: inline-block
+          width:
+        // float: left
+        .item_price
+          position: absolute
+          display: inline-block
+          right: .35rem
+          top: .1rem
+          .pre
+            position: absolute
+            top: .5rem
+            right: .0rem
 

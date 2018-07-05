@@ -1,7 +1,7 @@
 <template>
   <div class="left_column" ref="wraper">
     <ul class="item_list">
-      <li class="item" :class="{'active': currentId===item.id}" @click="addActive(item.id)" v-for="item in list" :key="item.key">{{item.name}}</li>
+      <li class="item" ref="item" :class="{'active': currentId===item.id}" @click="addActive(item.id)" v-for="item in list" :key="item.key">{{item.name}}</li>
     </ul>
   </div>
 </template>
@@ -10,25 +10,40 @@
 import BScroll from 'better-scroll'
 export default {
   name: 'left-column',
+  props: {
+    list: Array,
+    changeId: Number
+  },
   data () {
     return {
-      list: null,
       currentId: 0
     }
   },
   methods: {
     addActive (id) {
       this.currentId = id
+      // console.log(event.target.innerText)
+      // console.log(name)
+      // console.log(this.bscroll.wheelTo(id))
+      console.log(this.changeId)
+      this.$emit('change', id)
+    },
+    rChangeL (id) {
+      this.currentId = id
+      this.bscroll.scrollToElement(this.$refs.item[id], 100, false, true)
     }
   },
   mounted () {
-    this.bscroll = new BScroll(this.$refs.wraper)
-    this.$axios.get('/list/item').then(res => {
-      if (res.status === 200) {
-        console.log(res)
-        this.list = res.data
-      }
+    this.bscroll = new BScroll(this.$refs.wraper, {
+      tap: true,
+      click: true
     })
+  },
+  watch: {
+    changeId () {
+      // console.log(this.changeId)
+      this.rChangeL(this.changeId)
+    }
   }
 }
 </script>

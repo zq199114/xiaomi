@@ -28,14 +28,14 @@ export default {
   data () {
     return {
       barItem: [{title: '推荐', route: '/Home/recommend'},
-        {title: '手机', route: '/Home/cellphone'},
-        {title: '智能', route: 'ai'},
-        {title: '电视', route: 'tv'},
-        {title: '电脑', route: 'computer'},
-        {title: '双摄', route: 'she'},
-        {title: '全面屏', route: 'all'},
-        {title: '生活周边', route: 'live'},
-        {title: '盒子', route: 'box'}]
+        {title: '手机', route: '/Home/cellphone'}]
+      // {title: '智能', route: 'ai'},
+      // {title: '电视', route: 'tv'},
+      // {title: '电脑', route: 'computer'},
+      // {title: '双摄', route: 'she'},
+      // {title: '全面屏', route: 'all'},
+      // {title: '生活周边', route: 'live'},
+      // {title: '盒子', route: 'box'}]
       // isActive: 0,
       // swiperOptionb: {
       //   autoHeight: true, // 高度随内容变化

@@ -22,7 +22,7 @@ export default {
       total: {},
       isShow: true,
       title: '购物车',
-      detail: '/Detail'
+      detail: ''
     }
   },
   components: {
@@ -41,11 +41,18 @@ export default {
     },
     ...mapMutations(['DEFAULT_ADDRESS'])
   },
-  beforeRouteLeave (to, from, next) {
-    if (to.name === 'Order') {
-      this.DEFAULT_ADDRESS()
+  beforeRouteEnter (to, from, next) {
+    console.log(to)
+    console.log(from)
+    if (from.name === 'Order') {
+      next(vm => {
+        // 通过 `vm` 访问组件实例
+        vm.DEFAULT_ADDRESS() // 当要进入的页面时Order页面就初始化默认地址
+        vm.detail = '/Detail'
+      })
+    } else {
+      next()
     }
-    next()
   }
 }
 </script>

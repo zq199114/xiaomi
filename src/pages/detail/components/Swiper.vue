@@ -35,7 +35,10 @@ export default {
       swiperOption: {
         pagination: {
           el: '.swiper-pagination'
-        }
+        },
+        autoplay: { delay: 3000, stopOnLastSlide: false, disableOnInteraction: true }, // 自动轮播
+        observer: true, // 当改变swiper的样式（例如隐藏/显示）或者修改swiper的子元素时，自动初始化swiper。
+        observeParents: true // 将observe应用于Swiper的父元素。当Swiper的父元素变化时，例如window.resize，Swiper更新。
       },
       showGallary: false,
       changeNum: 0

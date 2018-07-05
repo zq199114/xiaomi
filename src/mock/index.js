@@ -146,9 +146,39 @@ const testData = function () {
 const column = function () {
   let data = []
   for (let i = 0; i < 25; i++) {
+    let rename = Random.cname()
     let item = {
       id: i,
-      name: Random.cname()
+      name: rename,
+      rlist: {
+        titleImg: 'https://cdn.cnbj0.fds.api.mi-img.com/b2c-mimall-media/711275806886438be20e33ec943a904a.jpg?thumb=1&w=500&h=200',
+        title: rename,
+        listItem: [{
+          id: 1,
+          imgUrl: 'https://i8.mifile.cn/b2c-mimall-media/06cabb01bbe4ac5c819ee101e4446a16!120x120.png',
+          name: '小米8'
+        }, {
+          id: 2,
+          imgUrl: 'https://i8.mifile.cn/b2c-mimall-media/06cabb01bbe4ac5c819ee101e4446a16!120x120.png',
+          name: '小米8'
+        }, {
+          id: 3,
+          imgUrl: 'https://i8.mifile.cn/b2c-mimall-media/06cabb01bbe4ac5c819ee101e4446a16!120x120.png',
+          name: '小米8'
+        }, {
+          id: 4,
+          imgUrl: 'https://i8.mifile.cn/b2c-mimall-media/06cabb01bbe4ac5c819ee101e4446a16!120x120.png',
+          name: '小米8'
+        }, {
+          id: 5,
+          imgUrl: 'https://i8.mifile.cn/b2c-mimall-media/06cabb01bbe4ac5c819ee101e4446a16!120x120.png',
+          name: '小米8'
+        }, {
+          id: 6,
+          imgUrl: 'https://i8.mifile.cn/b2c-mimall-media/06cabb01bbe4ac5c819ee101e4446a16!120x120.png',
+          name: '小米8'
+        }]
+      }
     }
     data.push(item)
   }

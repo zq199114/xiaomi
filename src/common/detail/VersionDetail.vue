@@ -1,6 +1,7 @@
 <!-- 展示模板 -->
 <template>
-<div class="version" ref="bgchange" @touchstart.prevent="">
+<div class="version" ref="bgchange">
+  <!--@touchstart.prevent="" 本来在上面的ref后面添加左边的事件但是这导致了加入购物车点击不了，关闭按钮也点击不了-->
 <updown>
   <div class="updowm" v-show="showSel">
   <div class="version_content">
