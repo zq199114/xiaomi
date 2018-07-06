@@ -17,6 +17,7 @@ import list from '@/pages/address/children/list'
 import User from '@/pages/user/User'
 import set from '@/pages/user/children/set'
 import Category from '@/pages/category/Category'
+import Search from '@/pages/search/Search'
 
 Vue.use(Router)
 
@@ -85,8 +86,8 @@ export default new Router({
     }, {
       path: '/Login',
       name: 'Login',
-      component: Login, // 这里写错不会报错
-      meta: { keepAlive: true }
+      component: Login // 这里写错不会报错
+      // meta: { keepAlive: true }
     }, {
       path: '/Order',
       name: 'Order',
@@ -118,6 +119,10 @@ export default new Router({
       path: '/Category',
       name: 'Category',
       component: Category
+    }, {
+      path: '/Search',
+      name: 'Search',
+      component: Search
     }
   ]
 })

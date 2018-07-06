@@ -5,7 +5,7 @@
         <span class="num">共{{totalNum.num}}件 金额:</span><br>
         <span class="price"><i>{{totalNum.price}}</i>元</span>
       </div>
-      <div class="continue">继续购物</div>
+      <router-link tag="div" to="/Category" class="continue">继续购物</router-link>
       <div class="payment" @click="Settlement">去结算</div>
     </div>
     <incomplete v-if="tips" @back="know"></incomplete>

@@ -28,6 +28,7 @@ Vue.config.productionTip = false
 
 Vue.use(scrollFn) // 使用自定义的全局方法
 // 绑定fastClick插件
+FastClick.attach(document.body)
 if ('addEventListener' in document) {
   document.addEventListener('DOMContentLoaded', function () {
     FastClick.attach(document.body)
@@ -55,6 +56,8 @@ router.beforeEach((to, from, next) => {
       })
     }
   } else {
+    // console.log(to)
+    // console.log(from)
     next()
   }
 })

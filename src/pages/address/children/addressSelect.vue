@@ -6,6 +6,8 @@
       <span class="iconfont search">&#xe603;</span>
       <!--<input placeholder="请输入您的收货地址" type="text" class="inpt_new" v-model="searcontent"/>-->
       <!--default-all 默认是true如果是true当输入框没有任何内容时所有内容都会现显示在列表里-->
+      <!--inputChangeEventName这个选项是每输入一个字就搜索一下-->
+      <!--searcontent搜索内容本来是v-model中的内容-->
       <vue-fuse placeholder="请输入您的收货地址"
                 :keys="keys"
                 :list="optionly"
@@ -40,7 +42,7 @@ export default {
       showAddressLv: false,
       hotCity: [],
       city: {},
-      optionly: [],
+      optionly: [], // 请求来的值
       currentCity: '北京',
       Address: '/Address', // 要返回的页面
       searchRes: [], // 要显示的搜索结果列表

@@ -5,7 +5,7 @@
     <img :src="infoData.items.imgUrl">
   </div>
   <div class="container">
-    <div class="bestPro_item" v-for="item in infoData.items.children" :key="item.id">
+    <router-link tag="div" :to="{name: 'testDetail', params: { userId: parseInt(item.id) }}" class="bestPro_item" v-for="item in infoData.items.children" :key="item.id">
       <img :src="item.imgUrl">
       <div class="proInfo">
         <div class="name">{{item.name}}</div>
@@ -13,7 +13,7 @@
         <div class="prePrice">{{item.prePrice}}</div>
         <div v-if="item.befPrice" class="befPrice">{{item.befPrice}}</div>
       </div>
-    </div>
+    </router-link>
   </div>
 </div>
 </template>

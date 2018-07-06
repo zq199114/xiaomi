@@ -11,7 +11,7 @@ const state = {
   itemId: 1, // 加购物车id
   token: null, // 登陆的状态
   addressList: [], // 存储地址列表
-  defaultAddress: undefined
+  defaultAddress: null // 这里的没有个值如果要初始化，不要设置空的值设置一个null
 }
 
 console.log(state.token)

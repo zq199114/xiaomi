@@ -52,7 +52,7 @@ export default {
     },
     detailData (res) {
       if (res.status === 200) {
-        let id = this.$route.params.userId
+        let id = this.$route.params.userId // 穿过来的id在这里
         let data = res.data[id]
         console.log(res.data[id])
         this.imgRes = data.imgRes

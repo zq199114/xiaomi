@@ -20,9 +20,11 @@ const Random = Mock.Random
 
 const testData = function () {
   let testdataArr = []
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 19; i++) {
+    let rename = Random.word() // 如果写在循环 外面 那 每个值都一样了
     let testDataOb = {
       proId: i,
+      phone_name: rename,
       imgRes: [{
         imgUrl: Random.image('729x792'),
         id: '001'
@@ -72,7 +74,6 @@ const testData = function () {
           imgUrl: 'https://i8.mifile.cn/a1/pms_1521165508.28626332!720x7200.jpg'
         }]
       },
-      phone_name: '红米Note5',
       gift: [{
         id: '001',
         name: '赠米粉卡'
@@ -86,55 +87,55 @@ const testData = function () {
       imgStore: [
         {
           id: '001',
-          imgUrl: 'https://cdn.cnbj0.fds.api.mi-img.com/b2c-mimall-media/63bcf275fd8393325c6f343b3c89e5c9.jpg?w=1080&h=1735'
+          imgUrl: Random.image('1080x1397')
         }, {
           id: '002',
-          imgUrl: 'https://cdn.cnbj0.fds.api.mi-img.com/b2c-mimall-media/bfb8f59814fa33003e94451eeaba0f9f.jpg?w=1080&h=1397'
+          imgUrl: Random.image('1080x1397')
         }, {
           id: '003',
-          imgUrl: 'https://cdn.cnbj0.fds.api.mi-img.com/b2c-mimall-media/202a31934625738bb2e10dcdd2d28118.jpg?w=1080&h=1800'
+          imgUrl: Random.image('1080x1397')
         }, {
           id: '004',
-          imgUrl: 'https://cdn.cnbj0.fds.api.mi-img.com/b2c-mimall-media/60318395fb54759e52b81a6a2364d6b0.jpg?w=1080&h=1651'
+          imgUrl: Random.image('1080x1397')
         }, {
           id: '005',
-          imgUrl: 'https://cdn.cnbj0.fds.api.mi-img.com/b2c-mimall-media/40a4b1aa7d68de23177f74f7f4613001.jpg?w=1080&h=1469'
+          imgUrl: Random.image('1080x1397')
         }, {
           id: '006',
-          imgUrl: 'https://cdn.cnbj0.fds.api.mi-img.com/b2c-mimall-media/f3876b42004cfee41a78e9a9aeecc250.jpg?w=1080&h=1401'
+          imgUrl: Random.image('1080x1397')
         }, {
           id: '007',
-          imgUrl: 'https://cdn.cnbj0.fds.api.mi-img.com/b2c-mimall-media/0b7d5ffda59b0059fae094b0746c6d07.jpg?w=1080&h=1633'
+          imgUrl: Random.image('1080x1397')
         }, {
           id: '008',
-          imgUrl: 'https://cdn.cnbj0.fds.api.mi-img.com/b2c-mimall-media/228e59bc080960dbe621eca874bc6a2e.jpg?w=1080&h=1864'
+          imgUrl: Random.image('1080x1397')
         }, {
           id: '009',
-          imgUrl: 'https://cdn.cnbj0.fds.api.mi-img.com/b2c-mimall-media/5567d33566afa7a64cba33a59e4d60d3.jpg?w=1080&h=1862'
+          imgUrl: Random.image('1080x1397')
         }, {
           id: '010',
-          imgUrl: 'https://cdn.cnbj0.fds.api.mi-img.com/b2c-mimall-media/5b01ca1841e7cdb9ecab545d728cee3b.jpg?w=1080&h=966'
+          imgUrl: Random.image('1080x1397')
         }, {
           id: '011',
-          imgUrl: 'https://cdn.cnbj0.fds.api.mi-img.com/b2c-mimall-media/b51cbf4618e1d6d30fe16125adec3edc.jpg?w=1080&h=1617'
+          imgUrl: Random.image('1080x1397')
         }, {
           id: '012',
-          imgUrl: 'https://cdn.cnbj0.fds.api.mi-img.com/b2c-mimall-media/798264aa45a5fa6e6644b0bf5fc28157.jpg?w=1080&h=1479'
+          imgUrl: Random.image('1080x1397')
         }, {
           id: '013',
-          imgUrl: 'https://cdn.cnbj0.fds.api.mi-img.com/b2c-mimall-media/a27e758bda674993479a6123453b5bfa.jpg?w=1080&h=1084'
+          imgUrl: Random.image('1080x1397')
         }, {
           id: '014',
-          imgUrl: 'https://cdn.cnbj0.fds.api.mi-img.com/b2c-mimall-media/8d37ce698ecdc681ba7fd736a7fb1f2c.jpg?w=1080&h=870'
+          imgUrl: Random.image('1080x1397')
         }, {
           id: '015',
-          imgUrl: 'https://cdn.cnbj0.fds.api.mi-img.com/b2c-mimall-media/441e3f68210ae06cc3e76e9e1b0a232d.jpg?w=1080&h=1400'
+          imgUrl: Random.image('1080x1397')
         }, {
           id: '016',
-          imgUrl: 'https://cdn.cnbj0.fds.api.mi-img.com/b2c-mimall-media/f97475e0f09e5936f1c5bc9240aed4b0.jpg?w=1080&h=1305'
+          imgUrl: Random.image('1080x1397')
         }, {
           id: '017',
-          imgUrl: 'https://cdn.cnbj0.fds.api.mi-img.com/b2c-mimall-media/a6d783f63fec32baeac9635a06fd1b4f.jpg?w=1080&h=2236'
+          imgUrl: Random.image('1080x1397')
         }
       ]
     }

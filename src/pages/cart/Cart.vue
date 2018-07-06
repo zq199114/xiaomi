@@ -42,8 +42,8 @@ export default {
     ...mapMutations(['DEFAULT_ADDRESS'])
   },
   beforeRouteEnter (to, from, next) {
-    console.log(to)
-    console.log(from)
+    // console.log(to)
+    // console.log(from)
     if (from.name === 'Order') {
       next(vm => {
         // 通过 `vm` 访问组件实例

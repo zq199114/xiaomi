@@ -1,7 +1,18 @@
 <template>
 <div class="cartTopbar">
   <div class="back" @click="rollback"><div class="iconfont ico">&#xe624;</div></div>
-  <div class="title">{{this.title}}</div>
+  <div class="title" v-if="this.title">{{this.title}}</div>
+  <!--<input v-if="!this.title" class="inpt" type="text" placeholder="搜索商品名称">-->
+  <vue-fuse placeholder="搜索商品名称"
+            :keys="keys"
+            :list="optionly"
+            event-name="searchPro"
+            inputChangeEventName="nameinp"
+            :default-all="togo"
+            :search="searcontent"
+            class="inpt"
+            v-if="!this.title"
+  ></vue-fuse>
   <div class="search"><div v-if="isShow" class="iconfont ico">&#xe603;</div></div>
 </div>
 </template>
@@ -11,7 +22,10 @@ export default {
   name: 'CartHeader',
   props: {
     isShow: Boolean, // 想要显示就传值进来
-    title: String,
+    title: {
+      type: String,
+      default: null
+    },
     back: {
       type: String,
       default: null
@@ -19,7 +33,12 @@ export default {
   },
   data () {
     return {
-      changeAddress: null
+      changeAddress: null,
+      keys: ['phone_name'],
+      optionly: [], // 请求来的值
+      togo: false,
+      // searchRes: [], // 搜索结果   这里因为是要传到父组件这个就不需要了
+      searcontent: '' // search搜索内容
     }
   },
   methods: {
@@ -28,6 +47,21 @@ export default {
     }
   },
   mounted () {
+    if (!this.title) {
+      this.$axios.post('/news/index').then(res => {
+        // console.log(res)
+        this.optionly = res.data
+      })
+    }
+  },
+  created () {
+    // if (this.title) {
+    this.$on('searchPro', res => {
+      // console.log(res)
+      // this.searchRes = res
+      this.$emit('reres', res)
+    })
+    // }
   }
 }
 </script>
@@ -53,4 +87,12 @@ export default {
     .ico
       font-size: .35rem
       color: #666
+  .inpt
+    padding-left: .2rem
+    width: 100%
+    margin: .17rem .1rem
+    font-family: $bodyFamily
+    font-size: .35rem
+  &::placeholder
+    color: red
 </style>

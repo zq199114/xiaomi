@@ -112,6 +112,9 @@ export default {
   },
   // 默认地址
   [DEFAULT_ADDRESS] (state, index = 0) {
+    // console.log(state.defaultAddress)
+    // console.log(state.addressList)
+    if (!state.addressList.length) { return }
     state.defaultAddress = state.addressList[index]
     setStore('defaultAddress', state.defaultAddress)
   },

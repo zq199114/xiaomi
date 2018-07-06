@@ -27,6 +27,9 @@
 import { mapMutations } from 'vuex'
 export default {
   name: 'LoginTop',
+  props: {
+    fromName: String
+  },
   data () {
     return {
       model: true,
@@ -75,9 +78,9 @@ export default {
         this.KEEP_STATE({username: this.userContent, password: this.userContent})
         // 如果传过来有地址参数 登陆后就进到地址阐述里面
         console.log(this.$route)
-        let redirect = decodeURIComponent(this.$route.query.redirect || '/') // decodeURIComponent() 方法用于解码由 encodeURIComponent 方法或者其它类似方法编码
+        let redirect = decodeURIComponent(this.$route.query.redirect || this.fromName) // decodeURIComponent() 方法用于解码由 encodeURIComponent 方法或者其它类似方法编码
         let tota = this.$route.query.tota
-        if (redirect === '/') { tota = '' }
+        if (redirect === this.fromName) { tota = '' }
         this.$router.push({
           name: redirect,
           params: tota
