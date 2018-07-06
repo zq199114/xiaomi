@@ -62,12 +62,12 @@ export default {
     // }
   },
   mounted () {
-    let item = this.$refs.bar
-    let width = 0
-    for (let i = 0; i < item.children.length; i++) {
-      width += item.children[i].offsetWidth
-    }
-    item.style.width = width + 'px'
+    // let item = this.$refs.bar
+    // let width = 0
+    // for (let i = 0; i < item.children.length; i++) {
+    //   width += item.children[i].offsetWidth
+    // }
+    // item.style.width = width + 'px'
     this.scroll = new BScroll(this.$refs.scroll, {
       scrollX: true,
       click: true,
