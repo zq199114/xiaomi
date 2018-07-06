@@ -13,9 +13,10 @@ import 'styles/reset.css'
 import 'styles/iconfont.css'
 import 'styles/border.css'
 import 'swiper/dist/css/swiper.css'
-import scrollFn from 'common/commonjs/scrollFn' // 自定义的以全局方法,页面有蒙层时静止底部滚动
+// import scrollFn from 'common/commonjs/scrollFn' // 自定义的以全局方法,页面有蒙层时静止底部滚动
 import axios from 'axios'
 import './mock/index.js'
+import './config/rem.js'
 // import { mapMutations } from 'vuex'
 
 // 使用router插件
@@ -26,7 +27,7 @@ Vue.use(VueFuse)
 Vue.use(VueAwesomeSwiper)
 Vue.config.productionTip = false
 
-Vue.use(scrollFn) // 使用自定义的全局方法
+// Vue.use(scrollFn) // 使用自定义的全局方法
 // 绑定fastClick插件
 FastClick.attach(document.body)
 if ('addEventListener' in document) {

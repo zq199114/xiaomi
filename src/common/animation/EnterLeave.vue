@@ -11,9 +11,10 @@ export default {
 </script>
 
 <style lang="stylus" scoped type="text/stylus">
-  .v-enter, .v-leave-to
-    /*opacity: 0*/
-    transform: translateX(100%)
+  .v-enter,  .v-leave-active
+    opacity: 0
+    // transform: translateX(100%)
   .v-enter-active, .v-leave-active
-    transition: all .3s
+    /*transition: all .3s*/
+    transition: opacity .3s
 </style>
