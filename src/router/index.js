@@ -18,6 +18,7 @@ import User from '@/pages/user/User'
 import set from '@/pages/user/children/set'
 import Category from '@/pages/category/Category'
 import Search from '@/pages/search/Search'
+import EvaluateList from '@/pages/detail/components/children/EvaluateList'
 
 Vue.use(Router)
 
@@ -61,8 +62,13 @@ export default new Router({
     }, {
       path: '/Detail',
       name: 'Detail',
-      component: Detail
-      // meta: { keepAlive: true }
+      component: Detail,
+      children: [{
+        path: 'EvaluateList',
+        name: 'EvaluateList',
+        component: EvaluateList
+      }]
+      // meta: { keepAlive: true } // 这要用缓存，数据可以用缓存时特定的钩子函数调用
     }, {
       path: '/testDetail/:userId',
       name: 'testDetail',

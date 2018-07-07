@@ -1,13 +1,13 @@
 <!-- 展示模板 -->
 <template>
 <div class="evaluate">
-  <div class="evaluate_lists border-bottom">
+  <router-link to="/Detail/EvaluateList" tag="div" class="evaluate_lists border-bottom">
     <div class="evaluate_num">用户评价(1489)</div>
     <div class="right">
       <div class="satisficing"><i>97.3%</i>满意</div>
       <span class="iconfont arrow">&#xe62d;</span>
     </div>
-  </div>
+  </router-link>
   <div class="evaluate_detail">
     <div class="user">
       <div class="portrait"><img src="https://s1.mi-img.com/mfsv2/avatar/s010/p01QQgaXAy0M/Cy1HXRpOoBS2Ca_90.jpg" alt=""></div>
@@ -32,6 +32,7 @@
       </div>
     </div>
   </div>
+  <router-view></router-view>
 </div>
 </template>
 

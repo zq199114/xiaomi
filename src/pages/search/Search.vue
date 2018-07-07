@@ -55,6 +55,7 @@ export default {
     li
       display: inline-block
       color: #484848
+      margin-bottom: .3rem
       font-size: .3rem
       padding: .2rem
       border: .01rem solid #e4e4e4

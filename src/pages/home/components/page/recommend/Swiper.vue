@@ -30,6 +30,7 @@ export default {
           imgUrl: 'https://cdn.cnbj0.fds.api.mi-img.com/b2c-mimall-media/2320573b3be643e29f5270a97e1a9c1d.jpg?thumb=1&w=720&h=360'
         }],
       swiperOptiona: {
+        notNextTick: true,
         autoplay: { delay: 3000, stopOnLastSlide: false, disableOnInteraction: true }, // 自动轮播
         pagination: {
           el: '.swiper-pagination'
