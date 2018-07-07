@@ -3,8 +3,23 @@
       <use-header :title="title"></use-header>
       <div class="banner"><span class="iconfont happy">&#xe62c;</span></div>
       <div class="filtrate">
-        <i class="hot">最热门</i><i class="line"></i><i class="new">最新</i><i class="is_img"></i><i class="has_img">有图片</i>
+        <i class="hot">最热门</i><i class="new">最新</i><i class="has_img">有图片</i>
       </div>
+      <ul class="evaluate_list">
+        <li class="list_item">
+          <div class="user">
+            <img src="" alt="">
+            <div class="user_date">
+              <div class="username"></div>
+              <div class="data"></div>
+            </div>
+            <div class="grade">
+              <span class="iconfont happy">&#xe62c;</span>
+              <div class="grade_desc">超爱</div>
+            </div>
+          </div>
+        </li>
+      </ul>
     </div>
 </template>
 
@@ -45,34 +60,39 @@ export default {
       color: #fff
       font-size: 1rem
   .filtrate
-    /*width: 100%*/
     height: 1rem
-    display: flex
-    background: #f9f9f9
+    background: #fafafa
     padding: 0 .3rem
-    align-items: center
+    display: flex
+    align-items center
     .hot
+      // display: inline-block
       color: #f27d0f
-      margin-right: .3rem
+      border-right: .03rem solid #afafaf
+      padding-right: .3rem
+      vertical-align: middle
     .new
       color: #afafaf
       margin-left: .3rem
-    .line
-      display: inline-block
-      height: .35rem
-      width: .02rem
-      background: #afafaf
+      flex: 1
     .has_img
-      // display: inline-block
-      color: #afafaf
-      // align-self: right
-    .is_img
-      align-self: right
       display: inline-block
-      width: .3rem
-      height: .3rem
-      background: #ededed
-      border: .01rem solid #e3e3e3
-      border-radius: .05rem
-      vertical-align: baseline
+      position: relative
+      color: #afafaf
+      vertical-align: top
+      // float: right
+      &::before
+        content: ''
+        position: absolute
+        display: inline-block
+        left: -.55rem
+        top: -.05rem
+        width: .3rem
+        height: .3rem
+        background: #eeeeee
+        border: .02rem solid #e0e0e0
+        border-radius: .05rem
+  .evaluate_list
+    .list_item
+      padding: .3rem
 </style>
