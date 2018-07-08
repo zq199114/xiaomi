@@ -8,10 +8,10 @@
       <ul class="evaluate_list">
         <li class="list_item">
           <div class="user">
-            <img src="" alt="">
+            <img class="head" src="https://cdn.cnbj0.fds.api.mi-img.com/b2c-data-mishop/f790b51a76afd7b41522048fa779d69d.jpg" alt="">
             <div class="user_date">
-              <div class="username"></div>
-              <div class="data"></div>
+              <div class="username">阿斯顿发生</div>
+              <div class="data">2018-01-02</div>
             </div>
             <div class="grade">
               <span class="iconfont happy">&#xe62c;</span>
@@ -95,4 +95,27 @@ export default {
   .evaluate_list
     .list_item
       padding: .3rem
+      .user
+        .head
+          width: 1rem
+          height: 1rem
+          border-radius: .5rem
+        .user_date
+          overflow: hidden
+          display: inline-block
+          vertical-align: middle
+          margin-left: .2rem
+          .username
+            font-size: .25rem
+          .data
+            color: rgba(0,0,0,.54)
+            margin-top: .1rem
+            font-size: .25rem
+        .grade
+          display: inline-block
+          .happy
+            font-size: .5rem
+            color: #ffab00
+          .grade_desc
+            display: inline-block
 </style>
