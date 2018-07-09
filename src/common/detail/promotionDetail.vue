@@ -63,6 +63,7 @@ export default {
       .zenpin
         display: inline-block
         margin-left: .08rem
+        line-height: .25rem
         font-size: .24rem
         color: rgba(0,0,0,.87)
         white-space: nowrap

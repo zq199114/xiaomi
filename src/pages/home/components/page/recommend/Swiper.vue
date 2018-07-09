@@ -1,7 +1,7 @@
 <!-- 展示模板 -->
 <template>
 <div class="banner">
-  <swiper :options="swiperOptiona">
+  <swiper :options="swiperOptiona" ref="mySwiper">
     <swiper-slide v-for="item in swiperImg" :key="item.id">
       <router-link tag="img" to="/Detail" class="swiper_img" :src="item.imgUrl"></router-link>
     </swiper-slide>
@@ -30,7 +30,8 @@ export default {
           imgUrl: 'https://cdn.cnbj0.fds.api.mi-img.com/b2c-mimall-media/2320573b3be643e29f5270a97e1a9c1d.jpg?thumb=1&w=720&h=360'
         }],
       swiperOptiona: {
-        notNextTick: true,
+        // init: false,
+        // notNextTick: true,
         autoplay: { delay: 3000, stopOnLastSlide: false, disableOnInteraction: true }, // 自动轮播
         pagination: {
           el: '.swiper-pagination'
@@ -40,6 +41,14 @@ export default {
         observeParents: true // 将observe应用于Swiper的父元素。当Swiper的父元素变化时，例如window.resize，Swiper更新。
       }
     }
+  },
+  computed: {
+    swiper () {
+      return this.$refs.mySwiper.swiper
+    }
+  },
+  mounted () {
+    console.log(this.swiper)
   }
 }
 </script>

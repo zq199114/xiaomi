@@ -1,6 +1,6 @@
 <template>
   <transition>
-    <slot></slot>
+    <slot class="page"></slot>
   </transition>
 </template>
 
@@ -11,10 +11,21 @@ export default {
 </script>
 
 <style lang="stylus" scoped type="text/stylus">
-  .v-enter,  .v-leave-active
-    opacity: 0
-    // transform: translateX(100%)
+  .v-enter, .v-leave-to
+    // opacity: 0
+    transform: translateX(100%)
   .v-enter-active, .v-leave-active
-    /*transition: all .3s*/
-    transition: opacity .3s
+    transition: all .3s
+    // transform: translateX(100%)
+    // transition: opacity .3s
+  .main, .page {
+    position: absolute;
+    top: 0
+    bottom: 0
+    width: 100%
+    margin: 0 auto
+    overflow-y: auto
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch
+  }
 </style>

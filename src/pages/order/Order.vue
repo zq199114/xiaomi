@@ -5,6 +5,7 @@
     <order-pay :mode_data="paymentMode" :cartListItem="cartListItem"></order-pay>
     <order-detail></order-detail>
     <order-cart-list :cartListItem="cartListItem"></order-cart-list>
+    <router-view></router-view>
   </div>
 </template>
 

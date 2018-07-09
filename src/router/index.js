@@ -10,6 +10,7 @@ import testDetail from '@/pages/detailTest/Detail'
 import Cart from '@/pages/cart/Cart'
 import Login from '@/pages/login/Login' // 注意@后面要加上斜杠
 import Order from '@/pages/order/Order'
+import OrderList from '@/pages/order/children/List'
 import address from '@/pages/address/address'
 import addressSelect from '@/pages/address/children/addressSelect'
 import addressSelectCity from '@/pages/address/children/addressSelectCity'
@@ -19,6 +20,7 @@ import set from '@/pages/user/children/set'
 import Category from '@/pages/category/Category'
 import Search from '@/pages/search/Search'
 import EvaluateList from '@/pages/detail/components/children/EvaluateList'
+import EvaluateDetail from '@/pages/detail/components/children/children/detail'
 
 Vue.use(Router)
 
@@ -66,7 +68,12 @@ export default new Router({
       children: [{
         path: 'EvaluateList',
         name: 'EvaluateList',
-        component: EvaluateList
+        component: EvaluateList,
+        children: [{
+          path: 'detail',
+          name: 'detail',
+          component: EvaluateDetail
+        }]
       }]
       // meta: { keepAlive: true } // 这要用缓存，数据可以用缓存时特定的钩子函数调用
     }, {
@@ -100,7 +107,12 @@ export default new Router({
       meta: {
         requireAuth: true // 配置此项说明要登陆才能进入此页
       },
-      component: Order
+      component: Order,
+      children: [{
+        path: 'list',
+        name: 'list',
+        component: OrderList
+      }]
     }, {
       path: '/Address',
       name: 'Address',
