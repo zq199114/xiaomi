@@ -130,7 +130,7 @@ export default new Router({
         component: addressSelectCity
       }, {
         path: 'list',
-        name: 'list',
+        name: 'addresslist',
         component: list
       }]
     }, {

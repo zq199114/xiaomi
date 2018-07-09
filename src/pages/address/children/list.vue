@@ -23,7 +23,7 @@
 import UseHeader from 'common/commonComponents/UseHeader'
 import { mapState, mapMutations } from 'vuex'
 export default {
-  name: 'list',
+  name: 'AddressList',
   data () {
     return {
       title: '收货地址',
