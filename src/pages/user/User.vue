@@ -8,12 +8,12 @@
       <div>
         <div class="my_order">
           <div class="order">我的订单</div>
-          <router-link tag="div" to="/Order/list" class="all_order">全部订单 <span class="iconfont arrow">&#xe62d;</span></router-link>
+          <router-link tag="div" to="/Order/list/1" class="all_order">全部订单 <span class="iconfont arrow">&#xe62d;</span></router-link>
         </div>
         <div class="order_state">
-          <div class="obligation"><span class="iconfont ic ic_on">&#xe604;</span><span class="spa">待付款</span></div>
-          <div class="receiving"><span class="iconfont ic ic_tw">&#xe640;</span><span class="spa">待收货</span></div>
-          <div class="aftersale"><span class="iconfont ic ic_th">&#xe751;</span><span class="spa">退换修</span></div>
+          <router-link tag="div" to="/Order/list/2" class="obligation"><span class="iconfont ic ic_on">&#xe604;</span><span class="spa">待付款</span></router-link>
+          <router-link tag="div" to="/Order/list/3" class="receiving"><span class="iconfont ic ic_tw">&#xe640;</span><span class="spa">待收货</span></router-link>
+          <router-link tag="div" to="/Order/list/3" class="aftersale"><span class="iconfont ic ic_th">&#xe751;</span><span class="spa">退换修</span></router-link>
         </div>
         <div class="vip_center">
           <div class="center">

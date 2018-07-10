@@ -11,6 +11,7 @@ import Cart from '@/pages/cart/Cart'
 import Login from '@/pages/login/Login' // 注意@后面要加上斜杠
 import Order from '@/pages/order/Order'
 import OrderList from '@/pages/order/children/List'
+import view from '@/pages/order/children/children/view'
 import address from '@/pages/address/address'
 import addressSelect from '@/pages/address/children/addressSelect'
 import addressSelectCity from '@/pages/address/children/addressSelectCity'
@@ -109,9 +110,14 @@ export default new Router({
       },
       component: Order,
       children: [{
-        path: 'list',
+        path: 'list/:selectId',
         name: 'list',
-        component: OrderList
+        component: OrderList,
+        children: [{
+          path: 'view',
+          name: 'view',
+          component: view
+        }]
       }]
     }, {
       path: '/Address',

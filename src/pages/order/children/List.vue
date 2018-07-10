@@ -13,7 +13,7 @@
             <div class="desc">您还没有 {{titleDesc}} 订单</div>
           </li>
           <li class="mar"></li>
-          <li class="list_item" v-for="(item, index) in list" :key="index">
+          <router-link  tag="li" :to="{ name: 'view', params: { selectId: linshi}}" class="list_item" v-for="(item, index) in list" :key="index">
             <div class="order_data">
               <p class="data_left">
                 <span class="data">订单日期: {{item.data}}</span>
@@ -31,9 +31,10 @@
               <span class="num">共{{item.totaNum}}件商品</span>
               <span class="price">总金额: <i class="total_price"> {{item.totaPrice}}元</i></span>
             </div>
-          </li>
+          </router-link>
         </ul>
       </div>
+      <router-view></router-view>
       <home-bottom></home-bottom>
     </div>
 </template>
@@ -51,7 +52,7 @@ export default {
   data () {
     return {
       title: '我的订单',
-      select: 1,
+      select: '',
       list: [],
       proplist: [{
         data: '2017/12/19 11:01',
@@ -65,7 +66,8 @@ export default {
         totaPrice: '2999'
       }],
       titleDesc: '',
-      jlushfou: 1
+      jlushfou: '',
+      linshi: ''
     }
   },
   methods: {
@@ -99,7 +101,10 @@ export default {
       scrollY: true,
       bounce: false
     })
+    // 下面这个列表赋值应该根据点击进来的值来判断，但现在没有数据所以只能先这么写
     this.list = this.proplist
+    this.linshi = parseInt(this.$route.params.selectId)
+    this.change(this.linshi)
   }
 }
 </script>
