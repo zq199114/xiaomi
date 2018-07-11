@@ -122,7 +122,7 @@ export default {
         this.$emit('changSel')
       }
       this.showclick = !this.showclick
-      this.stopBodyScroll(this.showclick)
+      // this.stopBodyScroll(this.showclick)
     },
     emitTar (item) {
       this.$emit('transmitPrice', item)

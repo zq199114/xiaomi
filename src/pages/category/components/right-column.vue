@@ -54,6 +54,7 @@ export default {
       for (let i = 0; i < this.listHeight.length; i++) {
         let height1 = this.listHeight[i]
         let height2 = this.listHeight[i + 1]
+        console.log(height1 + ' ' + (height1) + ' ' + (this.scrollY) + ' ' + height2)
         // 当遍历到listHeight最后一个元素的时候，height2的值为undefined,如果是
         // 最后一个元素的话!height2为真，后面就不需要判断了
         // console.log((this.Scrollviewpor + this.scrollY) + '  ' + this.listHeight[this.listHeight.length - 1] + '  ' + (this.listHeight.length) + '  ' + i)
@@ -62,7 +63,7 @@ export default {
           // console.log(this.scrollY + this.Scrollviewpor >= this.listHeight[this.listHeight.length - 2])
           return
         }
-        if (!height2 || (this.scrollY >= height1 && this.scrollY < height2)) {
+        if (!height2 || (this.scrollY + 30 >= height1 && this.scrollY + 30 < height2)) {
           this.$emit('menuChange', i)
           return
         }
@@ -73,9 +74,10 @@ export default {
   },
   watch: {
     id () {
-      this.bscroll.scrollToElement(this.$refs.list[this.id], 100)
+      this.bscroll.scrollToElement(this.$refs.list[this.id], 300)
     },
     scrollY () {
+      // console.log(this.scrollY)
       this.currentIndex()
     }
   },
@@ -86,7 +88,8 @@ export default {
     this.bscroll = new BScroll(this.$refs.wraper, {
       tab: true,
       click: true,
-      probeType: 3 // 实时监听滚动位置的最佳属性
+      probeType: 3, // 实时监听滚动位置的最佳属性
+      bounce: false
     })
     // let _this = this
     // 监听右侧滚动区域，左边相应的menu高亮

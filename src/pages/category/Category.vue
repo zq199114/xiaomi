@@ -39,7 +39,7 @@ export default {
   mounted () {
     this.$axios.get('/list/item').then(res => {
       if (res.status === 200) {
-        console.log(res)
+        // console.log(res)
         this.list = res.data
       }
     })

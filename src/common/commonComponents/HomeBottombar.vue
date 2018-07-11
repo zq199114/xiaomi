@@ -3,13 +3,30 @@
     <router-link class="home icon" active-class="active" tag="div" to="/Home"><span class="iconfont">&#xe655;</span><i>首页</i></router-link>
     <router-link class="catalogue icon" active-class="active" tag="div" to="/Category"><span class="iconfont">&#xe682;</span><i>分类</i></router-link>
     <router-link class="cart icon" active-class="active" tag="div" to="/Cart"><span class="iconfont">&#xe600;</span><i>购物车</i></router-link>
-    <router-link class="mine icon" active-class="active" to="/User" tag="div"><span class="iconfont">&#xe67b;</span><i>我的</i></router-link>
+    <router-link class="mine icon" active-class="active" :to="to" tag="div"><span class="iconfont">&#xe67b;</span><i>我的</i></router-link>
 </div>
 </template>
 
 <script>
 export default {
-  name: 'HomeBottombar'
+  name: 'HomeBottombar',
+  data () {
+    return {
+      to: '/User'
+    }
+  },
+  methods: {
+    change (path) {
+      if (path === '/Order/list/1' || path === '/Order/list/2' || path === '/Order/list/3') {
+        this.to = path
+      }
+    }
+  },
+  mounted () {
+    let path = this.$route.fullPath
+    console.log(path)
+    this.change(path)
+  }
 }
 </script>
 

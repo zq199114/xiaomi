@@ -4,7 +4,7 @@
   <div class="scroll" ref="scroll">
     <ul class="scroll-bar" ref="bar">
     <!--用下标也要在括号里写出来不能点出来-->
-      <router-link tag="li" :to="item.route" class="scroll-item"
+      <router-link tag="li" :to="{ name: item.route, params: { plan: item.id } }" class="scroll-item"
       ref="item" v-for="(item, key) in barItem"
       :key="key" active-class="active" exact>
       {{item.title}}
@@ -27,8 +27,8 @@ export default {
   },
   data () {
     return {
-      barItem: [{title: '推荐', route: '/Home/recommend'},
-        {title: '手机', route: '/Home/cellphone'}]
+      barItem: [{title: '推荐', route: 'recommend', id: 0},
+        {title: '手机', route: 'cellphone', id: 1}]
       // {title: '智能', route: 'ai'},
       // {title: '电视', route: 'tv'},
       // {title: '电脑', route: 'computer'},
@@ -52,13 +52,6 @@ export default {
   computed: {
     // swiper () { // 通过他能调用swiper插件的方法
     //   return this.$refs.mySwiper.swiper
-    // }
-  },
-  methods: {
-    // change (num) {
-    //   console.log(num)
-    //   this.isActive = num
-    //   this.swiper.slideTo(num)
     // }
   },
   mounted () {

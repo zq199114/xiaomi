@@ -48,7 +48,7 @@ export default {
     }
   },
   mounted () {
-    console.log(this.swiper)
+    // console.log(this.swiper)
   }
 }
 </script>
