@@ -1,4 +1,5 @@
 <template>
+<enter-leave>
 <div class="detail">
   <detail-swiper></detail-swiper>
   <detail-proinfo :current_price="price" @transimitName="transimitName"></detail-proinfo>
@@ -7,6 +8,7 @@
   <detail-overview></detail-overview>
   <detail-bottombar @showSelect="showSelect"></detail-bottombar>
 </div>
+</enter-leave>
 </template>
 
 <script>
@@ -16,6 +18,7 @@ import DetailSelectionInfo from './components/SelectionInfo'
 import DetailEvaluate from './components/Evaluate'
 import DetailOverview from './components/Overview'
 import DetailBottombar from './components/Bottombar'
+import EnterLeave from 'common/animation/EnterLeave'
 
 export default {
   name: 'Detail',
@@ -25,7 +28,8 @@ export default {
     DetailSelectionInfo,
     DetailEvaluate,
     DetailOverview,
-    DetailBottombar
+    DetailBottombar,
+    EnterLeave
   },
   data () {
     return {
@@ -51,5 +55,12 @@ export default {
 
 <style lang="stylus" scoped type="text/stylus">
 .detail
-  background: #efefef
+  position: fixed
+  top: 0
+  bottom: 0
+  width: 100%
+  margin: 0 auto
+  overflow-y: auto
+  overflow-x: hidden
+  -webkit-overflow-scrolling: touch
 </style>

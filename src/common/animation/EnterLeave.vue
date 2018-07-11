@@ -1,21 +1,12 @@
 <template>
   <transition>
-    <slot></slot>
+    <slot class="main"></slot>
   </transition>
 </template>
 
 <script>
 export default {
-  name: 'EnterLeave',
-  props: {
-    side: String
-  },
-  watch: {
-    side (newData, oldData) {
-      console.log(newData)
-      console.log(oldData)
-    }
-  }
+  name: 'EnterLeave'
 }
 </script>
 
@@ -31,13 +22,13 @@ export default {
     transition: all .3s
     // transform: translateX(100%)
     // transition: opacity .3s
-    // .main, .page {
-    // position: absolute;
-    // top: 0
-    // bottom: 0
-    // width: 100%
-    // margin: 0 auto
-    // overflow-y: auto
-    // overflow-x: hidden;
-    // -webkit-overflow-scrolling: touch
+  .main
+    position: fixed
+    top: 0
+    bottom: 0
+    width: 100%
+    margin: 0 auto
+    overflow-y: auto
+    overflow-x: hidden
+    -webkit-overflow-scrolling: touch
 </style>
