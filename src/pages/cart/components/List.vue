@@ -1,7 +1,7 @@
 <template>
 <div class="list">
-  <ul>
-    <router-link v-if="isLogin" tag="li" to="/login" class="login border-bottom">登陆后享受更多优惠 <span>去登陆 <span class="iconfont">&#xe62d;</span></span></router-link>
+  <transition-group  tag="ul" name="list">
+    <router-link key="top" v-if="isLogin" tag="li" to="/login" class="login border-bottom">登陆后享受更多优惠 <span>去登陆 <span class="iconfont">&#xe62d;</span></span></router-link>
     <li class="list_item border-bottom" v-for="item in cartList" :key="item.id">
       <div class="nod">
         <check @select="select" @getItem="getItem(item)"></check>
@@ -18,13 +18,13 @@
         </div>
       </div>
     </li>
-    <li class="empty" v-show="!cartList.length">
+    <li class="empty" v-show="!cartList.length" key="bot">
       <div class="reminders">
         <div class="content"><i class="iconfont cart_n">&#xe6fe;</i>购物车还是空的</div>
         <router-link tag="div" to="/" class="stroll">去逛逛</router-link>
       </div>
     </li>
-  </ul>
+  </transition-group>
   <!--{{cartList}}-->
 </div>
 </template>
@@ -164,4 +164,10 @@ export default {
         color: #000
         line-height: .5rem
         padding: 0 .15rem
+.list-leave-to
+  transform: translateX(100%)
+.list-leave-active
+  transition: all .3s
+.list-move
+  transition: transform 1s
 </style>

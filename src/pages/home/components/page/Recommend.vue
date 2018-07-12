@@ -26,10 +26,16 @@ export default {
     HomeDailybast
   },
   mounted () {
-    this.scroll = new BScroll(this.$refs.wraper, {
-      scrollY: true,
-      tab: true,
-      click: true
+    this.$nextTick(() => {
+      if (!this.scroll) {
+        this.scroll = new BScroll(this.$refs.wraper, {
+          scrollY: true,
+          tab: true,
+          click: true
+        })
+      } else {
+        this.scroll.refresh()
+      }
     })
     // this.$refs.wraper.style.height = (window.screen.availHeight / 50 - 1.68 - 1.04) + 'rem'
   }

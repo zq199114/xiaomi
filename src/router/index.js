@@ -18,7 +18,7 @@ import addressSelectCity from '@/pages/address/children/addressSelectCity'
 import list from '@/pages/address/children/list'
 import User from '@/pages/user/User'
 import set from '@/pages/user/children/set'
-import Category from '@/pages/category/Category'
+// import Category from '@/pages/category/Category'
 import Search from '@/pages/search/Search'
 import EvaluateList from '@/pages/detail/components/children/EvaluateList'
 import EvaluateDetail from '@/pages/detail/components/children/children/detail'
@@ -142,7 +142,7 @@ export default new Router({
     }, {
       path: '/Category',
       name: 'Category',
-      component: Category
+      component: () => import('@/pages/category/Category')
     }, {
       path: '/Search',
       name: 'Search',

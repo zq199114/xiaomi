@@ -1,6 +1,6 @@
 <template>
   <transition>
-    <slot class="main"></slot>
+    <slot></slot>
   </transition>
 </template>
 
@@ -22,13 +22,13 @@ export default {
     transition: all .3s
     // transform: translateX(100%)
     // transition: opacity .3s
-  .main
-    position: fixed
-    top: 0
-    bottom: 0
-    width: 100%
-    margin: 0 auto
-    overflow-y: auto
-    overflow-x: hidden
-    -webkit-overflow-scrolling: touch
+  /*.main*/
+    /*position: fixed*/
+    /*top: 0*/
+    /*bottom: 0*/
+    /*width: 100%*/
+    /*margin: 0 auto*/
+    /*overflow-y: auto*/
+    /*overflow-x: hidden*/
+    /*-webkit-overflow-scrolling: touch*/
 </style>

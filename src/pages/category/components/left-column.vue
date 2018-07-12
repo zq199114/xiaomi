@@ -34,9 +34,16 @@ export default {
     }
   },
   mounted () {
-    this.bscroll = new BScroll(this.$refs.wraper, {
-      tap: true,
-      click: true
+    this.$nextTick(() => {
+      if (!this.bscroll) {
+        this.bscroll = new BScroll(this.$refs.wraper, {
+          tap: true,
+          click: true,
+          scrollY: true
+        })
+      } else {
+        this.bscroll.refresh()
+      }
     })
   },
   watch: {

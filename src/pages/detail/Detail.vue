@@ -54,13 +54,14 @@ export default {
 </script>
 
 <style lang="stylus" scoped type="text/stylus">
-.detail
-  position: fixed
-  top: 0
-  bottom: 0
-  width: 100%
-  margin: 0 auto
-  overflow-y: auto
-  overflow-x: hidden
-  -webkit-overflow-scrolling: touch
+ .detail
+   background: #efefef
+   position: fixed
+   top: 0
+   bottom: 0
+   width: 100%
+   margin: 0 auto
+   overflow-y: auto
+   overflow-x: hidden
+   -webkit-overflow-scrolling: touch
 </style>
