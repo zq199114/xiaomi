@@ -105,6 +105,7 @@ export default {
       /*height: 1.8rem*/
       display: flex // flex布局
       // line-height: 1.8rem
+      transition: all .3s // 这是为了动画过度
       .nod
         display: inline-block
         margin: auto .1rem auto 0
@@ -167,7 +168,9 @@ export default {
 .list-leave-to
   transform: translateX(100%)
 .list-leave-active
-  transition: all .3s
-.list-move
-  transition: transform 1s
+  position: absolute
+  // 离开动过过度放在了 .list_item里面
+  // transition: all .3s
+  // .list-move
+  // transition: transform 1s
 </style>
