@@ -5,7 +5,6 @@
     <order-pay :mode_data="paymentMode" :cartListItem="cartListItem"></order-pay>
     <order-detail></order-detail>
     <order-cart-list :cartListItem="cartListItem"></order-cart-list>
-    <router-view></router-view>
   </div>
 </template>
 
@@ -24,7 +23,7 @@ export default {
       title: '用户结算',
       paymentMode: [],
       cartListItem: {},
-      cart: '/Cart'
+      cart: '/Home/Cart'
     }
   },
   components: {

@@ -8,12 +8,12 @@
       <div>
         <div class="my_order">
           <div class="order">我的订单</div>
-          <router-link tag="div" to="/Order/list/1" class="all_order">全部订单 <span class="iconfont arrow">&#xe62d;</span></router-link>
+          <router-link tag="div" to="/Home/User/Orderlist/1" class="all_order">全部订单 <span class="iconfont arrow">&#xe62d;</span></router-link>
         </div>
         <div class="order_state">
-          <router-link tag="div" to="/Order/list/2" class="obligation"><span class="iconfont ic ic_on">&#xe604;</span><span class="spa">待付款</span></router-link>
-          <router-link tag="div" to="/Order/list/3" class="receiving"><span class="iconfont ic ic_tw">&#xe640;</span><span class="spa">待收货</span></router-link>
-          <router-link tag="div" to="/Order/list/3" class="aftersale"><span class="iconfont ic ic_th">&#xe751;</span><span class="spa">退换修</span></router-link>
+          <router-link tag="div" to="/Home/User/Orderlist/2" class="obligation"><span class="iconfont ic ic_on">&#xe604;</span><span class="spa">待付款</span></router-link>
+          <router-link tag="div" to="/Home/User/Orderlist/3" class="receiving"><span class="iconfont ic ic_tw">&#xe640;</span><span class="spa">待收货</span></router-link>
+          <router-link tag="div" to="/Home/User/Orderlist/3" class="aftersale"><span class="iconfont ic ic_th">&#xe751;</span><span class="spa">退换修</span></router-link>
         </div>
         <div class="vip_center">
           <div class="center">
@@ -42,21 +42,21 @@
           </div>
         </div>
         <div class="f_center">
-          <router-link to="/User/set" tag="div" class="f_aisle">
+          <router-link to="/Home/User/set" tag="div" class="f_aisle">
             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyppVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTMyIDc5LjE1OTI4NCwgMjAxNi8wNC8xOS0xMzoxMzo0MCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUuNSAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo3MzUyOUVDRThFQTQxMUU2OTc2RThDNTRCNDk3OEY5NCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo3MzUyOUVDRjhFQTQxMUU2OTc2RThDNTRCNDk3OEY5NCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjczNTI5RUNDOEVBNDExRTY5NzZFOEM1NEI0OTc4Rjk0IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjczNTI5RUNEOEVBNDExRTY5NzZFOEM1NEI0OTc4Rjk0Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+BnqgmQAABaRJREFUeNrsnHuIV0UUx+e3rZbg5u5mW1kk7rah2wOzTLIW1qR8UBaU0oqlWQRGJqX1T1mYgqCboOWLQi3TLNMkUFfxGRXlI7O0dcuNDaSHj9U0S81H38M9wpb7c+dx7oxX74EPLMu9c2a+d+7MnDNzf5kxVTNVatktJ5UgFSgVKBXoAhCoC3gwFei/1ho8D74Dm8EH4C7B8geCb9lH6yQJlA9eAfXgdXAj/78l+AR0FfDRD8wGN7GPn9ln/rksUAYMBrVgDLisiWsKwHrwpKWPXPAyWMyCn7ZC9lnLdcicawJdxw2fA4qaubYVeAt8Dnob1LMSfAPGgouyXFfEdVjPdXK2XKGxYKbFONAdLAc1YAn4EvwI9rEA1APLwD2gD7jaoOxysAUMA++FEoie6kQeJF2sExPHJDEX3AJeBCd8v2LXgucSMFPTA1wAWvgWiGapjQlZztA67FSIQXpdQgSaB46HEGh7QgRaFWqa358QgbaFEujiBIhDr1ZDKIGK1HlurgLdloA20lrv8hAC0b29EtIROocQiEKAdg73/wOqwQgODa7iOK0V/30HeBas4GuVY13tInCHXY3PwJ0W9/0B3gBTwB6DsW4408bC5y7QwWYtZNuDBluKswhcD0YbiEO2m++hCP19C7/XgEG+XrEbwGTDeyhQfBo8zI21tb2cPRhuEXxSmqQgboFKeNxoYyjOADBdcNB9E/Q3FIl60QxlmEwzEagCfMGOTIye9uIYZqaPuWwTowc1wUSkHE3laSRfY7EwXCDcc/5vVPZ8w3tGgXd5trQWqFhFKc6FoA48pczzvA0WT9jGRvDMaGI0YG8F99oI9BCLMp8H1ZaWFZ/Cg2rctpd9mVopr7E28gTSQVegmwUqfYTXOr6MZtWjDuHSVPATeFVHoI4CFa52iaAtjBL9ywXKKdMRqFjA0Srl31YLlFGsI1ChgKNNAQSS8FmgI1CegKO6AAJJ+MzTEUjiIMCBAAId8CWQxL72KXWeWFMCHRIoNz9AWwoEyjjkS6DiAAKVCJTxp45AEuuXWwMIJJEfb9ARqF7AUc8AAt0tUEa9jkDfCzi6T2hM0LW2Kjoi42o1OgJRvqQHqFJRLtfGLlFRwt2XPaNkNjG3njGlN5O0p0ie8s/jVdNH6ppbl5R6iOgpR1XrMHNSNE/Jt69UdOrtaHM9qLEdU9FxuTJODZhO9VM9RfI24qwE3cDt3AHWNJUR0E257uZxxXRHgVKcQ2IUZyh4xPCev7lOtOm5wWahmM1oT+lRsNawQvQO3x+DOA8o83QuZR4rwDsuK+mzGe0iVBqulWgc+wg8LigOHc5cpMyynfT69NPpNS4Ckf0OxhneQw2ZxU+ureN0Tgczp6nsR4GzGW08fioRi+nYDGW3AfgY+EFlP2iezejal1R0TNhmh5QOUE2SClZ1B7oPHYJK+mzgV7CUX5euPF1TT2vBf3fn9c1Svnacw1Q+VlkeA3Y5J13NDbA1EqIvE6fReLlEMt2ha1sSktJZwes57wL9YtttPZvTWW7XI3hJEGhXKIHylP2uq0/7K5RAZQkZgwpDCVSREIFKQwhEOx8DEyJQeQiBaJlflyCBrvQtEEX2/W2X757N5DSt6EqapviRKvqU8m1wqeH9h8EyTp/Ucmx3mAPSK1T0jRflmbspu83Mgyr6eHihi7oZoV9/KeFIXedoMKVgJ3LAe1Dj+k4cqFYa9HhKnQ4BO10bJvXVcx2/60PV2XPQdCyGvnWfoCkOWQ1H8H00Mgjk+wmuy06Jhkl+N0/78bN5Wn1NnfktGeVwKM35m2X5lEPunKXh+9kn+Z6lBM8GxPHLC7SbQUfZ2oMXuAfM48j/pGPZlPbo0Sh82ME+2rNP8VMlGU+/QJUjIE5j68ID9+a4K56r/NhJ4fK+9rVGSH8/KBUoFSgVKKT9K8AA9IsKmg8e+l8AAAAASUVORK5CYII=" alt="">
             <span class="f_des">设置<span class="iconfont arrow">&#xe62d;</span></span>
           </router-link>
         </div>
       </div>
     </div>
-    <home-bottombar></home-bottombar>
+    <!--<home-bottombar></home-bottombar>-->
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import HomeBottombar from 'common/commonComponents/HomeBottombar'
+// import HomeBottombar from 'common/commonComponents/HomeBottombar'
 import BScroll from 'better-scroll'
 export default {
   name: 'User',
@@ -66,7 +66,7 @@ export default {
     }
   },
   components: {
-    HomeBottombar
+    // HomeBottombar
   },
   computed: {
     ...mapState(['token']),

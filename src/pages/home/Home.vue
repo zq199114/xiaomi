@@ -6,7 +6,8 @@
     <transition :name="side">
       <router-view></router-view>
     </transition>
-    <home-bottombar></home-bottombar>
+      <!--<router-view></router-view>-->
+    <home-bottombar :botHome="botHome" @slidDir="slidDir"></home-bottombar>
   </div>
 </template>
 
@@ -25,12 +26,27 @@ export default {
   },
   data () {
     return {
-      side: 'left'
+      side: 'left',
+      botHome: '',
+      dir: 10
     }
   },
   methods: {
+    slidDir (font) {
+      if (font > this.dir) {
+        this.side = 'left'
+      } else {
+        this.side = 'right'
+      }
+      this.dir = font
+    }
   },
   beforeRouteUpdate (to, from, next) {
+    // console.log(to)
+    // console.log(from)
+    if (to.name === 'cellphone' || to.name === 'recommend') {
+      this.botHome = to.path
+    }
     if (to.params.plan > from.params.plan) {
       this.side = 'right'
     } else {

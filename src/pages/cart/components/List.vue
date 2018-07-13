@@ -1,5 +1,5 @@
 <template>
-<div class="list">
+<div class="list" ref="wraper">
   <transition-group  tag="ul" name="list">
     <router-link key="top" v-if="isLogin" tag="li" to="/login" class="login border-bottom">登陆后享受更多优惠 <span>去登陆 <span class="iconfont">&#xe62d;</span></span></router-link>
     <li class="list_item border-bottom" v-for="item in cartList" :key="item.id">
@@ -32,6 +32,7 @@
 <script>
 import Check from 'common/commonComponents/Check'
 import Count from 'common/commonComponents/Count'
+import BScroll from 'better-scroll'
 import { mapState, mapMutations } from 'vuex'
 
 export default {
@@ -76,6 +77,11 @@ export default {
     }
   },
   mounted () {
+    this.bscroll = new BScroll(this.$refs.wraper, {
+      click: true,
+      tab: true,
+      scrollY: true
+    })
     this.cartList.map(item => {
       this.$set(item, 'selectitem', false)
       // 要像上面这样写双向绑定才能起效，下面的写法是有问题的，双向绑定不起效的！
@@ -88,8 +94,12 @@ export default {
 <style lang="stylus" scoped type="text/stylus">
 @import "~styles/variable.styl"
 .list
-  margin-top: $headerHeight
-  margin-bottom: $headerHeight
+  position: fixed
+  top: $headerHeight
+  bottom: $headerHeight
+  left: 0
+  right: 0
+  background: #fff
   .login
     color: rgba(0,0,0,.87)
     height: $headerHeight

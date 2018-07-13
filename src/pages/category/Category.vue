@@ -3,7 +3,7 @@
     <use-header :title="title"></use-header>
     <left-column :list="list" @change="change" :changeId="changeId"></left-column>
     <right-column :list="list" :id="id" @menuChange="menuChange"></right-column>
-    <home-bottombar></home-bottombar>
+    <!--<home-bottombar></home-bottombar>-->
   </div>
 </template>
 
@@ -47,6 +47,8 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="stylus" type="text/stylus" scoped>
+  @import "~styles/variable.styl"
+  .category
+    buyasuo()
 </style>

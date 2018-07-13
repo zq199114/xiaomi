@@ -18,7 +18,7 @@ import addressSelectCity from '@/pages/address/children/addressSelectCity'
 import list from '@/pages/address/children/list'
 import User from '@/pages/user/User'
 import set from '@/pages/user/children/set'
-// import Category from '@/pages/category/Category'
+import Category from '@/pages/category/Category'
 import Search from '@/pages/search/Search'
 import EvaluateList from '@/pages/detail/components/children/EvaluateList'
 import EvaluateDetail from '@/pages/detail/components/children/children/detail'
@@ -39,6 +39,7 @@ export default new Router({
       return {x: 0, y: to.meta.savedPosition || 0}
     }
   },
+  // router-view里面只能view,children我儿子
   routes: [
     {
       path: '/',
@@ -60,6 +61,39 @@ export default new Router({
           path: 'cellphone',
           name: 'cellphone',
           component: cellphone
+        }, {
+          path: 'Category',
+          name: 'Category',
+          component: Category
+          // component: () => import('@/pages/category/Category')
+        }, {
+          path: 'Cart',
+          name: 'Cart',
+          component: Cart // 这里写错不会报错
+        }, {
+          path: 'User',
+          name: 'User',
+          component: User, // 这里写错不会报错
+          children: [{
+            path: 'set',
+            name: 'set',
+            component: set,
+            meta: {
+              requireAuth: true // 配置此项说明要登陆才能进入此页
+            }
+          }, {
+            path: 'Orderlist/:selectId',
+            name: 'Orderlist',
+            component: OrderList,
+            meta: {
+              requireAuth: true // 配置此项说明要登陆才能进入此页
+            },
+            children: [{
+              path: 'view',
+              name: 'view',
+              component: view
+            }]
+          }]
         }]
       }]
     }, {
@@ -82,22 +116,6 @@ export default new Router({
       name: 'testDetail',
       component: testDetail
     }, {
-      path: '/Cart',
-      name: 'Cart',
-      component: Cart // 这里写错不会报错
-    }, {
-      path: '/User',
-      name: 'User',
-      component: User, // 这里写错不会报错
-      children: [{
-        path: 'set',
-        name: 'set',
-        component: set,
-        meta: {
-          requireAuth: true // 配置此项说明要登陆才能进入此页
-        }
-      }]
-    }, {
       path: '/Login',
       name: 'Login',
       component: Login // 这里写错不会报错
@@ -108,17 +126,7 @@ export default new Router({
       meta: {
         requireAuth: true // 配置此项说明要登陆才能进入此页
       },
-      component: Order,
-      children: [{
-        path: 'list/:selectId',
-        name: 'list',
-        component: OrderList,
-        children: [{
-          path: 'view',
-          name: 'view',
-          component: view
-        }]
-      }]
+      component: Order
     }, {
       path: '/Address',
       name: 'Address',
@@ -139,10 +147,6 @@ export default new Router({
         name: 'addresslist',
         component: list
       }]
-    }, {
-      path: '/Category',
-      name: 'Category',
-      component: () => import('@/pages/category/Category')
     }, {
       path: '/Search',
       name: 'Search',

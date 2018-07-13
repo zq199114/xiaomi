@@ -11,8 +11,8 @@ export default {
 </script>
 
 <style lang="stylus" scoped type="text/stylus">
-  .v-leave-to
+  .v-leave-to, .v-enter
     opacity: 0
-  .v-leave-active
+  .v-leave-active, .v-enter-active
     transition: opacity .5s
 </style>

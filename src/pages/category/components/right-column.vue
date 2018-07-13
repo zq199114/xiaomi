@@ -129,6 +129,7 @@ export default {
 <style lang="stylus" type="text/stylus" scoped>
 @import '~styles/variable.styl'
 .right_column
+  background: #fff
   position: fixed
   top: $headerHeight
   right: 0

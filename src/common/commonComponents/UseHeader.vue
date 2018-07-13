@@ -1,4 +1,5 @@
 <template>
+<up-down>
 <div class="cartTopbar">
   <div class="back" @click="rollback"><div class="iconfont ico">&#xe624;</div></div>
   <div class="title" v-if="this.title">{{this.title}}</div>
@@ -15,11 +16,16 @@
   ></vue-fuse>
   <div class="search"><div v-if="isShow" class="iconfont ico">&#xe603;</div></div>
 </div>
+</up-down>
 </template>
 
 <script>
+import UpDown from 'common/animation/Updown'
 export default {
   name: 'CartHeader',
+  components: {
+    UpDown
+  },
   props: {
     isShow: Boolean, // 想要显示就传值进来
     title: {

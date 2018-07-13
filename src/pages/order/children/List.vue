@@ -1,4 +1,5 @@
 <template>
+  <fade>
     <div class="order_list">
       <use-header :title="title"></use-header>
       <div class="select">
@@ -7,12 +8,13 @@
         <span @click="change(3)" :class="{'active': select===3}" class="wait">待收货</span>
       </div>
       <div class="wraper" ref="wraper">
-        <ul class="list">
-          <li class="hint" v-show="!list.length">
+        <transition :name="side">
+        <ul class="list" v-if="jlushfou === 1">
+          <li class="hint" v-if="!list.length" key="none">
             <div class="cicle">!</div>
             <div class="desc">您还没有 {{titleDesc}} 订单</div>
           </li>
-          <li class="mar"></li>
+          <li class="mar" key="marg"></li>
           <router-link  tag="li" :to="{ name: 'view', params: { selectId: linshi}}" class="list_item" v-for="(item, index) in list" :key="index">
             <div class="order_data">
               <p class="data_left">
@@ -33,21 +35,23 @@
             </div>
           </router-link>
         </ul>
+        </transition>
       </div>
       <router-view></router-view>
-      <home-bottom></home-bottom>
+      <!--<home-bottom></home-bottom>-->
     </div>
+  </fade>
 </template>
 
 <script>
 import UseHeader from 'common/commonComponents/UseHeader'
-import HomeBottom from 'common/commonComponents/HomeBottombar'
+import fade from 'common/animation/Fade'
 import BScroll from 'better-scroll'
 export default {
   name: 'OrderList',
   components: {
     UseHeader,
-    HomeBottom
+    fade
   },
   data () {
     return {
@@ -65,9 +69,12 @@ export default {
         totaNum: '1',
         totaPrice: '2999'
       }],
+      listTwo: [],
+      listThree: [],
       titleDesc: '',
-      jlushfou: '',
-      linshi: ''
+      jlushfou: 0,
+      linshi: '',
+      side: ''
     }
   },
   methods: {
@@ -82,15 +89,16 @@ export default {
         case 2:
           this.title = '待支付订单'
           this.select = item
-          this.list = ''
+          this.list = this.proplist
           this.titleDesc = '待付款'
           break
         default:
           this.title = '待收货订单'
           this.select = item
-          this.list = ''
+          this.list = this.proplist
           this.titleDesc = '待收货'
       }
+      this.side = item > this.jlushfou ? 'right' : 'left'
       this.jlushfou = item
     }
   },
@@ -135,8 +143,19 @@ export default {
     bottom: $homeBottom
     left: 0
     right: 0
-    overflow: hidden
+    margin: 0 auto
+    overflow-y: auto
+    overflow-x: hidden
+    -webkit-overflow-scrolling: touch
+    // overflow: hidden
     .list
+       // position: fixed
+       // top: .22rem + $topMargin + $headerHeight + .7rem
+       // width: 100%
+       // margin: 0 auto
+       // overflow-y: auto
+       // overflow-x: hidden
+       // -webkit-overflow-scrolling: touch
       .hint
         background: #fff
         padding: 1rem 0 0
@@ -205,4 +224,10 @@ export default {
             margin-left: .1rem
             .total_price
               font-size: .35rem
+.right-enter, .left-leave-to
+  transform: translateX(100%)
+.right-leave-to, .left-enter
+  transform: translateX(-100%)
+.right-enter-active, .right-leave-active, .left-enter-active, .left-leave-active
+  transition: all .3s
 </style>

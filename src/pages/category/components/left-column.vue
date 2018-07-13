@@ -58,6 +58,7 @@ export default {
 <style lang="stylus" type="text/stylus" scoped>
 @import "~styles/variable.styl"
 .left_column
+  background: #fff
   overflow: hidden
   position: fixed
   left: 0

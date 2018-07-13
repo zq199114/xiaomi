@@ -1,4 +1,5 @@
 <template>
+<enter-leave>
 <div class="detail">
   <detail-swiper :imgRes="imgRes"></detail-swiper>
   <detail-proinfo :phone_name="phone_name" :gift="gift" :current_price="price" @transimitName="transimitName"></detail-proinfo>
@@ -7,6 +8,7 @@
   <detail-overview :imgStore="imgStore"></detail-overview>
   <detail-bottombar @showSelect="showSelect"></detail-bottombar>
 </div>
+</enter-leave>
 </template>
 
 <script>
@@ -16,6 +18,7 @@ import DetailSelectionInfo from './components/SelectionInfo'
 import DetailEvaluate from './components/Evaluate'
 import DetailOverview from './components/Overview'
 import DetailBottombar from './components/Bottombar'
+import EnterLeave from 'common/animation/EnterLeave'
 
 export default {
   name: 'testDetail',
@@ -25,7 +28,8 @@ export default {
     DetailSelectionInfo,
     DetailEvaluate,
     DetailOverview,
-    DetailBottombar
+    DetailBottombar,
+    EnterLeave
   },
   data () {
     return {
@@ -70,6 +74,8 @@ export default {
 </script>
 
 <style lang="stylus" scoped type="text/stylus">
-.detail
-  background: #efefef
+  @import "~styles/variable.styl"
+  .detail
+    buyasuo()
+    background: #efefef
 </style>

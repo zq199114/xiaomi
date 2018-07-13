@@ -14,7 +14,7 @@ export default {
   data () {
     return {
       title: '个人中心',
-      back: '/User'
+      back: '/Home/User'
     }
   },
   components: {

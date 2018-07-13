@@ -1,31 +1,74 @@
 <template>
-<div class="bar">
-    <router-link class="home icon" active-class="active" tag="div" to="/Home"><span class="iconfont">&#xe655;</span><i>首页</i></router-link>
-    <router-link class="catalogue icon" active-class="active" tag="div" to="/Category"><span class="iconfont">&#xe682;</span><i>分类</i></router-link>
-    <router-link class="cart icon" active-class="active" tag="div" to="/Cart"><span class="iconfont">&#xe600;</span><i>购物车</i></router-link>
-    <router-link class="mine icon" active-class="active" :to="to" tag="div"><span class="iconfont">&#xe67b;</span><i>我的</i></router-link>
+<up-down>
+<div class="bar" v-show="showBar">
+    <router-link @click.native="changeSlid(10)" exact class="home icon" active-class="active" tag="div" :to="changeHome"><span class="iconfont">&#xe655;</span><i>首页</i></router-link>
+    <router-link @click.native="changeSlid(20)" exact class="catalogue icon" active-class="active" tag="div" to="/Home/Category"><span class="iconfont">&#xe682;</span><i>分类</i></router-link>
+    <router-link @click.native="changeSlid(30)" exact class="cart icon" active-class="active" tag="div" to="/Home/Cart"><span class="iconfont">&#xe600;</span><i>购物车</i></router-link>
+    <router-link @click.native="changeSlid(40)" class="mine icon" active-class="active" :to="to" tag="div"><span class="iconfont">&#xe67b;</span><i>我的</i></router-link>
 </div>
+</up-down>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import UpDown from 'common/animation/Updown'
 export default {
   name: 'HomeBottombar',
+  props: {
+    botHome: String
+  },
   data () {
     return {
-      to: '/User'
+      to: '/Home/User',
+      home: '/Home/recommend',
+      showBar: 1
     }
+  },
+  components: {
+    UpDown
   },
   methods: {
     change (path) {
       if (path === '/Order/list/1' || path === '/Order/list/2' || path === '/Order/list/3') {
         this.to = path
       }
+    },
+    changeSlid (n) {
+      this.$emit('slidDir', n)
+    },
+    showBarFn () {
+      if (this.$route.name === 'Cart') {
+        this.showBar = this.cartList.length === 0 ? 1 : 0
+      } else if (this.$route.name === 'set') {
+        this.showBar = 0
+      } else {
+        this.showBar = 1
+      }
+    }
+  },
+  watch: {
+    $route () {
+      // console.log(this.$route.name)
+      this.showBarFn()
+    },
+    cartList () {
+      if (this.cartList.length === 0) {
+        this.showBar = 1
+      }
     }
   },
   mounted () {
+    // console.log(this.$route.name)
+    this.showBarFn()
     let path = this.$route.fullPath
-    console.log(path)
     this.change(path)
+  },
+  // 在这里组件内路由守卫都不起效果
+  computed: {
+    ...mapState(['cartList']),
+    changeHome () {
+      return this.botHome || this.home
+    }
   }
 }
 </script>
@@ -37,7 +80,7 @@ export default {
   position: fixed
   bottom: 0
   left: 0
-  z-index: 99
+  // z-index: 99
   height: 1.04rem
   width: 100%
   font-size: .22rem

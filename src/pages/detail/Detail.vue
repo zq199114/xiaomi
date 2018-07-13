@@ -54,14 +54,8 @@ export default {
 </script>
 
 <style lang="stylus" scoped type="text/stylus">
- .detail
-   background: #efefef
-   position: fixed
-   top: 0
-   bottom: 0
-   width: 100%
-   margin: 0 auto
-   overflow-y: auto
-   overflow-x: hidden
-   -webkit-overflow-scrolling: touch
+  @import "~styles/variable.styl"
+  .detail
+    buyasuo()
+    background: #efefef
 </style>

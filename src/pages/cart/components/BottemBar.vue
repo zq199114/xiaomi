@@ -1,14 +1,12 @@
 <template>
-    <div>
-    <div class="bar">
+    <div class="car_bar">
       <div class="total">
         <span class="num">共{{totalNum.num}}件 金额:</span><br>
         <span class="price"><i>{{totalNum.price}}</i>元</span>
       </div>
-      <router-link tag="div" to="/Category" class="continue">继续购物</router-link>
+      <router-link tag="div" to="/Home/Category" class="continue">继续购物</router-link>
       <div class="payment" @click="Settlement">去结算</div>
-    </div>
-    <incomplete v-if="tips" @back="know"></incomplete>
+      <incomplete v-if="tips" @back="know"></incomplete>
     </div>
 </template>
 
@@ -63,7 +61,8 @@ export default {
 
 <style lang="stylus" type="text/stylus" scoped>
 @import '~styles/variable.styl'
-  .bar
+  .car_bar
+    z-index: 999
     box-shadow:  0 3px 14px 2px rgba(0,0,0,.12)
     height: $headerHeight
     position: fixed
@@ -72,6 +71,7 @@ export default {
     right: 0
     display: flex
     text-align: center
+    background: #fff
     .total
       background: #fff
       width: 100%
