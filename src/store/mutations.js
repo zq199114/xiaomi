@@ -8,7 +8,8 @@ import {
   LOGIN_OUT,
   ADD_ADDRESS, // 添加地址
   DELETE_ADDRESS, // 删除地址
-  DEFAULT_ADDRESS // 默认地址
+  DEFAULT_ADDRESS, // 默认地址
+  MODIFY_ADDRESS // 修改地址
 } from './mutation-types'
 import { setStore, removeStroe, getStore } from '../config/mUtils.js'
 export default {
@@ -31,6 +32,7 @@ export default {
       'phone_num': phoneNum
     }
     if (!state.cartList.length) { // 判断是否有内容
+      console.log(1)
       cartItem['id'] = state.itemId // 没有就初始化一下, 把即将要传进来的额对象加上一个id
       state.cartList.push(cartItem) // 然后塞到state.cartList离去
     } else { // 否则
@@ -40,10 +42,11 @@ export default {
             isTrue = false
             break // 如果产品名字不一样就退出2级循环,从一级循环开始下一个对比
           }
-          if ((i === 'phone_num') || (i === 'id')) {
+          if ((i === 'phone_num') || (i === 'id') || (i === 'selectitem')) {
             continue // 如果村换到 产品数量 就无视下面的语句,开始新一轮的循环
           }
           if (item[i] === cartItem[i]) { // 对比存储在state.cartList中的每一个参数
+            // console.log(4)
             isTrue = true // 如果是一样的就标记一下true
           } else { // 否则
             isTrue = false // 否则就标记为false 并且推出此次循环
@@ -110,13 +113,20 @@ export default {
       console.log(getStore('defaultAddress'))
     }
   },
-  // 默认地址
+  // 默认地址(也不算默认地址就是就是会显示在地址详情里面)
   [DEFAULT_ADDRESS] (state, index = 0) {
     // console.log(state.defaultAddress)
     // console.log(state.addressList)
     if (!state.addressList.length) { return }
     state.defaultAddress = state.addressList[index]
     setStore('defaultAddress', state.defaultAddress)
+  },
+  [MODIFY_ADDRESS] (state, object) {
+    let index = object.index
+    delete object.index
+    state.addressList[index] = object
+    setStore('addressList', state.addressList)
+    console.log(state.addressList)
   },
   // 删除地址
   [DELETE_ADDRESS] (state, index) {

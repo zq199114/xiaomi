@@ -8,3 +8,4 @@ export const LOGIN_OUT = 'LOGIN_OUT' // 登出
 export const ADD_ADDRESS = 'ADD_ADDRESS' // 添加地址
 export const DELETE_ADDRESS = 'DELETE_ADDRESS' // 删除地址
 export const DEFAULT_ADDRESS = 'DEFAULT_ADDRESS' // 默认地址
+export const MODIFY_ADDRESS = 'MODIFY_ADDRESS' // 修改地址

@@ -1,6 +1,6 @@
 <template>
   <div class="list">
-    <use-header :title="title"></use-header>
+    <use-header :back="back" :title="title"></use-header>
     <div @click="changeAddress(index)" class="list_item border" v-for="(item, index) in addressList" :key="index">
       <div class="title border-bottom">
         <span class="name">{{item.name}}</span>
@@ -15,7 +15,7 @@
         <div class="arrow iconfont">&#xe62d;</div>
       </div>
     </div>
-    <router-link to="/Address" class="bottom">新建地址</router-link>
+    <div @click="todir" class="bottom">新建地址</div>
   </div>
 </template>
 
@@ -27,7 +27,9 @@ export default {
   data () {
     return {
       title: '收货地址',
-      showDel: false
+      showDel: false,
+      todirname: '', // 地址临时存储位置，过来此页面的名字
+      back: null
     }
   },
   computed: {
@@ -36,22 +38,47 @@ export default {
   methods: {
     ...mapMutations(['DEFAULT_ADDRESS', 'DELETE_ADDRESS']),
     changeAddress (index) {
-      this.DEFAULT_ADDRESS(index)
-      this.$router.push('/Order')
+      // 如果是从下面两个名字的地址过来的，点击列表项就去 地址添加页
+      if (this.todirname === 'set' || this.todirname === 'Address') {
+        this.$router.push({path: '/Address', query: { index: index }})
+      } else {
+        this.DEFAULT_ADDRESS(index)
+        this.$router.push('/Order')
+      }
     },
     deleteItem (index) {
       this.DELETE_ADDRESS(index)
+    },
+    // 新建地址
+    todir () {
+      if (this.todirname === 'Order') {
+        this.$router.push({
+          path: '/Address',
+          query: {
+            backOrder: this.todirname
+          }
+        })
+      } else {
+        this.$router.push({
+          path: '/Address',
+          query: {
+            dir: this.todirname
+          }
+        })
+      }
     }
   },
   beforeRouteEnter (to, from, next) {
-    console.log(to)
     console.log(from)
-    if (from.name === 'set') {
+    if (from.name === 'set' || from.name === 'Address') {
       next(vm => {
+        vm.back = '/Home/User/set'
         vm.showDel = true
+        vm.todirname = from.name // 保存过来过来的地址名
       })
-    } else {
+    } else if (from.name === 'Order') {
       next(vm => {
+        vm.todirname = from.name
         vm.showDel = false
       })
     }

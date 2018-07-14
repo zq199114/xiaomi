@@ -115,7 +115,7 @@ export default {
       /*height: 1.8rem*/
       display: flex // flex布局
       // line-height: 1.8rem
-      transition: all .3s // 这是为了动画过度
+      transition: all .6s // 这是为了动画过度
       .nod
         display: inline-block
         margin: auto .1rem auto 0

@@ -55,6 +55,7 @@ export default {
       this.itemTitle.push(this.city) // 把心的值塞进去
       this.itemTitle.push('请选择') // 最后再加上一个请选择
       if (!this.itemSelect) { // 点到最后item为空就会执行下面的路由回到选择页面
+        this.itemTitle.pop()
         this.$router.push({path: '/Address', query: {area: this.itemTitle}})
       }
     },

@@ -1,7 +1,7 @@
 <template>
   <div>
   <div class="add_address">
-    <use-header :title="this.title" :back="order"></use-header>
+    <use-header :title="this.title" :back="back"></use-header>
     <div class="add border-bottom consignee">收货人: <input type="text" placeholder="真实姓名" v-model="name"></div>
     <div class="add border-bottom phonenum">手机号码: <input type="text" placeholder="手机号" v-model="phone"></div>
     <div class="add border-bottom area">所在地区: <input @click="gotoSele" type="text" v-model="address" readonly="readonly" placeholder="省 市 区 街道信息"></div>
@@ -15,7 +15,7 @@
 
 <script>
 import UseHeader from 'common/commonComponents/UseHeader'
-import { mapMutations } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 export default {
   name: 'add_address',
   components: {
@@ -29,26 +29,73 @@ export default {
       phone: '',
       address: '',
       det_address: '',
-      pick: false
+      pick: false,
+      modifyIndex: null,
+      addressSelect: '',
+      back: null
     }
   },
   methods: {
-    ...mapMutations(['ADD_ADDRESS']),
+    ...mapMutations(['ADD_ADDRESS', 'MODIFY_ADDRESS', 'DEFAULT_ADDRESS']),
     gotoSele () {
       this.$router.push({path: '/Address/addressSelect'})
     },
     saveAddress () {
-      this.ADD_ADDRESS({name: this.name, phone: this.phone, detAddress: this.det_address, address: this.address, pick: this.pick})
-      this.$router.push({path: '/Order'})
+      console.log(this.$router)
+      if (typeof (this.$route.query.index) === 'number') {
+        console.log(this.modifyIndex)
+        this.MODIFY_ADDRESS({name: this.name, phone: this.phone, detAddress: this.det_address, address: this.address, pick: this.pick, index: this.modifyIndex})
+        this.clearAddress()
+        this.$router.push({path: this.order})
+      } else {
+        this.ADD_ADDRESS({name: this.name, phone: this.phone, detAddress: this.det_address, address: this.address, pick: this.pick})
+        if (!this.pick) {
+          this.DEFAULT_ADDRESS()
+        }
+        this.$router.push({path: this.order})
+      }
+    },
+    addressDisp (adres) {
+      this.address = adres.join(' ') // 把数组抓换成字符串并用括号里的字符串隔开他
+    },
+    clearAddress () {
+      this.name = this.phone = this.det_address = this.address = ''
     }
+  },
+  beforeRouteUpdate (to, from, next) {
+    console.log(from)
+    if (from.name === 'addressSelect') {
+      this.back = '/Address/list'
+    }
+    next()
   },
   watch: {
     $route () {
+      // 如果dir存在就把地址设定为Address/list
+      // 这是新建地址时传进来的
+      if (this.$route.query.dir) {
+        if (this.$route.query.dir === 'Address') {
+          this.clearAddress()
+        }
+        console.log(this.$route.query.dir)
+        this.order = 'Address/list'
+      }
       if (this.$route.query.area) {
-        this.$route.query.area.pop()
-        this.address = this.$route.query.area.join(' ') // 把数组抓换成字符串并用括号里的字符串隔开他
+        this.addressDisp(this.$route.query.area)
+      }
+      if (typeof (this.$route.query.index) === 'number') {
+        this.order = 'Address/list'
+        this.modifyIndex = this.$route.query.index
+        let address = this.addressList[this.$route.query.index]
+        this.name = address.name
+        this.phone = address.phone
+        this.det_address = address.detAddress
+        this.address = address.address
       }
     }
+  },
+  computed: {
+    ...mapState(['addressList'])
   },
   mounted () {
   }

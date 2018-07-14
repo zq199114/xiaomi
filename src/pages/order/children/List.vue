@@ -8,14 +8,16 @@
         <span @click="change(3)" :class="{'active': select===3}" class="wait">待收货</span>
       </div>
       <div class="wraper" ref="wraper">
-        <transition :name="side">
-        <ul class="list" v-if="jlushfou === 1">
-          <li class="hint" v-if="!list.length" key="none">
-            <div class="cicle">!</div>
-            <div class="desc">您还没有 {{titleDesc}} 订单</div>
-          </li>
-          <li class="mar" key="marg"></li>
-          <router-link  tag="li" :to="{ name: 'view', params: { selectId: linshi}}" class="list_item" v-for="(item, index) in list" :key="index">
+        <transition-group :name="side">
+          <!--如果想要有动画的效果key的值就不能相同，要动态改变，因为vue认为这是同一个组件如果key相同个的话，vue就不会更新dom-->
+          <!--这里碰到一个问题，如果是用v-show的话动画过度，就不会出现布局问题，但是会报错是key的问题，还不知道是什么问题-->
+          <!--上面的问题的原因是因为刚擦 用的两个key是相同个的值所以会报错，key值一定不能相同个-->
+        <div class="hint" v-show="!list.length" :key="titleDesc">
+          <div class="cicle">!</div>
+          <div class="desc">您还没有 {{titleDesc}} 订单</div>
+        </div>
+        <ul class="list" v-show="list.length" :key="select">
+          <router-link tag="li" :to="{ name: 'view', params: { selectId: linshi}}" class="list_item" v-for="(item, index) in list" :key="index">
             <div class="order_data">
               <p class="data_left">
                 <span class="data">订单日期: {{item.data}}</span>
@@ -35,7 +37,7 @@
             </div>
           </router-link>
         </ul>
-        </transition>
+        </transition-group>
       </div>
       <router-view></router-view>
       <!--<home-bottom></home-bottom>-->
@@ -56,7 +58,7 @@ export default {
   data () {
     return {
       title: '我的订单',
-      select: '',
+      select: 1,
       list: [],
       proplist: [{
         data: '2017/12/19 11:01',
@@ -85,17 +87,18 @@ export default {
           this.title = '我的订单'
           this.select = item
           this.list = this.proplist
+          this.titleDesc = ''
           break
         case 2:
           this.title = '待支付订单'
           this.select = item
-          this.list = this.proplist
+          this.list = []
           this.titleDesc = '待付款'
           break
         default:
           this.title = '待收货订单'
           this.select = item
-          this.list = this.proplist
+          this.list = []
           this.titleDesc = '待收货'
       }
       this.side = item > this.jlushfou ? 'right' : 'left'
@@ -103,16 +106,17 @@ export default {
     }
   },
   mounted () {
+    console.log(this.$route.params.selectId)
+    // 下面这个列表赋值应该根据点击进来的值来判断，但现在没有数据所以只能先这么写
+    this.list = this.proplist
+    this.linshi = parseInt(this.$route.params.selectId)
+    this.change(this.linshi)
     this.bscroll = new BScroll(this.$refs.wraper, {
       tab: true,
       click: true,
       scrollY: true,
       bounce: false
     })
-    // 下面这个列表赋值应该根据点击进来的值来判断，但现在没有数据所以只能先这么写
-    this.list = this.proplist
-    this.linshi = parseInt(this.$route.params.selectId)
-    this.change(this.linshi)
   }
 }
 </script>
@@ -148,36 +152,35 @@ export default {
     overflow-x: hidden
     -webkit-overflow-scrolling: touch
     // overflow: hidden
+    .hint
+      background: #fff
+      padding: 1rem 0 0
+      border-top: .02rem solid #ebebeb
+      .cicle
+        height: 2.5rem
+        width: 2.5rem
+        border: .02rem solid #ebebeb
+        border-radius: 1.5rem
+        line-height: 2.5rem
+        font-size: 1.5rem
+        text-align: center
+        color: #ebebeb
+        margin: 0 auto
+      .desc
+        line-height: 1rem
+        height: 1rem
+        color: #999
+        font-size: .3rem
+        text-align: center
     .list
-       // position: fixed
+      margin-top: $topMargin
+        // position: fixed
        // top: .22rem + $topMargin + $headerHeight + .7rem
        // width: 100%
        // margin: 0 auto
        // overflow-y: auto
        // overflow-x: hidden
        // -webkit-overflow-scrolling: touch
-      .hint
-        background: #fff
-        padding: 1rem 0 0
-        border-top: .02rem solid #ebebeb
-        .cicle
-          height: 2.5rem
-          width: 2.5rem
-          border: .02rem solid #ebebeb
-          border-radius: 1.5rem
-          line-height: 2.5rem
-          font-size: 1.5rem
-          text-align: center
-          color: #ebebeb
-          margin: 0 auto
-        .desc
-          line-height: 1rem
-          height: 1rem
-          color: #999
-          font-size: .3rem
-          text-align: center
-      .mar
-        height: $topMargin
       .list_item
         margin-bottom: .22rem
         background: #fff

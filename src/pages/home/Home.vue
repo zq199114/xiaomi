@@ -32,11 +32,12 @@ export default {
     }
   },
   methods: {
+    // 改动滑动方向
     slidDir (font) {
       if (font > this.dir) {
-        this.side = 'left'
-      } else {
         this.side = 'right'
+      } else {
+        this.side = 'left'
       }
       this.dir = font
     }
