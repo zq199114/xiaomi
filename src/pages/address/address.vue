@@ -42,15 +42,26 @@ export default {
     },
     saveAddress () {
       console.log(this.$router)
+      // 判断是要修改该地址
       if (typeof (this.$route.query.index) === 'number') {
-        console.log(this.modifyIndex)
         this.MODIFY_ADDRESS({name: this.name, phone: this.phone, detAddress: this.det_address, address: this.address, pick: this.pick, index: this.modifyIndex})
         this.clearAddress()
         this.$router.push({path: this.order})
-      } else {
-        this.ADD_ADDRESS({name: this.name, phone: this.phone, detAddress: this.det_address, address: this.address, pick: this.pick})
-        if (!this.pick) {
+      } else { // 否则就是添加地址
+        // 如果地址条数是0就设置为默认地址
+        if (this.addressList.length === 0) {
+          console.log('lllllllllllllllllll')
+          this.pick = true
+          this.ADD_ADDRESS({name: this.name, phone: this.phone, detAddress: this.det_address, address: this.address, pick: this.pick})
           this.DEFAULT_ADDRESS()
+        } else {
+          this.ADD_ADDRESS({
+            name: this.name,
+            phone: this.phone,
+            detAddress: this.det_address,
+            address: this.address,
+            pick: this.pick
+          })
         }
         this.$router.push({path: this.order})
       }
@@ -60,17 +71,17 @@ export default {
     },
     clearAddress () {
       this.name = this.phone = this.det_address = this.address = ''
+      this.pick = false
     }
   },
   beforeRouteUpdate (to, from, next) {
-    console.log(from)
     if (from.name === 'addressSelect') {
       this.back = '/Address/list'
     }
     next()
   },
   watch: {
-    $route () {
+    $route () { // 这个路由监控是来监控路有时从那里过来的，通过传递过来的参数判断要干什么
       // 如果dir存在就把地址设定为Address/list
       // 这是新建地址时传进来的
       if (this.$route.query.dir) {
@@ -83,6 +94,7 @@ export default {
       if (this.$route.query.area) {
         this.addressDisp(this.$route.query.area)
       }
+      // 判断是要修改地址
       if (typeof (this.$route.query.index) === 'number') {
         this.order = 'Address/list'
         this.modifyIndex = this.$route.query.index
@@ -91,6 +103,7 @@ export default {
         this.phone = address.phone
         this.det_address = address.detAddress
         this.address = address.address
+        this.pick = address.pick
       }
     }
   },

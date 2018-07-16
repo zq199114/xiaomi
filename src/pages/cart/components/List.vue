@@ -1,7 +1,7 @@
 <template>
 <div class="list" ref="wraper">
   <transition-group  tag="ul" name="list">
-    <router-link key="top" v-if="isLogin" tag="li" to="/login" class="login border-bottom">登陆后享受更多优惠 <span>去登陆 <span class="iconfont">&#xe62d;</span></span></router-link>
+    <router-link key="top" v-if="isLogin" tag="li" to="/login" class="login border-bottom" >登陆后享受更多优惠 <span>去登陆 <span class="iconfont">&#xe62d;</span></span></router-link>
     <li class="list_item border-bottom" v-for="item in cartList" :key="item.id">
       <div class="nod">
         <check @select="select" @getItem="getItem(item)"></check>

@@ -77,11 +77,12 @@ export default {
       if (data.name === this.userContent && data.password === this.passContent) {
         this.KEEP_STATE({username: this.userContent, password: this.userContent})
         // 如果传过来有地址参数 登陆后就进到地址阐述里面
-        console.log(this.$route)
+        // console.log(this.$route) // this.fromName是从父组件传来的，用于只登陆的时候
         let redirect = decodeURIComponent(this.$route.query.redirect || this.fromName) // decodeURIComponent() 方法用于解码由 encodeURIComponent 方法或者其它类似方法编码
         let tota = this.$route.query.tota
         if (redirect === this.fromName) { tota = '' }
-        this.$router.push({
+        // 下面用replace替换掉push后浏览器就不会记录登陆的那个页面，浏览器后退，或者页面内的后退都不会被记录在内了
+        this.$router.replace({
           name: redirect,
           params: tota
         })

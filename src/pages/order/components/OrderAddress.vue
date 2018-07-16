@@ -8,7 +8,6 @@
       </div>
       <span class="iconfont arrow">&#xe62d;</span>
     </router-link>
-    <!--{{addressList}}-->
   </div>
 </template>
 

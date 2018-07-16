@@ -105,13 +105,16 @@ export default {
   },
   // 添加地址
   [ADD_ADDRESS] (state, object) {
-    state.addressList = object.pick ? [object, ...state.addressList] : [...state.addressList, object]
-    setStore('addressList', state.addressList)
     if (object.pick) {
+      state.addressList.map(item => {
+        item.pick = false
+      })
       state.defaultAddress = object
       setStore('defaultAddress', state.defaultAddress)
       console.log(getStore('defaultAddress'))
     }
+    state.addressList = object.pick ? [object, ...state.addressList] : [...state.addressList, object]
+    setStore('addressList', state.addressList)
   },
   // 默认地址(也不算默认地址就是就是会显示在地址详情里面)
   [DEFAULT_ADDRESS] (state, index = 0) {
@@ -124,9 +127,20 @@ export default {
   [MODIFY_ADDRESS] (state, object) {
     let index = object.index
     delete object.index
-    state.addressList[index] = object
+    // 如果是默认地址就重新排序
+    if (object.pick) {
+      state.addressList.map(item => {
+        item.pick = false
+      })
+      state.addressList[index] = object
+      // 删除索引地址添加到数组开头
+      state.addressList.unshift(state.addressList.splice(index, 1)[0])
+      state.defaultAddress = object
+      setStore('defaultAddress', state.defaultAddress)
+    } else {
+      state.addressList[index] = object
+    }
     setStore('addressList', state.addressList)
-    console.log(state.addressList)
   },
   // 删除地址
   [DELETE_ADDRESS] (state, index) {

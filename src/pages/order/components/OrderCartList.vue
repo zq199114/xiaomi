@@ -8,12 +8,12 @@
       </div>
       <div class="list_item_num">
         <div class="num" v-if="item.phone_num !== 1">x {{item.phone_num}} =</div>
-        <div class="price">{{toDecimal(item.phone_price*item.phone_num)}}</div>
+        <div class="price">{{item.phone_price*item.phone_num | toDecimal}}</div>
       </div>
     </div>
   </div>
   <div class="settle_accounts">
-    <div class="total_price tota">商品价格：<i>{{toDecimal(totalPrice)}}</i></div>
+    <div class="total_price tota">商品价格：<i>{{totalPrice | toDecimal}}</i></div>
     <div class="discount tota">以优惠：<i>0</i></div>
     <div class="distribution_costs tota">配送费用：<i>0</i></div>
   </div>
@@ -38,6 +38,8 @@ export default {
     }
   },
   methods: {
+  },
+  filters: { // 这是过滤器
     // 保留两位小数，没有小数强制添加两个0在小数点后
     toDecimal (x) {
       var fn = parseFloat(x)

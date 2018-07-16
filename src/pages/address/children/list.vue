@@ -69,7 +69,6 @@ export default {
     }
   },
   beforeRouteEnter (to, from, next) {
-    console.log(from)
     if (from.name === 'set' || from.name === 'Address') {
       next(vm => {
         vm.back = '/Home/User/set'

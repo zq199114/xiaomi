@@ -45,6 +45,7 @@ console.log(store.state.token)
 router.beforeEach((to, from, next) => {
   if (to.matched.some(r => r.meta.requireAuth)) {
     if (store.state.token) { // 不存在就把要去的页面加入到，路由参数中
+      console.log(to)
       next()
     } else {
       // console.log(to) // 在这个里面能看到parames的值
